@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Support\Posts;
+
+use App\Models\Post;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+
+class PostCreator
+{
+    public function __construct(protected PostContentFormatter $formatter)
+    {
+    }
+
+    public function create(array $payload, ?int $userId = null): Post
+    {
+        $post = new Post();
+
+        return $this->persist($post, $payload, $userId, true);
+    }
+
+    public function update(Post $post, array $payload, ?int $userId = null): Post
+    {
+        return $this->persist($post, $payload, $userId, false);
+    }
+
+    protected function persist(Post $post, array $payload, ?int $userId, bool $isCreating): Post
+    {
+        $contentHtml = (string) Arr::get($payload, 'content_html', $post->content_html ?? '');
+        $formatted = $this->formatter->prepare($contentHtml);
+        $faq = $this->formatter->normalizeFaq(Arr::get($payload, 'faq_json', $post->faq_json ?? []));
+        $baseTitle = (string) Arr::get($payload, 'title', $post->title ?? 'post');
+        $requestedSlug = (string) Arr::get($payload, 'slug', $post->slug ?? '');
+
+        $post->fill([
+            ...$payload,
+            'slug' => $this->makeUniqueSlug($requestedSlug !== '' ? $requestedSlug : Str::slug($baseTitle), $post->id),
+            'content_html' => $formatted['content_html'],
+            'reading_time' => $formatted['reading_time'],
+            'faq_json' => $faq,
+            'status' => Arr::get($payload, 'status', Arr::get($payload, 'is_published', $post->is_published) ? 'published' : 'draft'),
+            'updated_by' => $userId,
+        ]);
+
+        if ($isCreating) {
+            $post->created_by = $userId;
+        }
+
+        $post->save();
+
+        if (isset($payload['tags']) && is_array($payload['tags'])) {
+            $post->tags()->sync($payload['tags']);
+        }
+
+        return $post->refresh()->load(['category', 'tags']);
+    }
+
+    protected function makeUniqueSlug(string $slug, ?int $ignoreId = null): string
+    {
+        $base = Str::slug($slug) ?: 'post';
+        $candidate = $base;
+        $counter = 2;
+
+        while (Post::query()
+            ->when($ignoreId, fn ($query) => $query->where('id', '!=', $ignoreId))
+            ->where('slug', $candidate)
+            ->exists()) {
+            $candidate = $base.'-'.$counter;
+            $counter++;
+        }
+
+        return $candidate;
+    }
+}

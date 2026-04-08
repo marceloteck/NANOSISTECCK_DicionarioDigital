@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Modelo de post do Dicionário Digital da Nanosistecck para significados, gírias, siglas, erros, códigos e curiosidades digitais." />
+  <meta name="theme-color" content="#0f172a" />
+  <title>O que significa POV? | Dicionário Digital</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --bg-soft: #eef4ff;
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #dbe4f0;
+      --primary: #2563eb;
+      --primary-strong: #1d4ed8;
+      --accent: #7c3aed;
+      --accent-soft: #ede9fe;
+      --success: #059669;
+      --warning: #d97706;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.06);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --container: 1220px;
+      --article: 780px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.07), transparent 28%),
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, #f8fafc 100%);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: var(--primary-strong); }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: #0f172a;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .topbar strong { color: #fff; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(248, 250, 252, 0.84);
+      border-bottom: 1px solid rgba(219, 228, 240, 0.9);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 16px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 1.14rem;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--text);
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 12px;
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover {
+      background: #eaf1ff;
+      color: var(--primary-strong);
+    }
+
+    .nav .cta-link {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav .cta-link:hover {
+      background: var(--primary-strong);
+      color: white;
+    }
+
+    .hero {
+      padding: 26px 0 18px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 18px;
+    }
+
+    .breadcrumb span { color: #94a3b8; }
+
+    .post-hero {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .post-hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(124,58,237,0.12), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .post-hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      max-width: 900px;
+    }
+
+    .post-hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 840px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      color: var(--primary-strong);
+      border: 1px solid #dbeafe;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .layout {
+      padding: 24px 0 40px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, var(--article)) minmax(280px, 360px);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .article,
+    .sidebar-card,
+    .highlight-card,
+    .related-card,
+    .newsletter,
+    .faq-item {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .article {
+      padding: 30px;
+    }
+
+    .featured-image {
+      height: 280px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
+      display: grid;
+      place-items: center;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--primary-strong);
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+    }
+
+    .quick-answer {
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+      border: 1px solid #dbeafe;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 26px;
+    }
+
+    .quick-answer strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: var(--primary-strong);
+    }
+
+    .article h2 {
+      margin: 34px 0 12px;
+      font-size: 1.7rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .article h3 {
+      margin: 26px 0 10px;
+      font-size: 1.22rem;
+      line-height: 1.3;
+    }
+
+    .article p {
+      margin: 0 0 16px;
+      color: #1e293b;
+      font-size: 1.03rem;
+    }
+
+    .article ul,
+    .article ol {
+      margin: 0 0 18px;
+      padding-left: 22px;
+      color: #1e293b;
+    }
+
+    .article li { margin-bottom: 10px; }
+
+    .summary-box,
+    .example-box,
+    .warning-box,
+    .tip-box {
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin: 22px 0;
+      border: 1px solid var(--line);
+    }
+
+    .summary-box {
+      background: #f8fafc;
+    }
+
+    .example-box {
+      background: #f5f3ff;
+      border-color: #ddd6fe;
+    }
+
+    .warning-box {
+      background: #fff7ed;
+      border-color: #fed7aa;
+    }
+
+    .tip-box {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+
+    .box-title {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .toc {
+      background: #f8fbff;
+      border: 1px solid #dbeafe;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 26px;
+    }
+
+    .toc h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .toc ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 22px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      background: #eff6ff;
+      color: var(--primary-strong);
+      font-size: 0.95rem;
+    }
+
+    .share-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .share-btn:hover {
+      background: #eef4ff;
+      color: var(--primary-strong);
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 18px;
+      position: sticky;
+      top: 92px;
+    }
+
+    .sidebar-card,
+    .highlight-card,
+    .related-card {
+      padding: 22px;
+    }
+
+    .sidebar-card h3,
+    .highlight-card h3,
+    .related-card h3,
+    .newsletter h2,
+    .faq h2 {
+      margin: 0 0 10px;
+    }
+
+    .sidebar-card p,
+    .highlight-card p,
+    .related-card p,
+    .newsletter p,
+    .faq p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .sidebar-list,
+    .related-list,
+    .faq-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .sidebar-item,
+    .related-item {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .sidebar-item strong,
+    .related-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .sidebar-item span,
+    .related-item span {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .search-form {
+      margin-top: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .search-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 8px 10px 8px 16px;
+    }
+
+    .search-input input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font-size: 1rem;
+      min-width: 0;
+      color: var(--text);
+    }
+
+    .search-input button {
+      border: 0;
+      background: var(--primary);
+      color: white;
+      font-weight: 800;
+      border-radius: 12px;
+      padding: 12px 16px;
+      cursor: pointer;
+    }
+
+    .newsletter-wrap {
+      padding: 8px 0 36px;
+    }
+
+    .newsletter {
+      padding: 32px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%);
+      color: white;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .newsletter p { color: rgba(255,255,255,0.82); }
+
+    .newsletter-form {
+      display: grid;
+      gap: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .newsletter-form input {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.95);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      outline: 0;
+    }
+
+    .newsletter-form button {
+      border: 0;
+      border-radius: 14px;
+      background: white;
+      color: #0f172a;
+      font-weight: 800;
+      padding: 14px 18px;
+      cursor: pointer;
+    }
+
+    .faq {
+      padding: 0 0 36px;
+    }
+
+    .faq-item {
+      padding: 22px;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 42px 0 20px;
+      margin-top: 10px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    footer h3,
+    footer h4 {
+      color: white;
+      margin-top: 0;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    footer a {
+      color: #cbd5e1;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 1080px) {
+      .content-grid,
+      .newsletter,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .post-hero,
+      .article,
+      .newsletter {
+        padding: 24px;
+      }
+
+      .featured-image {
+        height: 220px;
+      }
+
+      .search-input {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+      }
+
+      .search-input button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div><strong>Dicionário Digital</strong> · modelo profissional de página de post</div>
+      <div>Conteúdo claro, escaneável e pronto para SEO</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-badge">DD</div>
+        <div>
+          <h1 class="brand-title">Dicionário Digital</h1>
+          <p class="brand-subtitle">por Nanosistecck · significados, gírias, erros e curiosidades</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="#conteudo">Artigo</a>
+        <a href="#relacionados">Relacionados</a>
+        <a href="#faq">Dúvidas</a>
+        <a class="cta-link" href="#buscar">Buscar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index.html">Início</a>
+          <span>•</span>
+          <a href="#">Significados</a>
+          <span>•</span>
+          <strong>O que significa POV?</strong>
+        </div>
+
+        <div class="post-hero">
+          <span class="eyebrow">Significados · Siglas populares</span>
+          <h1>O que significa POV na internet, no TikTok e nas redes sociais?</h1>
+          <p>
+            Este é o modelo ideal de post do Dicionário Digital: título forte, resposta rápida, explicação simples, exemplos reais,
+            links internos e blocos visuais que deixam a leitura confortável e fazem o usuário continuar navegando no site.
+          </p>
+
+          <div class="hero-meta">
+            <span class="pill">Leitura rápida</span>
+            <span class="pill">Explicação simples</span>
+            <span class="pill">Exemplos práticos</span>
+            <span class="pill">SEO amigável</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout" id="conteudo">
+      <div class="container content-grid">
+        <article class="article">
+          <div class="featured-image">POV</div>
+
+          <div class="quick-answer">
+            <strong>Resposta rápida</strong>
+            POV significa <em>Point of View</em>, que em português quer dizer <strong>ponto de vista</strong>. Nas redes sociais,
+            a expressão costuma indicar que o vídeo, a imagem ou a frase está mostrando uma situação a partir da perspectiva de alguém.
+          </div>
+
+          <div class="toc">
+            <h2>Índice do conteúdo</h2>
+            <ul>
+              <li><a href="#significado">O significado de POV</a></li>
+              <li><a href="#como-usado">Como POV é usado na internet</a></li>
+              <li><a href="#exemplos">Exemplos simples de uso</a></li>
+              <li><a href="#diferencas">Diferença entre POV e outras siglas</a></li>
+              <li><a href="#vale-a-pena">Por que esse termo viralizou</a></li>
+            </ul>
+          </div>
+
+          <h2 id="significado">O significado de POV</h2>
+          <p>
+            A sigla POV vem do inglês <strong>Point of View</strong>. Em tradução direta, significa <strong>ponto de vista</strong>.
+            Em vídeos curtos, memes e conteúdos de redes sociais, ela indica que o usuário deve imaginar a cena sendo vivida por um personagem,
+            por quem publicou o conteúdo ou por quem está assistindo.
+          </p>
+          <p>
+            Esse formato ficou muito popular porque cria uma sensação imediata de participação. Em vez de apenas ver um vídeo,
+            a pessoa sente que está dentro da situação. Isso aumenta curiosidade, identificação e retenção do conteúdo.
+          </p>
+
+          <div class="summary-box">
+            <span class="box-title">Resumo fácil</span>
+            <p>
+              Quando alguém escreve POV, normalmente quer dizer: “imagine que você está vendo ou vivendo essa situação por este ponto de vista”.
+            </p>
+          </div>
+
+          <h2 id="como-usado">Como POV é usado na internet</h2>
+          <p>
+            No TikTok, Instagram Reels, YouTube Shorts e até em memes de texto, POV aparece no começo da frase para preparar o contexto.
+            A estrutura é simples: a pessoa apresenta uma situação específica e usa POV para dizer qual é a perspectiva da cena.
+          </p>
+
+          <ul>
+            <li><strong>Em vídeos:</strong> cria uma encenação rápida com ponto de vista definido.</li>
+            <li><strong>Em memes:</strong> faz a piada parecer mais pessoal e direta.</li>
+            <li><strong>Em textos:</strong> ajuda a montar uma situação imaginária muito fácil de entender.</li>
+            <li><strong>Em trends:</strong> aumenta a chance de identificação e compartilhamento.</li>
+          </ul>
+
+          <div class="example-box">
+            <span class="box-title">Exemplos de POV em frases</span>
+            <ul>
+              <li>POV: você abriu a geladeira e esqueceu o que ia pegar.</li>
+              <li>POV: você recebeu uma mensagem e já sabe que é problema.</li>
+              <li>POV: seu celular trava bem na hora mais importante.</li>
+            </ul>
+          </div>
+
+          <h2 id="exemplos">Exemplos simples de uso</h2>
+          <p>
+            Um bom post no Dicionário Digital deve sempre trazer exemplos claros, porque o usuário não quer só a definição. Ele quer ter certeza de que entendeu.
+            Abaixo está um modelo de tabela simples para organizar isso de forma visual e confortável.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Exemplo</th>
+                  <th>O que quer dizer</th>
+                  <th>Onde costuma aparecer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>POV: você chegou atrasado e todos olharam</td>
+                  <td>Mostra a cena do ponto de vista da pessoa atrasada</td>
+                  <td>TikTok, Reels, memes</td>
+                </tr>
+                <tr>
+                  <td>POV: é segunda-feira de manhã</td>
+                  <td>Cria identificação com uma situação comum</td>
+                  <td>Posts engraçados</td>
+                </tr>
+                <tr>
+                  <td>POV: seu chefe mandou “podemos conversar?”</td>
+                  <td>Transforma uma situação tensa em humor</td>
+                  <td>Memes e vídeos curtos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="diferencas">Diferença entre POV e outras siglas</h2>
+          <p>
+            Muitas pessoas confundem POV com outras siglas populares como TBT, FYP, DM e NPC. Por isso, vale a pena mostrar a diferença dentro do próprio artigo,
+            porque isso aumenta tempo de permanência e cria oportunidade para links internos entre posts relacionados.
+          </p>
+
+          <div class="tip-box">
+            <span class="box-title">Boa prática para SEO interno</span>
+            <p>
+              Sempre que citar outra sigla popular, transforme em link para outro post do site. Isso ajuda a navegação e fortalece o projeto como uma rede de conteúdos conectados.
+            </p>
+          </div>
+
+          <ul>
+            <li><strong>POV:</strong> ponto de vista.</li>
+            <li><strong>TBT:</strong> lembrança do passado.</li>
+            <li><strong>DM:</strong> mensagem direta.</li>
+            <li><strong>FYP:</strong> página “Para Você”.</li>
+          </ul>
+
+          <h2 id="vale-a-pena">Por que esse termo viralizou</h2>
+          <p>
+            POV viralizou porque é uma estrutura muito fácil de consumir. Em poucas palavras, o usuário já entende a proposta do vídeo ou do meme.
+            Isso melhora a retenção e torna o conteúdo mais intuitivo, especialmente em plataformas de rolagem rápida.
+          </p>
+          <p>
+            Para o Dicionário Digital, esse tipo de termo é perfeito porque junta três forças ao mesmo tempo: busca orgânica, curiosidade instantânea e chance alta de navegação em série.
+          </p>
+
+          <div class="warning-box">
+            <span class="box-title">Atenção editorial</span>
+            <p>
+              O ideal é que cada post siga um padrão fixo: resposta rápida, explicação simples, exemplos, perguntas relacionadas e links para mais conteúdos. Assim o site cresce com consistência e qualidade.
+            </p>
+          </div>
+
+          <h2>Perguntas relacionadas</h2>
+          <p>
+            No fim do artigo, é importante abrir espaço para variações de busca que o usuário pode querer pesquisar logo em seguida. Isso ajuda muito no crescimento do site.
+          </p>
+          <ol>
+            <li>O que significa POV no TikTok?</li>
+            <li>POV é uma gíria ou uma sigla?</li>
+            <li>Como usar POV em frases?</li>
+            <li>Qual a diferença entre POV e meme comum?</li>
+          </ol>
+
+          <div class="share-row">
+            <a class="share-btn" href="#">Copiar link</a>
+            <a class="share-btn" href="#">Compartilhar no WhatsApp</a>
+            <a class="share-btn" href="#">Salvar para ler depois</a>
+          </div>
+        </article>
+
+        <aside class="sidebar">
+          <div class="sidebar-card" id="buscar">
+            <h3>Buscar outro termo</h3>
+            <p>Um campo de busca lateral ajuda o usuário a continuar no site depois que termina o artigo.</p>
+            <form class="search-form" action="#" method="get">
+              <div class="search-input">
+                <input type="text" name="q" placeholder="Ex: TBT, 777, DM, algoritmo..." aria-label="Buscar outro termo" />
+                <button type="submit">Buscar</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="highlight-card">
+            <h3>Leitura rápida</h3>
+            <p>O visitante precisa sentir segurança de que vai encontrar a resposta sem enrolação.</p>
+            <div class="sidebar-list">
+              <div class="sidebar-item">
+                <strong>Definição direta</strong>
+                <span>A resposta principal vem logo no topo.</span>
+              </div>
+              <div class="sidebar-item">
+                <strong>Exemplos visuais</strong>
+                <span>O usuário entende melhor em segundos.</span>
+              </div>
+              <div class="sidebar-item">
+                <strong>Links internos</strong>
+                <span>Levam para outros posts relacionados.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="related-card" id="relacionados">
+            <h3>Posts relacionados</h3>
+            <p>Bloco essencial para retenção e crescimento de páginas vistas.</p>
+            <div class="related-list">
+              <a class="related-item" href="#">
+                <strong>O que significa TBT?</strong>
+                <span>Entenda a sigla e quando ela é usada.</span>
+              </a>
+              <a class="related-item" href="#">
+                <strong>O que significa DM?</strong>
+                <span>Veja o uso nas redes sociais e aplicativos.</span>
+              </a>
+              <a class="related-item" href="#">
+                <strong>O que significa FYP?</strong>
+                <span>Conheça a página “Para Você” nas redes.</span>
+              </a>
+              <a class="related-item" href="#">
+                <strong>O que é algoritmo?</strong>
+                <span>Explicação simples para iniciantes.</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="newsletter-wrap">
+      <div class="container">
+        <div class="newsletter">
+          <div>
+            <h2>Receba novos significados e curiosidades digitais</h2>
+            <p>
+              Esse bloco é ideal para capturar retorno do visitante. Pode ser usado para novidades, conteúdos populares ou categorias em alta.
+            </p>
+          </div>
+          <form class="newsletter-form" action="#" method="post">
+            <input type="text" placeholder="Seu nome" aria-label="Seu nome" />
+            <input type="email" placeholder="Seu e-mail" aria-label="Seu e-mail" />
+            <button type="submit">Quero acompanhar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="article" style="max-width:100%;">
+          <h2>Dúvidas frequentes sobre o modelo de post</h2>
+          <p>Esse bloco ajuda a padronizar a produção dos próximos artigos do site.</p>
+
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Por que esse modelo é bom para SEO?</h3>
+              <p>Porque organiza bem o conteúdo, responde rápido, usa subtítulos claros, cria escaneabilidade e favorece links internos.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Esse layout serve para outras categorias?</h3>
+              <p>Sim. Ele pode ser reaproveitado para gírias, números, erros, códigos, mensagens prontas e curiosidades digitais.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Onde podem entrar anúncios no futuro?</h3>
+              <p>Entre blocos do conteúdo, após a resposta rápida, no fim do artigo e na barra lateral, sempre sem atrapalhar a leitura.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Dicionário Digital</h3>
+          <p>
+            Estrutura de página pensada para leitura confortável, confiança visual e crescimento profissional do subdomínio dicionario.nanosistecck.com.
+          </p>
+        </div>
+
+        <div>
+          <h4>Navegação</h4>
+          <div class="footer-links">
+            <a href="index.html">Página inicial</a>
+            <a href="#conteudo">Artigo</a>
+            <a href="#relacionados">Relacionados</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Categorias</h4>
+          <div class="footer-links">
+            <a href="#">Gírias da Internet</a>
+            <a href="#">Significados</a>
+            <a href="#">Erros e Códigos</a>
+            <a href="#">Curiosidades Digitais</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Institucional</h4>
+          <div class="footer-links">
+            <a href="#">Sobre</a>
+            <a href="#">Política de privacidade</a>
+            <a href="#">Termos de uso</a>
+            <a href="#">Contato</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Dicionário Digital · Nanosistecck</div>
+        <div>Modelo base pronto para escalar o projeto</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
