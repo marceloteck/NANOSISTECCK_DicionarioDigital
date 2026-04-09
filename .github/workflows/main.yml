@@ -1,0 +1,56 @@
+name: Build and Deploy (main)
+
+on:
+  push:
+    branches:
+      - main
+  # Ativa o botão de início manual
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+        with:
+          ref: main # Garante que o checkout seja sempre desta branch
+
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Instalar dependências do NPM
+        run: npm install
+
+      - name: Instalar dependências do Composer
+        run: composer install --no-dev --prefer-dist
+
+      - name: Gerar autoload otimizado
+        run: composer dump-autoload -o        
+
+      - name: Rodar Build
+        run: npm run build
+
+      - name: Commit e Push dos arquivos gerados
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/build/
+          # O commit só acontece se houver mudanças
+          git commit -m "🚀 Build gerado (Manual/Push)" || echo "Nenhuma alteração para commit"
+          # Força o push especificamente para a branch main
+          git push origin HEAD:main --force
