@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dicionário Digital | Significados, gírias da internet e termos online</title>
+  <meta name="description" content="Descubra significados, gírias, abreviações, emojis e termos digitais com explicações claras, visual elegante e navegação pensada para prender o leitor." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <link rel="canonical" href="https://dicionario.nanosistecck.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dicionário Digital | Significados, gírias da internet e termos online" />
+  <meta property="og:description" content="Entenda expressões da internet, siglas, emojis e curiosidades digitais em um site limpo, sofisticado e fácil de navegar." />
+  <meta property="og:url" content="https://dicionario.nanosistecck.com/" />
+  <meta property="og:site_name" content="Dicionário Digital" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dicionário Digital | Significados, gírias da internet e termos online" />
+  <meta name="twitter:description" content="Um modelo sofisticado de site para explicar a linguagem da internet com clareza, leveza visual e retenção." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Dicionário Digital",
+    "url": "https://dicionario.nanosistecck.com/",
+    "description": "Site sobre significados, gírias da internet, abreviações, emojis e curiosidades digitais.",
+    "inLanguage": "pt-BR",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://dicionario.nanosistecck.com/busca?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-soft: #eef2f8;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-solid: #ffffff;
+      --text: #0f172a;
+      --text-soft: #4b5563;
+      --muted: #6b7280;
+      --line: rgba(148, 163, 184, 0.22);
+      --primary: #3158d6;
+      --primary-soft: #e9efff;
+      --accent: #7a8fd8;
+      --accent-2: #a78bfa;
+      --success-soft: #eefbf5;
+      --shadow-lg: 0 28px 80px rgba(15, 23, 42, 0.08);
+      --shadow-md: 0 14px 40px rgba(15, 23, 42, 0.06);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(122, 143, 216, 0.12), transparent 28%),
+        radial-gradient(circle at 100% 0%, rgba(167, 139, 250, 0.1), transparent 24%),
+        linear-gradient(180deg, #f8fafe 0%, #f4f7fb 100%);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(245, 247, 251, 0.7);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.55);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-family: 'Manrope', 'Inter', sans-serif;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #365fe2 0%, #7796ff 55%, #aa8cff 100%);
+      box-shadow: 0 16px 34px rgba(49, 88, 214, 0.25);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: var(--text-soft);
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+
+    .menu a:hover { color: var(--text); }
+
+    .search-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: var(--shadow-md);
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 42px 0 18px;
+    }
+
+    .hero-shell {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .panel,
+    .soft-card,
+    .feature-card,
+    .article-card,
+    .aside-card,
+    .topic-card,
+    .faq-card,
+    .footer-card {
+      background: var(--surface);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.92);
+      box-shadow: var(--shadow-lg);
+      border-radius: var(--radius-xl);
+    }
+
+    .panel {
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -80px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(49, 88, 214, 0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.95);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      font-family: 'Manrope', 'Inter', sans-serif;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 4.6vw, 4.5rem);
+      max-width: 11ch;
+    }
+
+    .hero-lead {
+      margin: 18px 0 0;
+      max-width: 62ch;
+      font-size: 1.08rem;
+      color: var(--text-soft);
+    }
+
+    .hero-actions {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 20px;
+      border-radius: 16px;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, #365fe2 0%, #4b74f0 55%, #7d8dff 100%);
+      box-shadow: 0 16px 36px rgba(54, 95, 226, 0.26);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(255,255,255,0.95);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover { transform: translateY(-2px); }
+
+    .search-box {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(255,255,255,0.96);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+    }
+
+    .search-box input {
+      flex: 1 1 280px;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      padding: 14px 16px;
+      font: inherit;
+      color: var(--text);
+    }
+
+    .search-box button {
+      border: 0;
+      padding: 14px 22px;
+      border-radius: 16px;
+      font: inherit;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #365fe2 0%, #6380ff 100%);
+      cursor: pointer;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(255,255,255,0.95);
+      color: var(--text-soft);
+      font-weight: 600;
+      font-size: .93rem;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+    }
+
+    .soft-card {
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .soft-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .feature-card {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      box-shadow: none;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(255,255,255,0.95);
+    }
+
+    .feature-card strong {
+      display: block;
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+    }
+
+    .section {
+      padding: 24px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-head p {
+      margin: 10px 0 0;
+      max-width: 60ch;
+      color: var(--text-soft);
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .topic-card {
+      padding: 24px;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .topic-card:hover,
+    .article-card:hover,
+    .aside-link:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 68px rgba(15, 23, 42, 0.1);
+      border-color: rgba(122, 143, 216, 0.35);
+    }
+
+    .topic-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(49, 88, 214, 0.12), rgba(167, 139, 250, 0.12));
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .topic-card p,
+    .article-card p,
+    .aside-card p,
+    .faq-card p,
+    .footer-card p {
+      color: var(--text-soft);
+    }
+
+    .content-shell {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .article-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .article-card {
+      padding: 26px;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .article-card h3 {
+      font-size: 1.38rem;
+      margin-bottom: 10px;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 800;
+      margin-top: 10px;
+    }
+
+    .aside-card {
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .aside-list,
+    .faq-list,
+    .footer-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .aside-link {
+      display: block;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.66);
+      border: 1px solid rgba(255,255,255,0.95);
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .ad-box {
+      padding: 20px;
+      text-align: center;
+      border-radius: 18px;
+      border: 1px dashed rgba(54, 95, 226, 0.3);
+      background: linear-gradient(180deg, rgba(233,239,255,0.8), rgba(255,255,255,0.84));
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .faq-shell {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .faq-card {
+      padding: 22px;
+    }
+
+    .faq-card h3 {
+      font-size: 1.06rem;
+      margin-bottom: 8px;
+    }
+
+    .statement {
+      margin-top: 6px;
+      padding: 30px;
+      border-radius: 32px;
+      background: linear-gradient(135deg, #ffffff 0%, #f2f6ff 60%, #f7f1ff 100%);
+      border: 1px solid rgba(255,255,255,0.96);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .statement p {
+      margin: 12px 0 0;
+      color: var(--text-soft);
+      max-width: 72ch;
+    }
+
+    footer {
+      padding: 36px 0 56px;
+    }
+
+    .footer-card {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr .8fr .8fr;
+      gap: 22px;
+    }
+
+    .footer-title {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+      font-family: 'Manrope', 'Inter', sans-serif;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-shell,
+      .content-shell,
+      .footer-card,
+      .faq-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .topics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .menu { gap: 14px; }
+
+      .panel,
+      .soft-card,
+      .topic-card,
+      .article-card,
+      .aside-card,
+      .faq-card,
+      .footer-card,
+      .statement {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .soft-grid,
+      .topics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      h1 { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="Dicionário Digital - início">
+        <span class="brand-mark">DD</span>
+        <span>Dicionário Digital</span>
+      </a>
+
+      <nav class="menu" aria-label="Menu principal">
+        <a href="#topicos">Tópicos</a>
+        <a href="#destaques">Destaques</a>
+        <a href="#explorar">Explorar</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a href="#buscar" class="search-mini">Buscar termo</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-shell">
+        <article class="panel">
+          <span class="eyebrow">Informação clara, visual suave e SEO forte</span>
+          <h1>Entenda a internet com uma experiência bonita e leve.</h1>
+          <p class="hero-lead">
+            Um modelo de site feito para explicar gírias, siglas, emojis e termos digitais com clareza imediata, aparência refinada e navegação que faz o leitor continuar descobrindo mais conteúdos.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#destaques" class="btn-primary">Explorar conteúdos</a>
+            <a href="#topicos" class="btn-secondary">Ver categorias</a>
+          </div>
+
+          <form class="search-box" id="buscar" role="search">
+            <label for="q" style="position:absolute;left:-9999px;">Buscar significado</label>
+            <input id="q" type="search" placeholder="Ex.: o que significa POV, ghosting, random, FYP..." />
+            <button type="submit">Pesquisar</button>
+          </form>
+
+          <div class="tag-row" aria-label="Pesquisas em alta">
+            <a href="#" class="tag">cringe significado</a>
+            <a href="#" class="tag">emoji 💀 significado</a>
+            <a href="#" class="tag">o que é low profile</a>
+            <a href="#" class="tag">ghosting</a>
+          </div>
+        </article>
+
+        <aside class="soft-card" aria-label="Diferenciais visuais e de retenção">
+          <div>
+            <span class="eyebrow">Modelo mais suave aos olhos</span>
+            <h2 style="font-size:1.9rem;">Elegância que entrega o essencial sem cansar o leitor.</h2>
+          </div>
+
+          <div class="soft-grid">
+            <div class="feature-card">
+              <strong>Leitura confortável</strong>
+              <span>Espaço em branco, contraste controlado e hierarquia clara.</span>
+            </div>
+            <div class="feature-card">
+              <strong>SEO com boa UX</strong>
+              <span>Estrutura pensada para ranquear e ao mesmo tempo reter.</span>
+            </div>
+            <div class="feature-card">
+              <strong>Aparência premium</strong>
+              <span>Visual limpo que transmite confiança e profissionalismo.</span>
+            </div>
+            <div class="feature-card">
+              <strong>Navegação viciante</strong>
+              <span>Blocos que convidam o usuário a descobrir mais.</span>
+            </div>
+          </div>
+
+          <div class="ad-box">Área nobre para destaque editorial ou anúncio sem poluição</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="topicos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Estrutura editorial principal</span>
+            <h2 style="font-size:2rem;">Categorias elegantes para organizar o tráfego e facilitar a descoberta.</h2>
+            <p>O leitor precisa sentir que o site é rico em conteúdo, mas sem bagunça. Essas áreas ajudam a criar profundidade e autoridade temática.</p>
+          </div>
+          <a href="#" class="read-more">Ver tudo →</a>
+        </div>
+
+        <div class="topics-grid">
+          <a href="#" class="topic-card">
+            <div class="topic-icon">#</div>
+            <h3>Gírias da Internet</h3>
+            <p>Expressões populares, memes, linguagem online e termos que aparecem em redes sociais e conversas digitais.</p>
+          </a>
+          <a href="#" class="topic-card">
+            <div class="topic-icon">♪</div>
+            <h3>TikTok e Trends</h3>
+            <p>Explicações simples para siglas, trends, formatos e expressões usadas em vídeos curtos.</p>
+          </a>
+          <a href="#" class="topic-card">
+            <div class="topic-icon">☺</div>
+            <h3>Emojis e Símbolos</h3>
+            <p>Significados reais, contextos e interpretações dos emojis mais usados na internet.</p>
+          </a>
+          <a href="#" class="topic-card">
+            <div class="topic-icon">&lt;/&gt;</div>
+            <h3>Tecnologia Fácil</h3>
+            <p>Termos digitais explicados de forma clara para quem quer entender rápido e bem.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="destaques">
+      <div class="container content-shell">
+        <div>
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Conteúdo em destaque</span>
+              <h2 style="font-size:2rem;">Cards pensados para transmitir valor logo no primeiro olhar.</h2>
+              <p>O design aqui é suave, mas estratégico: títulos fortes, resumos objetivos e um caminho claro para o clique.</p>
+            </div>
+          </div>
+
+          <div class="article-list">
+            <article class="article-card">
+              <div class="meta">
+                <span>Gírias da Internet</span>
+                <span>•</span>
+                <span>Leitura rápida</span>
+              </div>
+              <h3>O que significa POV? Saiba por que essa expressão domina vídeos e memes</h3>
+              <p>Um modelo de artigo que responde rapidamente, aprofunda com contexto e ainda puxa o leitor para outros temas relacionados.</p>
+              <a href="#" class="read-more">Ler conteúdo →</a>
+            </article>
+
+            <article class="article-card">
+              <div class="meta">
+                <span>Emojis</span>
+                <span>•</span>
+                <span>Alta curiosidade</span>
+              </div>
+              <h3>Emoji 🤡 significado: ironia, vergonha ou brincadeira?</h3>
+              <p>Exemplo de página com grande potencial de clique, alto volume de busca e bom tempo de permanência.</p>
+              <a href="#" class="read-more">Ver explicação →</a>
+            </article>
+
+            <article class="article-card">
+              <div class="meta">
+                <span>TikTok</span>
+                <span>•</span>
+                <span>Busca recorrente</span>
+              </div>
+              <h3>O que significa FYP no TikTok e como essa sigla viralizou?</h3>
+              <p>Modelo ideal para unir intenção de busca, linguagem simples e abertura para interligação com outros posts.</p>
+              <a href="#" class="read-more">Descobrir agora →</a>
+            </article>
+          </div>
+        </div>
+
+        <aside>
+          <div class="aside-card">
+            <span class="eyebrow">Mais buscados</span>
+            <div class="aside-list">
+              <a href="#" class="aside-link">o que significa cringe</a>
+              <a href="#" class="aside-link">o que é ghosting</a>
+              <a href="#" class="aside-link">emoji 🙏 significado</a>
+              <a href="#" class="aside-link">flopar significado</a>
+              <a href="#" class="aside-link">o que significa random</a>
+            </div>
+          </div>
+
+          <div class="aside-card">
+            <span class="eyebrow">Monetização elegante</span>
+            <div class="ad-box">Espaço lateral ideal para AdSense responsivo com aparência discreta</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="explorar">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Exploração contínua</span>
+            <h2 style="font-size:2rem;">Um site bonito precisa também conduzir o usuário para mais informação.</h2>
+            <p>Esses blocos simulam a sensação de descoberta permanente, algo essencial para aumentar páginas por sessão e fortalecer a marca.</p>
+          </div>
+        </div>
+
+        <div class="topics-grid">
+          <article class="topic-card">
+            <h3>O que significa low profile?</h3>
+            <p>Post curto de alta curiosidade e ótimo potencial de clique orgânico.</p>
+          </article>
+          <article class="topic-card">
+            <h3>O emoji 💀 quer dizer morte?</h3>
+            <p>Exemplo de conteúdo com contexto cultural, humor e diferentes usos online.</p>
+          </article>
+          <article class="topic-card">
+            <h3>O que significa tankar?</h3>
+            <p>Termo popular que permite explicar origem, adaptação e exemplos de uso real.</p>
+          </article>
+          <article class="topic-card">
+            <h3>O que significa biscoiteiro?</h3>
+            <p>Palavra com apelo social forte e excelente poder de retenção quando bem explicada.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">FAQ para snippet e confiança</span>
+            <h2 style="font-size:2rem;">Perguntas bem colocadas valorizam o SEO e deixam o projeto mais sólido.</h2>
+          </div>
+        </div>
+
+        <div class="faq-shell">
+          <article class="faq-card">
+            <h3>Por que esse visual é mais suave aos olhos?</h3>
+            <p>Porque usa contraste equilibrado, muito respiro visual, tons frios claros e sombras leves em vez de elementos pesados ou agressivos.</p>
+          </article>
+          <article class="faq-card">
+            <h3>Por que essa aparência ajuda o usuário a querer mais informação?</h3>
+            <p>Porque passa confiança, facilita a leitura rápida e organiza os blocos de forma que cada seção convide naturalmente para a próxima.</p>
+          </article>
+          <article class="faq-card">
+            <h3>Esse modelo é bom para SEO?</h3>
+            <p>Sim. Ele foi estruturado com meta tags, heading hierarchy, foco em escaneabilidade, busca interna e blocos que favorecem interlinkagem.</p>
+          </article>
+          <article class="faq-card">
+            <h3>Essa base serve para um projeto grande?</h3>
+            <p>Serve muito bem como ponto de partida premium para um dicionário digital que deseja crescer com autoridade, retenção e monetização limpa.</p>
+          </article>
+        </div>
+
+        <div class="statement">
+          <h2 style="font-size:2rem;">Direção visual escolhida: beleza sutil, clareza e sensação de valor.</h2>
+          <p>
+            Esse modelo troca o visual mais chamativo por uma proposta mais refinada: azul suave para confiança, lilás discreto para profundidade, fundos claros para descanso visual e cards translúcidos que passam modernidade sem atrapalhar a leitura.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-card">
+      <div>
+        <div class="brand" style="margin-bottom:12px;">
+          <span class="brand-mark">DD</span>
+          <span>Dicionário Digital</span>
+        </div>
+        <p>Base visual avançada para um site editorial moderno, suave aos olhos e pronto para crescer com SEO, retenção e monetização inteligente.</p>
+      </div>
+
+      <div>
+        <div class="footer-title">Categorias</div>
+        <div class="footer-list">
+          <a href="#">Gírias</a>
+          <a href="#">TikTok</a>
+          <a href="#">Emojis</a>
+          <a href="#">Tecnologia</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title">Institucional</div>
+        <div class="footer-list">
+          <a href="#">Sobre</a>
+          <a href="#">Contato</a>
+          <a href="#">Privacidade</a>
+          <a href="#">Termos</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title">Explorar</div>
+        <div class="footer-list">
+          <a href="#">Destaques</a>
+          <a href="#">Mais buscados</a>
+          <a href="#">FAQ</a>
+          <a href="#">Mapa do site</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
