@@ -8,6 +8,7 @@ use App\Http\Controllers\Search\SearchController;
 use App\Http\Controllers\Seo\SeoController;
 use App\Http\Controllers\Tools\ToolController;
 use App\Http\Controllers\sendEmailController;
+use App\Http\Controllers\Dev\SeedDevelopmentContentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/robots.txt', [SeoController::class, 'robots'])->name('seo.robots');
@@ -41,6 +42,10 @@ if ((bool) config('project.modules.search_page', true)) {
 }
 
 Route::post('/contact/send', [sendEmailController::class, 'Send'])->name('contact.send');
+
+if (app()->environment(['local', 'testing'])) {
+    Route::get('/dev/seed/posts-taxonomy', SeedDevelopmentContentController::class)->name('dev.seed.posts-taxonomy');
+}
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
