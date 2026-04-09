@@ -1,1150 +1,157 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dicionário Digital da Nanosistecck: descubra significados, gírias da internet, siglas, erros, códigos, mensagens prontas, respostas automáticas e curiosidades digitais." />
-  <meta name="theme-color" content="#0f172a" />
-  <title>Dicionário Digital | Nanosistecck</title>
-  <style>
-    :root {
-      --bg: #f8fafc;
-      --bg-soft: #eef4ff;
-      --surface: #ffffff;
-      --surface-2: #f1f5f9;
-      --text: #0f172a;
-      --muted: #475569;
-      --line: #dbe4f0;
-      --primary: #2563eb;
-      --primary-strong: #1d4ed8;
-      --accent: #7c3aed;
-      --accent-soft: #ede9fe;
-      --success: #059669;
-      --warning: #d97706;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
-      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.06);
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --radius-md: 14px;
-      --container: 1220px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(124, 58, 237, 0.08), transparent 30%),
-        radial-gradient(circle at top right, rgba(37, 99, 235, 0.10), transparent 30%),
-        linear-gradient(180deg, #f8fbff 0%, #f8fafc 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a { color: var(--primary); text-decoration: none; }
-    a:hover { color: var(--primary-strong); }
-
-    img { max-width: 100%; display: block; }
-
-    .container {
-      width: min(calc(100% - 32px), var(--container));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      background: #0f172a;
-      color: #cbd5e1;
-      font-size: 0.92rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 10px 0;
-      flex-wrap: wrap;
-    }
-
-    .topbar strong { color: #fff; }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(248, 250, 252, 0.82);
-      border-bottom: 1px solid rgba(219, 228, 240, 0.9);
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-      padding: 16px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .brand-badge {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      display: grid;
-      place-items: center;
-      font-size: 1.2rem;
-      font-weight: 800;
-      box-shadow: var(--shadow-soft);
-      flex-shrink: 0;
-    }
-
-    .brand-text {
-      min-width: 0;
-    }
-
-    .brand-title {
-      margin: 0;
-      font-size: 1.15rem;
-      line-height: 1.1;
-    }
-
-    .brand-subtitle {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav a {
-      color: var(--text);
-      font-weight: 600;
-      padding: 10px 14px;
-      border-radius: 12px;
-      transition: 0.2s ease;
-    }
-
-    .nav a:hover {
-      background: #eaf1ff;
-      color: var(--primary-strong);
-    }
-
-    .nav .cta-link {
-      background: var(--primary);
-      color: white;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .nav .cta-link:hover {
-      background: var(--primary-strong);
-      color: white;
-    }
-
-    .hero {
-      padding: 46px 0 22px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      align-items: stretch;
-    }
-
-    .hero-card,
-    .hero-side {
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(219, 228, 240, 0.95);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card {
-      padding: 34px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: auto -100px -100px auto;
-      width: 240px;
-      height: 240px;
-      background: radial-gradient(circle, rgba(124, 58, 237, 0.18), transparent 62%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.92rem;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.6rem);
-      line-height: 1.05;
-      margin: 0 0 18px;
-      letter-spacing: -0.03em;
-    }
-
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.07rem;
-      max-width: 760px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-weight: 800;
-      border: 1px solid transparent;
-      transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; }
-    .btn-primary:hover { color: white; }
-    .btn-secondary { background: white; border-color: var(--line); color: var(--text); }
-    .btn-secondary:hover { background: var(--surface-2); color: var(--text); }
-
-    .mini-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .mini-stats .item {
-      background: #f8fbff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px;
-    }
-
-    .mini-stats strong {
-      display: block;
-      font-size: 1.3rem;
-      margin-bottom: 4px;
-    }
-
-    .mini-stats span {
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .hero-side {
-      padding: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .search-card {
-      background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 22px;
-    }
-
-    .search-card h2,
-    .hero-side h3,
-    .section-head h2,
-    .content-card h3,
-    .newsletter h2,
-    .faq h2 { margin: 0 0 10px; }
-
-    .search-card p,
-    .hero-side p,
-    .section-head p,
-    .content-card p,
-    .newsletter p,
-    .faq p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .search-form {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .search-input {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 8px 10px 8px 16px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-    }
-
-    .search-input input {
-      flex: 1;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      font-size: 1rem;
-      color: var(--text);
-      min-width: 0;
-    }
-
-    .search-input button {
-      border: 0;
-      background: var(--primary);
-      color: white;
-      font-weight: 700;
-      border-radius: 12px;
-      padding: 12px 16px;
-      cursor: pointer;
-    }
-
-    .search-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .tag {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: #eef2ff;
-      border: 1px solid #dbe4ff;
-      color: #334155;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .quick-links {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .quick-link {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px;
-      color: var(--text);
-      font-weight: 700;
-      transition: 0.18s ease;
-    }
-
-    .quick-link:hover {
-      border-color: #bfd0ff;
-      background: #f8fbff;
-      transform: translateY(-1px);
-      color: var(--primary-strong);
-    }
-
-    .section {
-      padding: 30px 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-    }
-
-    .section-label {
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .categories-grid,
-    .posts-grid,
-    .info-grid,
-    .footer-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .categories-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .posts-grid {
-      grid-template-columns: 2fr 1fr;
-      align-items: start;
-    }
-
-    .main-posts {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .sidebar {
-      display: grid;
-      gap: 18px;
-    }
-
-    .content-card,
-    .sidebar-card,
-    .category-card,
-    .info-card,
-    .faq-item {
-      background: rgba(255,255,255,0.92);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .category-card {
-      padding: 22px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .category-card::after {
-      content: "";
-      position: absolute;
-      right: -20px;
-      bottom: -20px;
-      width: 90px;
-      height: 90px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.09), transparent 68%);
-      pointer-events: none;
-    }
-
-    .category-card h3 {
-      margin: 12px 0 10px;
-      font-size: 1.12rem;
-    }
-
-    .category-card ul {
-      margin: 14px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .icon-wrap {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      font-size: 1.3rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(124, 58, 237, 0.12));
-      color: var(--primary-strong);
-    }
-
-    .content-card {
-      overflow: hidden;
-    }
-
-    .content-thumb {
-      height: 190px;
-      background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
-      display: grid;
-      place-items: center;
-      color: var(--primary-strong);
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-
-    .content-body {
-      padding: 22px;
-    }
-
-    .post-meta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #eff6ff;
-      color: var(--primary-strong);
-      border: 1px solid #dbeafe;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.84rem;
-    }
-
-    .content-card h3 {
-      font-size: 1.32rem;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-
-    .read-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 16px;
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    .sidebar-card {
-      padding: 22px;
-    }
-
-    .sidebar-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .sidebar-item {
-      padding: 14px;
-      border-radius: 14px;
-      background: var(--surface-2);
-      border: 1px solid var(--line);
-    }
-
-    .sidebar-item strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 0.98rem;
-    }
-
-    .sidebar-item span {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .info-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .info-card {
-      padding: 22px;
-    }
-
-    .info-card h3 {
-      margin: 14px 0 10px;
-      font-size: 1.06rem;
-    }
-
-    .newsletter {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%);
-      color: white;
-      border-radius: 28px;
-      padding: 34px;
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .newsletter p { color: rgba(255,255,255,0.82); }
-
-    .newsletter-form {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 20px;
-      padding: 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .newsletter-form input {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.94);
-      border-radius: 14px;
-      padding: 14px 16px;
-      font-size: 1rem;
-      outline: 0;
-    }
-
-    .newsletter-form button {
-      border: 0;
-      border-radius: 14px;
-      background: white;
-      color: #0f172a;
-      font-weight: 800;
-      padding: 14px 18px;
-      cursor: pointer;
-    }
-
-    .faq {
-      margin-top: 12px;
-    }
-
-    .faq-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .faq-item {
-      padding: 20px;
-    }
-
-    .faq-item h3 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-    }
-
-    footer {
-      margin-top: 34px;
-      background: #0f172a;
-      color: #cbd5e1;
-      padding: 42px 0 20px;
-    }
-
-    .footer-grid {
-      grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr;
-      margin-bottom: 24px;
-    }
-
-    footer h3,
-    footer h4 {
-      color: white;
-      margin-top: 0;
-    }
-
-    footer a {
-      color: #cbd5e1;
-    }
-
-    footer a:hover {
-      color: white;
-    }
-
-    .footer-links {
-      display: grid;
-      gap: 10px;
-    }
-
-    .footer-bottom {
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      font-size: 0.94rem;
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid,
-      .posts-grid,
-      .newsletter,
-      .footer-grid,
-      .info-grid,
-      .categories-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .main-posts {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .header-inner {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .nav {
-        justify-content: flex-start;
-      }
-
-      .hero-card,
-      .hero-side,
-      .newsletter {
-        padding: 24px;
-      }
-
-      .mini-stats,
-      .main-posts,
-      .quick-links {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dicionário Digital — Descubra gírias, termos e expressões da internet</title>
+  <meta name="description" content="Dicionário Digital: significados completos de gírias, abreviações, emojis e termos de tecnologia com explicações claras e exemplos reais." />
+  <link rel="canonical" href="https://dicionariodigital.com.br/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dicionário Digital" />
+  <meta property="og:description" content="Entenda termos da internet com conteúdo completo, SEO avançado e navegação inteligente." />
+  <meta property="og:url" content="https://dicionariodigital.com.br/" />
+  <meta property="og:image" content="https://dicionariodigital.com.br/assets/og-home.jpg" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script defer src="assets/app.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Dicionário Digital",
+    "url":"https://dicionariodigital.com.br/",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://dicionariodigital.com.br/search.html?q={query}",
+      "query-input":"required name=query"
+    }
+  }
+  </script>
 </head>
 <body>
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <div><strong>Dicionário Digital</strong> · respostas rápidas para dúvidas do cotidiano digital</div>
-      <div>Subdomínio oficial: dicionario.nanosistecck.com</div>
-    </div>
-  </div>
-
-  <header>
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="brand-badge">DD</div>
-        <div class="brand-text">
-          <h1 class="brand-title">Dicionário Digital</h1>
-          <p class="brand-subtitle">por Nanosistecck · simples, confiável e fácil de entender</p>
-        </div>
-      </div>
-
-      <nav class="nav">
-        <a href="#categorias">Categorias</a>
-        <a href="#destaques">Destaques</a>
-        <a href="#curiosidades">Curiosidades</a>
-        <a href="#faq">Dúvidas Frequentes</a>
-        <a class="cta-link" href="#buscar">Buscar agora</a>
+  <header class="header">
+    <div class="container navbar">
+      <a class="brand" href="index.html">Dicionário Digital</a>
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="category.html">Categorias</a>
+        <a href="#em-alta">Em alta</a>
+        <a href="#recentes">Recentes</a>
       </nav>
+      <button class="search-button" data-js="open-search">Buscar</button>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-card">
-          <span class="eyebrow">Guia rápido da internet moderna</span>
-          <h1>Entenda gírias, siglas, erros, códigos e curiosidades digitais em segundos.</h1>
-          <p>
-            O Dicionário Digital foi pensado para ser a porta de entrada do usuário que quer entender o que viu no TikTok, no Instagram, no WhatsApp,
-            em jogos, em apps, em sistemas e até em mensagens automáticas do dia a dia. Tudo com visual limpo, leitura confortável e busca simples.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#buscar">Começar pela busca</a>
-            <a class="btn btn-secondary" href="#destaques">Ver posts em destaque</a>
-          </div>
-
-          <div class="mini-stats">
-            <div class="item">
-              <strong>6+</strong>
-              <span>áreas principais de conteúdo</span>
-            </div>
-            <div class="item">
-              <strong>Busca fácil</strong>
-              <span>resultado rápido e direto</span>
-            </div>
-            <div class="item">
-              <strong>Visual seguro</strong>
-              <span>design moderno e profissional</span>
-            </div>
+        <div>
+          <h1>Entenda qualquer termo da internet em segundos.</h1>
+          <p>Um sistema profissional de conteúdo para explicar gírias, abreviações, emojis e termos digitais com profundidade, clareza e exemplos reais.</p>
+          <form class="search-box" data-search-form data-js="hero-search" role="search">
+            <input type="search" name="q" placeholder="Ex: POV, FYP, NPC, ratio..." aria-label="Buscar termo" />
+            <button class="button-primary" type="submit">Buscar significado</button>
+          </form>
+          <div class="badges" aria-label="Tópicos populares">
+            <span class="badge">+10.000 termos</span>
+            <span class="badge">Atualização diária</span>
+            <span class="badge">SEO + retenção</span>
           </div>
         </div>
+      </div>
+    </section>
 
-        <aside class="hero-side" id="buscar">
-          <div class="search-card">
-            <h2>Pesquise sua dúvida</h2>
-            <p>Procure por siglas, números, gírias, mensagens, erros e curiosidades digitais.</p>
-
-            <form class="search-form" action="#" method="get">
-              <div class="search-input">
-                <input type="text" name="q" placeholder="Ex: o que significa POV, 777, erro 403, TBT..." aria-label="Buscar no dicionário digital" />
-                <button type="submit">Buscar</button>
-              </div>
-            </form>
-
-            <div class="search-tags">
-              <span class="tag">POV</span>
-              <span class="tag">777</span>
-              <span class="tag">erro 404</span>
-              <span class="tag">TBT</span>
-              <span class="tag">Wi‑Fi</span>
-              <span class="tag">Bitcoin</span>
-            </div>
-          </div>
-
-          <div>
-            <h3>Acessos rápidos</h3>
-            <p>Blocos que puxam o clique com assuntos populares e fáceis de consumir.</p>
-          </div>
-
-          <div class="quick-links">
-            <a class="quick-link" href="#categorias">Gírias da Internet</a>
-            <a class="quick-link" href="#categorias">Significados</a>
-            <a class="quick-link" href="#destaques">Erros e Códigos</a>
-            <a class="quick-link" href="#destaques">Mensagens Prontas</a>
-            <a class="quick-link" href="#curiosidades">Curiosidades Digitais</a>
-            <a class="quick-link" href="#faq">Respostas Automáticas</a>
-          </div>
-        </aside>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Mais buscados</h2>
+        <div class="grid grid-4">
+          <a class="card" href="post.html"><h3>POV</h3><p>O que significa e como usar nas redes.</p></a>
+          <a class="card" href="post.html"><h3>FYP</h3><p>Entenda o algoritmo do TikTok.</p></a>
+          <a class="card" href="post.html"><h3>NPC</h3><p>Significado em jogos e memes atuais.</p></a>
+          <a class="card" href="post.html"><h3>Ratio</h3><p>Quando um comentário “amassa” outro.</p></a>
+        </div>
       </div>
     </section>
 
     <section class="section" id="categorias">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="section-label">Estrutura principal</span>
-            <h2>Categorias planejadas para gerar tráfego e retenção</h2>
-            <p>Essas áreas organizam o conteúdo do site de forma clara, amigável e pronta para crescer com centenas de posts.</p>
+        <h2 class="section-title">Categorias principais</h2>
+        <p class="section-subtitle">Estrutura pronta para escalar milhares de páginas por cluster semântico.</p>
+        <div class="grid grid-3">
+          <a class="card" href="category.html"><h3>Gírias da Internet</h3><p>Termos gerais de memes, chats e redes sociais.</p></a>
+          <a class="card" href="category.html"><h3>Gírias do TikTok</h3><p>Vocabulário viral e tendências curtas.</p></a>
+          <a class="card" href="category.html"><h3>Abreviações</h3><p>Siglas usadas no dia a dia digital.</p></a>
+          <a class="card" href="category.html"><h3>Emojis e símbolos</h3><p>Leitura correta de contexto e intenção.</p></a>
+          <a class="card" href="category.html"><h3>Termos de tecnologia</h3><p>Conceitos técnicos em linguagem simples.</p></a>
+          <div class="kpi">
+            <strong>Meta:</strong>
+            5 clusters iniciais com interligação automática e expansão contínua para retenção e pages/session.
           </div>
-        </div>
-
-        <div class="categories-grid">
-          <article class="category-card">
-            <div class="icon-wrap">01</div>
-            <h3>Gírias da Internet</h3>
-            <p>Conteúdo leve e altamente pesquisável por quem vê uma palavra nova nas redes e quer entender rápido.</p>
-            <ul>
-              <li>Gírias do TikTok</li>
-              <li>Gírias do Instagram</li>
-              <li>Gírias de jogos</li>
-              <li>Gírias em inglês</li>
-              <li>Gírias virais</li>
-            </ul>
-          </article>
-
-          <article class="category-card">
-            <div class="icon-wrap">02</div>
-            <h3>Significados</h3>
-            <p>Uma área forte para buscas orgânicas com intenção clara e altíssima curiosidade do usuário.</p>
-            <ul>
-              <li>Números como 777 e 143</li>
-              <li>Emojis populares</li>
-              <li>Siglas como TBT e POV</li>
-              <li>Palavras em inglês</li>
-              <li>Termos populares</li>
-            </ul>
-          </article>
-
-          <article class="category-card">
-            <div class="icon-wrap">03</div>
-            <h3>Erros e Códigos</h3>
-            <p>Ajuda prática para problemas reais do dia a dia em apps, sites, celulares e sistemas.</p>
-            <ul>
-              <li>Erros de apps</li>
-              <li>Erros de sites</li>
-              <li>Erros de celular</li>
-              <li>Erros de sistemas</li>
-              <li>Códigos bancários</li>
-            </ul>
-          </article>
-
-          <article class="category-card">
-            <div class="icon-wrap">04</div>
-            <h3>Mensagens Prontas</h3>
-            <p>Conteúdo viral, compartilhável e fácil de monetizar com alto volume de páginas.</p>
-            <ul>
-              <li>Bom dia e boa noite</li>
-              <li>Amor e amizade</li>
-              <li>Motivação</li>
-              <li>Datas especiais</li>
-              <li>Status para redes</li>
-            </ul>
-          </article>
-
-          <article class="category-card">
-            <div class="icon-wrap">05</div>
-            <h3>Respostas Automáticas</h3>
-            <p>Área valiosa para usuários comuns e profissionais que buscam praticidade e rapidez.</p>
-            <ul>
-              <li>Atendimento ao cliente</li>
-              <li>Respostas educadas</li>
-              <li>Respostas rápidas</li>
-              <li>WhatsApp automático</li>
-              <li>Profissional e negócios</li>
-            </ul>
-          </article>
-
-          <article class="category-card">
-            <div class="icon-wrap">06</div>
-            <h3>Curiosidades Digitais</h3>
-            <p>Excelente para retenção, descoberta e leitura em sequência com temas que despertam curiosidade.</p>
-            <ul>
-              <li>O que é a dark web</li>
-              <li>História da internet</li>
-              <li>Como surgiu o Wi‑Fi</li>
-              <li>Como funciona o PIX</li>
-              <li>Origem do Bitcoin</li>
-            </ul>
-          </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="destaques">
+    <section class="section" id="em-alta">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="section-label">Página inicial estratégica</span>
-            <h2>Como os posts devem aparecer para prender a atenção</h2>
-            <p>O olho do usuário deve bater primeiro na busca, depois nos destaques, depois nas categorias e por fim em listas rápidas.</p>
-          </div>
-          <a href="#">Ver arquivo completo de posts</a>
+        <h2 class="section-title">Em alta</h2>
+        <div class="grid grid-3">
+          <a class="card" href="post.html"><h3>Brainrot</h3><p>Origem do termo e usos em conteúdo humorístico.</p></a>
+          <a class="card" href="post.html"><h3>Delulu</h3><p>Contexto cultural, quando usar e exemplos.</p></a>
+          <a class="card" href="post.html"><h3>Ghosting</h3><p>Diferença entre ghosting e soft block.</p></a>
         </div>
+      </div>
+    </section>
 
-        <div class="posts-grid">
-          <div class="main-posts">
-            <article class="content-card">
-              <div class="content-thumb">POV</div>
-              <div class="content-body">
-                <div class="post-meta">
-                  <span class="pill">Em alta</span>
-                  <span class="pill">Siglas</span>
-                </div>
-                <h3>O que significa POV na internet, no TikTok e nas redes sociais?</h3>
-                <p>Um modelo de post ideal para capturar tráfego de pesquisa com resposta rápida, contexto e exemplos simples.</p>
-                <a class="read-more" href="post.html">Ler artigo completo →</a>
-              </div>
-            </article>
-
-            <article class="content-card">
-              <div class="content-thumb">777</div>
-              <div class="content-body">
-                <div class="post-meta">
-                  <span class="pill">Popular</span>
-                  <span class="pill">Números</span>
-                </div>
-                <h3>777 significado: espiritual, digital, amoroso e nas redes</h3>
-                <p>Posts desse tipo geram clique pela curiosidade e ajudam o usuário a navegar para outros significados parecidos.</p>
-                <a class="read-more" href="post.html">Ler artigo completo →</a>
-              </div>
-            </article>
-
-            <article class="content-card">
-              <div class="content-thumb">404</div>
-              <div class="content-body">
-                <div class="post-meta">
-                  <span class="pill">Útil</span>
-                  <span class="pill">Erros</span>
-                </div>
-                <h3>Erro 404: o que é, por que aparece e como resolver</h3>
-                <p>Conteúdo prático aumenta confiança do site e faz o usuário enxergar utilidade real no projeto.</p>
-                <a class="read-more" href="post.html">Ler artigo completo →</a>
-              </div>
-            </article>
-
-            <article class="content-card">
-              <div class="content-thumb">Wi‑Fi</div>
-              <div class="content-body">
-                <div class="post-meta">
-                  <span class="pill">Curiosidade</span>
-                  <span class="pill">Tecnologia</span>
-                </div>
-                <h3>Como surgiu o Wi‑Fi e por que ele mudou a internet para sempre</h3>
-                <p>Um bloco de curiosidades digitais ajuda a manter o visitante navegando mesmo sem uma busca exata.</p>
-                <a class="read-more" href="post.html">Ler artigo completo →</a>
-              </div>
-            </article>
-          </div>
-
-          <aside class="sidebar">
-            <div class="sidebar-card">
-              <h3>Mais buscados</h3>
-              <p>Uma coluna lateral com temas que já atraem clique naturalmente.</p>
-              <div class="sidebar-list">
-                <div class="sidebar-item">
-                  <strong>O que significa TBT</strong>
-                  <span>Entenda quando usar e por que viralizou.</span>
-                </div>
-                <div class="sidebar-item">
-                  <strong>O que é algoritmo</strong>
-                  <span>Explicação simples para iniciantes.</span>
-                </div>
-                <div class="sidebar-item">
-                  <strong>Como funciona o PIX</strong>
-                  <span>Guia objetivo e fácil de entender.</span>
-                </div>
-                <div class="sidebar-item">
-                  <strong>Resposta automática para cliente</strong>
-                  <span>Modelos prontos para WhatsApp e negócios.</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="sidebar-card" id="curiosidades">
-              <h3>Curiosidade em destaque</h3>
-              <p><strong>Dark web:</strong> um card de curiosidade pode trazer tráfego adicional e ainda levar o usuário para conteúdos relacionados.</p>
-              <a class="read-more" href="post.html">Explorar tema →</a>
-            </div>
-          </aside>
+    <section class="section" id="recentes">
+      <div class="container">
+        <h2 class="section-title">Recentes</h2>
+        <div class="grid grid-3">
+          <a class="card" href="post.html"><h3>OOMF</h3><p>Expressão comum no X/Twitter.</p></a>
+          <a class="card" href="post.html"><h3>IYKYK</h3><p>Significado, tradução e aplicação.</p></a>
+          <a class="card" href="post.html"><h3>AFK</h3><p>Uso clássico em jogos e comunidades online.</p></a>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="section-label">Arquitetura visual</span>
-            <h2>Por que esse layout funciona bem para retenção</h2>
-            <p>Ele prioriza clareza, curiosidade, confiança visual e leitura confortável em desktop e celular.</p>
-          </div>
-        </div>
-
-        <div class="info-grid">
-          <article class="info-card">
-            <div class="icon-wrap">A</div>
-            <h3>Olho vai primeiro para a busca</h3>
-            <p>A barra de pesquisa fica no topo da área nobre para capturar a intenção imediata do usuário.</p>
-          </article>
-
-          <article class="info-card">
-            <div class="icon-wrap">B</div>
-            <h3>Cores que passam confiança</h3>
-            <p>Azul transmite segurança, roxo traz curiosidade e o fundo claro dá conforto visual e sensação de qualidade.</p>
-          </article>
-
-          <article class="info-card">
-            <div class="icon-wrap">C</div>
-            <h3>Cards fáceis de escanear</h3>
-            <p>O visitante entende rapidamente os assuntos sem precisar ler muito antes de clicar.</p>
-          </article>
-
-          <article class="info-card">
-            <div class="icon-wrap">D</div>
-            <h3>Estrutura pronta para SEO</h3>
-            <p>O design favorece criação em escala com categorias, destaques, links internos e navegação simples.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="newsletter">
-          <div>
-            <span class="section-label" style="color:#c4b5fd;">Retenção e retorno</span>
-            <h2>Faça o visitante voltar para o site</h2>
-            <p>
-              Além da busca e dos posts, o ideal é ter captura de interesse: novos significados, novos erros, novas mensagens prontas e curiosidades digitais.
-              Isso fortalece a recorrência e o crescimento do projeto.
-            </p>
-          </div>
-          <form class="newsletter-form" action="#" method="post">
-            <input type="text" placeholder="Seu nome" aria-label="Seu nome" />
-            <input type="email" placeholder="Seu melhor e-mail" aria-label="Seu e-mail" />
-            <button type="submit">Quero receber novidades</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section faq" id="faq">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="section-label">Base para expansão</span>
-            <h2>Pontos importantes para o próximo passo do projeto</h2>
-            <p>Esses blocos ajudam a definir o padrão que será repetido em todos os posts individuais.</p>
-          </div>
-        </div>
-
-        <div class="faq-list">
-          <article class="faq-item">
-            <h3>Como deve ser a página de post?</h3>
-            <p>Ela deve ter título forte, resumo direto, índice interno, conteúdo escaneável, exemplos, perguntas relacionadas e links para outros posts.</p>
-          </article>
-          <article class="faq-item">
-            <h3>Como melhorar a sensação de confiança?</h3>
-            <p>Usando tipografia limpa, bastante espaço em branco, botões claros, navegação previsível e textos objetivos sem exageros.</p>
-          </article>
-          <article class="faq-item">
-            <h3>Onde colocar anúncios futuramente?</h3>
-            <p>Em áreas discretas: entre blocos de conteúdo, barra lateral e fim do artigo, sem atrapalhar leitura nem parecer site poluído.</p>
-          </article>
+        <h2 class="section-title">FAQ resumido</h2>
+        <div class="grid grid-2">
+          <article class="faq-item"><h3>O conteúdo é atualizado com frequência?</h3><p>Sim. A estratégia prevê atualização contínua para capturar novas buscas e manter relevância orgânica.</p></article>
+          <article class="faq-item"><h3>Como vocês escolhem os termos?</h3><p>Usamos clusters por intenção de busca: gírias, abreviações, emojis e tecnologia.</p></article>
+          <article class="faq-item"><h3>O site tem foco em SEO?</h3><p>Totalmente. Cada página nasce com estrutura completa (metadata, schema, links internos e conteúdo útil).</p></article>
+          <article class="faq-item"><h3>Tem publicidade?</h3><p>Sim, com espaços preparados para AdSense sem comprometer experiência de leitura.</p></article>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
+  <footer class="footer">
+    <div class="container footer-wrap">
       <div class="footer-grid">
         <div>
-          <h3>Dicionário Digital</h3>
-          <p>
-            Projeto editorial da Nanosistecck para explicar termos, dúvidas, códigos, gírias e curiosidades do universo digital com clareza e rapidez.
-          </p>
+          <h4>Dicionário Digital</h4>
+          <p>Plataforma profissional para explicar termos da internet com profundidade, retenção e arquitetura SEO avançada.</p>
         </div>
-
-        <div>
-          <h4>Categorias</h4>
-          <div class="footer-links">
-            <a href="#categorias">Gírias da Internet</a>
-            <a href="#categorias">Significados</a>
-            <a href="#categorias">Erros e Códigos</a>
-            <a href="#categorias">Mensagens Prontas</a>
-          </div>
-        </div>
-
-        <div>
-          <h4>Conteúdos</h4>
-          <div class="footer-links">
-            <a href="#destaques">Posts em destaque</a>
-            <a href="#curiosidades">Curiosidades Digitais</a>
-            <a href="#faq">Dúvidas Frequentes</a>
-            <a href="post.html">Modelo de post</a>
-          </div>
-        </div>
-
         <div>
           <h4>Institucional</h4>
-          <div class="footer-links">
-            <a href="#">Sobre o projeto</a>
-            <a href="#">Política de privacidade</a>
-            <a href="#">Termos de uso</a>
-            <a href="#">Contato</a>
-          </div>
+          <ul>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="privacidade.html">Política de Privacidade</a></li>
+            <li><a href="termos.html">Termos de Uso</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Categorias</h4>
+          <ul>
+            <li><a href="category.html">Gírias da Internet</a></li>
+            <li><a href="category.html">Gírias do TikTok</a></li>
+            <li><a href="category.html">Abreviações</a></li>
+            <li><a href="category.html">Tecnologia</a></li>
+          </ul>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <div>© 2026 Dicionário Digital · Nanosistecck</div>
-        <div>Estrutura inicial pronta para desenvolvimento profissional</div>
-      </div>
+      <p class="footer-bottom">© 2026 Dicionário Digital. Todos os direitos reservados.</p>
     </div>
   </footer>
 </body>

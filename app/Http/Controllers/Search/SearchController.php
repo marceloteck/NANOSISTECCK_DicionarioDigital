@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Tools\Tool;
 use App\Support\Listing\ListingSeoFactory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -19,7 +20,7 @@ class SearchController extends Controller
         $posts = Post::query()
             ->published()
             ->when($q !== '', fn ($query) => $query->where('title', 'like', "%{$q}%"))
-            ->limit(8)
+            ->limit(10)
             ->get(['id', 'title', 'slug', 'excerpt'])
             ->map(fn (Post $post) => [
                 'type' => 'post',
@@ -28,21 +29,23 @@ class SearchController extends Controller
                 'url' => route('posts.show', $post),
             ]);
 
-        $tools = Tool::query()
-            ->published()
-            ->when($q !== '', fn ($query) => $query->where('title', 'like', "%{$q}%"))
-            ->limit(8)
-            ->get(['id', 'title', 'slug', 'excerpt'])
-            ->map(fn (Tool $tool) => [
-                'type' => 'tool',
-                'title' => $tool->title,
-                'excerpt' => $tool->excerpt,
-                'url' => route('tools.show', $tool),
-            ]);
+        $tools = (bool) config('project.modules.tools', false) && Route::has('tools.show')
+            ? Tool::query()
+                ->published()
+                ->when($q !== '', fn ($query) => $query->where('title', 'like', "%{$q}%"))
+                ->limit(10)
+                ->get(['id', 'title', 'slug', 'excerpt'])
+                ->map(fn (Tool $tool) => [
+                    'type' => 'tool',
+                    'title' => $tool->title,
+                    'excerpt' => $tool->excerpt,
+                    'url' => route('tools.show', $tool),
+                ])
+            : collect();
 
         $seo = $listingSeoFactory->build(
             title: 'Buscar',
-            description: 'Busca interna para conteúdos e ferramentas do projeto.',
+            description: 'Busca interna para conteúdos e ferramentas do Dicionário Digital.',
             canonical: route('search.index', ['q' => $q]),
             page: 1,
             breadcrumb: [
