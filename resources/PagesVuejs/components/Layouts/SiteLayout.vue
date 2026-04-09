@@ -15,13 +15,17 @@ const institutionalPages = computed(() => project.value.institutional_pages ?? {
 
 <template>
   <div class="site-layout">
-    <header class="border-bottom bg-white sticky-top">
-      <div class="container py-3 d-flex justify-content-between align-items-center">
-        <Link :href="route('index.home')" class="fw-bold text-decoration-none">{{ project.name || 'Site Engine' }}</Link>
-        <nav class="d-flex gap-3 small">
-          <Link v-if="modules.posts" :href="route('posts.index')">Posts</Link>
-          <Link v-if="modules.tools && route().has('tools.index')" :href="route('tools.index')">Tools</Link>
-          <Link v-if="modules.search_page && route().has('search.index')" :href="route('search.index')">Buscar</Link>
+    <header class="dd-topbar">
+      <div class="dd-container dd-topbar-inner">
+        <Link :href="route('index.home')" class="dd-brand">
+          <span class="dd-brand-mark">DD</span>
+          <span>{{ project.name || 'Dicionário Digital' }}</span>
+        </Link>
+
+        <nav class="dd-main-nav" aria-label="Navegação principal">
+          <Link v-if="modules.posts" :href="route('posts.index')">Categorias</Link>
+          <Link v-if="modules.tools && route().has('tools.index')" :href="route('tools.index')">Ferramentas</Link>
+          <Link v-if="modules.search_page && route().has('search.index')" :href="route('search.index')">Buscar termos</Link>
         </nav>
       </div>
     </header>
@@ -30,17 +34,26 @@ const institutionalPages = computed(() => project.value.institutional_pages ?? {
       <slot />
     </main>
 
-    <footer class="border-top mt-5 py-4 bg-light">
-      <div class="container small d-flex flex-wrap gap-3">
-        <template v-for="(item, key) in institutionalPages" :key="key">
-          <Link
-            v-if="item.enabled && route().has('institutional.show')"
-            :href="route('institutional.show', item.slug)"
-            class="text-decoration-none"
-          >
-            {{ key }}
-          </Link>
-        </template>
+    <footer class="dd-footer">
+      <div class="dd-container dd-footer-grid">
+        <div>
+          <h3>{{ project.name || 'Dicionário Digital' }}</h3>
+          <p>
+            Conteúdo atualizado com explicações claras, exemplos reais e navegação inteligente para você encontrar
+            rapidamente o termo certo.
+          </p>
+        </div>
+
+        <div>
+          <h4>Institucional</h4>
+          <ul>
+            <template v-for="(item, key) in institutionalPages" :key="key">
+              <li v-if="item.enabled && route().has('institutional.show')">
+                <Link :href="route('institutional.show', item.slug)">{{ key }}</Link>
+              </li>
+            </template>
+          </ul>
+        </div>
       </div>
     </footer>
   </div>

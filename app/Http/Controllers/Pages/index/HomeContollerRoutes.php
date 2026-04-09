@@ -18,10 +18,10 @@ class HomeContollerRoutes extends Controller
     public function index(SeoBuilder $seoBuilder, ModuleManager $moduleManager, InstitutionalPageRegistry $institutionalPageRegistry, MonetizationPolicy $monetizationPolicy)
     {
         $seo = $seoBuilder->buildPage([
-            'title' => 'Dicionário Digital',
-            'description' => 'Descubra o significado de gírias, abreviações, emojis e termos digitais com respostas rápidas, exemplos reais e SEO avançado.',
+            'title' => 'Dicionário Digital | Significados, gírias e termos da internet',
+            'description' => 'Consulte significados de gírias, abreviações, memes, emojis e termos online com linguagem clara, exemplos e conteúdo atualizado.',
             'path' => '/',
-            'tags' => ['dicionário digital', 'gírias', 'abreviações', 'emojis', 'termos da internet'],
+            'tags' => ['dicionário digital', 'significado de gírias', 'termos da internet', 'abreviações online', 'emojis'],
             'breadcrumb' => [
                 ['name' => 'Início', 'url' => route('index.home')],
             ],
@@ -57,17 +57,17 @@ class HomeContollerRoutes extends Controller
         ])->values();
 
         $categories = [
-            ['name' => 'Gírias da Internet', 'description' => 'Termos populares de memes, chats e redes sociais.', 'url' => route('posts.index')],
-            ['name' => 'Gírias do TikTok', 'description' => 'Vocabulário viral e expressões de vídeos curtos.', 'url' => route('posts.index')],
-            ['name' => 'Abreviações', 'description' => 'Siglas comuns para conversas online rápidas.', 'url' => route('posts.index')],
-            ['name' => 'Emojis e símbolos', 'description' => 'Interpretação correta de contexto e intenção.', 'url' => route('posts.index')],
-            ['name' => 'Termos de tecnologia', 'description' => 'Conceitos técnicos em linguagem simples.', 'url' => route('posts.index')],
+            ['name' => 'Gírias da internet', 'description' => 'Entenda expressões populares usadas em memes, comentários e redes sociais.', 'url' => route('posts.index')],
+            ['name' => 'Abreviações online', 'description' => 'Descubra o que significam siglas como POV, FYP, TBH, IMO e muitas outras.', 'url' => route('posts.index')],
+            ['name' => 'Emojis e símbolos', 'description' => 'Veja interpretações por contexto para usar emojis da forma certa.', 'url' => route('posts.index')],
+            ['name' => 'Termos de tecnologia', 'description' => 'Aprenda conceitos digitais com explicações simples e práticas.', 'url' => route('posts.index')],
+            ['name' => 'Tendências e cultura web', 'description' => 'Fique por dentro de palavras novas que viralizam na internet.', 'url' => route('posts.index')],
         ];
 
         $faq = [
-            ['question' => 'Como os termos são escolhidos?', 'answer' => 'Usamos clusters de busca com foco em dúvidas reais da internet e potencial de tráfego orgânico.'],
-            ['question' => 'O conteúdo é atualizado?', 'answer' => 'Sim. Novos termos e revisões são publicados continuamente para manter relevância.'],
-            ['question' => 'O site tem foco em SEO e retenção?', 'answer' => 'Sim. Cada página é planejada para responder rápido, aprofundar e conectar conteúdos relacionados.'],
+            ['question' => 'Como encontro o significado de um termo rapidamente?', 'answer' => 'Use a busca no topo da página e digite a palavra exata. Você verá resultados com definição curta e explicação completa.'],
+            ['question' => 'Os termos são atualizados com frequência?', 'answer' => 'Sim. Novas expressões e gírias são adicionadas conforme surgem nas redes e no uso cotidiano da internet.'],
+            ['question' => 'Posso confiar nas explicações para usar no dia a dia?', 'answer' => 'Sim. O conteúdo é escrito em linguagem clara, com contexto real, para ajudar você a entender e usar cada termo com segurança.'],
         ];
 
         return Inertia::render('Pages/index/index', [
