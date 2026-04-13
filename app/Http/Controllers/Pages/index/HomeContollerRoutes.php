@@ -26,7 +26,7 @@ class HomeContollerRoutes extends Controller
             'is_indexable' => true,
         ]);
 
-        return Inertia::render('Pages/index/index', [
+        return Inertia::render('Pages/index/Home', [
             'seo' => $seo,
             'pageType' => 'home',
             'canLogin' => Route::has('login'),
