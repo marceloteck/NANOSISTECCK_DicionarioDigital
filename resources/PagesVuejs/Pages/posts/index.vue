@@ -11,25 +11,27 @@ const posts = computed(() => page.props.posts ?? { data: [] });
   <AppHead v-bind="seo" />
 
   <ContentSiteLayout title="Posts" page-type="listing">
-    <section class="dd-section">
-      <div class="dd-container">
-        <div class="dd-section-head">
-          <h1>Dicionário Digital — Todos os termos</h1>
-        </div>
+  <section class="container py-5">
+    <header class="mb-4">
+      <h1 class="display-6 fw-bold">Posts</h1>
+      <p class="text-secondary mb-0">Base de conteúdo SEO-first para escalar com qualidade.</p>
+    </header>
 
-        <div class="dd-grid dd-grid-3">
-          <article v-for="post in posts.data" :key="post.id" class="dd-card">
-            <small>{{ post.category?.name || 'Sem categoria' }}</small>
-            <h2><Link :href="route('posts.show', post.slug)">{{ post.title }}</Link></h2>
-            <p>{{ post.excerpt }}</p>
-            <div v-if="post.tags?.length" class="dd-tags">
-              <Link v-for="tag in post.tags" :key="tag.id" :href="route('posts.tag', tag.slug)">#{{ tag.name }}</Link>
+    <div class="row g-4">
+      <article v-for="post in posts.data" :key="post.id" class="col-12 col-lg-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <p class="small text-muted mb-2">{{ post.category?.name || 'Sem categoria' }}</p>
+            <h2 class="h5"><Link :href="route('posts.show', post.slug)">{{ post.title }}</Link></h2>
+            <p class="text-secondary">{{ post.excerpt }}</p>
+            <div class="d-flex gap-2 flex-wrap">
+              <span v-for="tag in post.tags" :key="tag.id" class="badge text-bg-light">#{{ tag.name }}</span>
             </div>
-          </article>
+          </div>
         </div>
-
-        <PostPagination :links="posts.links || []" />
-      </div>
-    </section>
-  </ContentSiteLayout>
+      </article>
+    </div>
+      <PostPagination :links="posts.links || []" />
+  </section>
+</ContentSiteLayout>
 </template>

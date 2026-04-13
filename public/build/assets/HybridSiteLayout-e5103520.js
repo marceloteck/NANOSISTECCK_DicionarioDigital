@@ -1,1 +1,0 @@
-import{r as o,o as p,f as l,w as r,l as n}from"./app-253d2ed1.js";const u={__name:"HybridSiteLayout",props:{title:{type:String,default:""},pageType:{type:String,default:""}},setup(t){return(e,i)=>{const a=o("SiteLayout");return p(),l(a,{title:t.title,"page-type":t.pageType},{default:r(()=>[n(e.$slots,"default")]),_:3},8,["title","page-type"])}}};export{u as default};

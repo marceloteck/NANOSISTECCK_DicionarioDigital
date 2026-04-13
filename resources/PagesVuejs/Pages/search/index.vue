@@ -10,28 +10,16 @@ const query = computed(() => page.props.query ?? '');
 
 <template>
   <AppHead v-bind="seo" />
-
   <HybridSiteLayout title="Buscar" page-type="search">
-    <section class="dd-section">
-      <div class="dd-container">
-        <h1>Busca no Dicionário Digital</h1>
-        <form class="dd-search" method="get" :action="route('search.index')">
-          <input name="q" type="search" :value="query" placeholder="Ex: POV, FYP, ratio..." aria-label="Buscar termo" />
-          <button type="submit">Buscar</button>
-        </form>
-
-        <p class="dd-subtitle">{{ query ? `Resultados para "${query}"` : 'Digite um termo para buscar.' }}</p>
-
-        <div class="dd-grid dd-grid-2" v-if="results.length">
-          <article v-for="(item, index) in results" :key="`${item.type}-${index}`" class="dd-card">
-            <small>{{ item.type === 'post' ? 'Post' : 'Ferramenta' }}</small>
-            <h2><Link :href="item.url">{{ item.title }}</Link></h2>
-            <p>{{ item.excerpt }}</p>
-          </article>
-        </div>
-
-        <p v-else class="dd-subtitle">Nenhum resultado encontrado.</p>
-      </div>
+    <section class="container py-5">
+      <h1 class="h3">Buscar</h1>
+      <p class="text-secondary">Resultados para: <strong>{{ query || '...' }}</strong></p>
+      <ul class="list-group mt-3">
+        <li v-for="(item, index) in results" :key="`${item.type}-${index}`" class="list-group-item">
+          <Link :href="item.url" class="fw-semibold text-decoration-none">{{ item.title }}</Link>
+          <p class="small text-secondary mb-0">{{ item.excerpt }}</p>
+        </li>
+      </ul>
     </section>
   </HybridSiteLayout>
 </template>

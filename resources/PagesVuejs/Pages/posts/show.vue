@@ -7,120 +7,94 @@ const seo = computed(() => page.props.seo ?? {});
 const post = computed(() => page.props.post ?? {});
 const relatedPosts = computed(() => page.props.relatedPosts ?? []);
 const showAdSlots = computed(() => page.props.showAdSlots ?? false);
-
-const contextualLinks = computed(() => relatedPosts.value.slice(0, 3));
-const whereUsed = computed(() => {
-  const categoryName = post.value.category?.name ?? 'redes sociais';
-
-  return [
-    `Conteúdos em ${categoryName}`,
-    'Legendas de vídeos curtos e memes',
-    'Comentários em redes como TikTok, X e Instagram',
-  ];
-});
-
-const sampleExamples = computed(() => [
-  `"${post.value.title}: exemplo prático em conversa online."`,
-  `"Quando usar ${post.value.title} sem perder contexto."`,
-]);
-
-const termVariations = computed(() => {
-  const tags = (post.value.tags ?? []).map((tag) => tag.name);
-  const relatedKeywords = post.value.related_keywords ?? [];
-  return [...new Set([...tags, ...relatedKeywords])].slice(0, 8);
-});
 </script>
 
 <template>
   <AppHead v-bind="seo" />
 
   <ContentSiteLayout :title="post.title" page-type="post">
-    <article class="dd-container dd-post">
-      <nav class="dd-breadcrumb" aria-label="Breadcrumb">
-        <Link :href="route('index.home')">Início</Link>
-        <span>/</span>
-        <Link :href="route('posts.index')">Posts</Link>
-        <template v-if="post.category">
-          <span>/</span>
-          <Link :href="route('posts.category', post.category.slug)">{{ post.category.name }}</Link>
-        </template>
-      </nav>
+  <article class="container py-5 post-page">
+    <nav class="small mb-3 text-secondary">
+      <Link :href="route('index.home')">Início</Link> / <Link :href="route('posts.index')">Posts</Link>
+      <template v-if="post.category"> / <Link :href="route('posts.category', post.category.slug)">{{ post.category.name }}</Link></template>
+    </nav>
 
-      <h1>{{ post.title }}</h1>
-      <p v-if="post.excerpt" class="dd-post-lead">{{ post.excerpt }}</p>
-
-      <div class="dd-meta">
+    <header class="mb-4">
+      <h1 class="display-6 fw-bold mb-3">{{ post.title }}</h1>
+      <p class="lead text-secondary" v-if="post.excerpt">{{ post.excerpt }}</p>
+      <div class="d-flex gap-3 flex-wrap small text-muted">
         <span v-if="post.author_name">Por {{ post.author_name }}</span>
         <span v-if="post.published_at">Publicado em {{ new Date(post.published_at).toLocaleDateString('pt-BR') }}</span>
         <span>{{ post.reading_time }} min de leitura</span>
       </div>
+      <div v-if="post.tags?.length" class="d-flex flex-wrap gap-2 mt-3">
+        <Link v-for="tag in post.tags" :key="tag.id" :href="route('posts.tag', tag.slug)" class="badge text-bg-light text-decoration-none">
+          #{{ tag.name }}
+        </Link>
+      </div>
+    </header>
 
-      <div v-if="showAdSlots" class="dd-ad-slot">Espaço AdSense — topo do conteúdo</div>
+    <div v-if="showAdSlots" class="ad-slot ad-slot--top mb-4">Espaço reservado para monetização futura</div>
 
-      <section class="dd-quick-answer">
-        <h2>Resposta rápida</h2>
-        <p>{{ post.excerpt || `Resumo objetivo sobre ${post.title}.` }}</p>
-      </section>
+    <img
+      v-if="post.featured_image"
+      :src="post.featured_image"
+      :alt="post.featured_image_alt || post.title"
+      class="img-fluid rounded mb-4"
+      loading="lazy"
+    >
 
-      <section>
-        <h2>Explicação detalhada</h2>
-        <div class="dd-rich-content" v-html="post.content_html" />
-      </section>
-
-      <section>
-        <h2>Onde é usado</h2>
-        <ul>
-          <li v-for="item in whereUsed" :key="item">{{ item }}</li>
+    <aside v-if="post.toc?.length" class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h2 class="h6">Neste artigo</h2>
+        <ul class="list-unstyled mb-0">
+          <li v-for="item in post.toc" :key="item.id" :class="item.level === 'h3' ? 'ms-3' : ''">
+            <a :href="`#${item.id}`">{{ item.label }}</a>
+          </li>
         </ul>
-      </section>
+      </div>
+    </aside>
 
-      <section>
-        <h2>Exemplos reais</h2>
-        <ul>
-          <li v-for="item in sampleExamples" :key="item">{{ item }}</li>
-        </ul>
-      </section>
+    <section class="post-content" v-html="post.content_html" />
 
-      <div v-if="showAdSlots" class="dd-ad-slot">Espaço AdSense — meio do conteúdo</div>
+    <div v-if="showAdSlots" class="ad-slot ad-slot--middle mt-4">Espaço reservado para monetização futura</div>
 
-      <section v-if="termVariations.length">
-        <h2>Variações e termos relacionados</h2>
-        <div class="dd-tags">
-          <Link v-for="item in termVariations" :key="item" :href="route('search.index', { q: item })">{{ item }}</Link>
+    <section v-if="post.faq?.length" class="mt-5">
+      <h2 class="h4 mb-3">Perguntas frequentes</h2>
+      <div class="accordion" id="postFaq">
+        <div v-for="(item, index) in post.faq" :key="item.question" class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="`#faq-${index}`">
+              {{ item.question }}
+            </button>
+          </h3>
+          <div :id="`faq-${index}`" class="accordion-collapse collapse" data-bs-parent="#postFaq">
+            <div class="accordion-body">{{ item.answer }}</div>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section v-if="contextualLinks.length">
-        <h2>Links internos no conteúdo</h2>
-        <p>
-          Continue aprendendo:
-          <template v-for="(item, index) in contextualLinks" :key="item.id">
-            <Link :href="route('posts.show', item.slug)">{{ item.title }}</Link><span v-if="index < contextualLinks.length - 1"> • </span>
-          </template>
-        </p>
-      </section>
+    <section v-if="post.title_suggestions?.length" class="mt-5">
+      <h2 class="h5">Sugestões de título (otimização CTR)</h2>
+      <ul class="mb-0">
+        <li v-for="item in post.title_suggestions" :key="item">{{ item }}</li>
+      </ul>
+    </section>
 
-      <section v-if="post.faq?.length">
-        <h2>FAQ (perguntas frequentes)</h2>
-        <div class="dd-faq-list">
-          <article v-for="item in post.faq" :key="item.question" class="dd-faq-item">
-            <h3>{{ item.question }}</h3>
-            <p>{{ item.answer }}</p>
-          </article>
-        </div>
-      </section>
-
-      <section v-if="relatedPosts.length">
-        <h2>Posts relacionados</h2>
-        <div class="dd-grid dd-grid-3">
-          <article v-for="item in relatedPosts" :key="item.id" class="dd-card">
-            <h3><Link :href="route('posts.show', item.slug)">{{ item.title }}</Link></h3>
-            <p>{{ item.excerpt }}</p>
-          </article>
-        </div>
-      </section>
-
-      <div v-if="showAdSlots" class="dd-ad-slot">Espaço AdSense — final do conteúdo</div>
-    </article>
-  </ContentSiteLayout>
+    <section v-if="relatedPosts.length" class="mt-5">
+      <h2 class="h4 mb-3">Continue lendo</h2>
+      <div class="row g-3">
+        <article v-for="item in relatedPosts" :key="item.id" class="col-12 col-md-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="h6"><Link :href="route('posts.show', item.slug)">{{ item.title }}</Link></h3>
+              <p class="small text-secondary mb-0">{{ item.excerpt }}</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </article>
+</ContentSiteLayout>
 </template>
