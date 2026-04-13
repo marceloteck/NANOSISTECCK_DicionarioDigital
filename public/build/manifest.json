@@ -1,0 +1,496 @@
+{
+  "resources/PagesVuejs/Pages/index/Home.vue": {
+    "file": "assets/Home-4f5155cc.js",
+    "imports": [
+      "resources/js/config/app.js",
+      "resources/PagesVuejs/components/Applications/AppHead.vue",
+      "resources/PagesVuejs/components/Home/Header.vue",
+      "resources/PagesVuejs/components/Home/HeroSection.vue",
+      "resources/PagesVuejs/components/Home/CategoriesSection.vue",
+      "resources/PagesVuejs/components/Home/FeaturedSection.vue",
+      "resources/PagesVuejs/components/Home/PostsSection.vue",
+      "resources/PagesVuejs/components/Home/PostPreviewSection.vue",
+      "resources/PagesVuejs/components/Home/FaqSection.vue",
+      "resources/PagesVuejs/components/Home/CtaSection.vue",
+      "resources/PagesVuejs/components/Home/Footer.vue",
+      "resources/PagesVuejs/components/Home/BrandLogo.vue",
+      "resources/PagesVuejs/components/Home/NavLinks.vue",
+      "resources/PagesVuejs/components/Home/SearchPanel.vue",
+      "resources/PagesVuejs/components/Home/CategoryCard.vue",
+      "resources/PagesVuejs/components/Home/FeaturedCard.vue",
+      "resources/PagesVuejs/components/Home/PostCard.vue",
+      "resources/PagesVuejs/components/Home/SidebarCard.vue",
+      "resources/PagesVuejs/components/Home/MiniInfoCard.vue",
+      "resources/PagesVuejs/components/Home/FaqCard.vue",
+      "resources/PagesVuejs/components/Home/CtaStat.vue"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/Pages/index/Home.vue"
+  },
+  "resources/PagesVuejs/Pages/index/index.vue": {
+    "file": "assets/index-c2088f51.js",
+    "imports": [
+      "resources/PagesVuejs/Pages/index/Home.vue",
+      "resources/js/config/app.js",
+      "resources/PagesVuejs/components/Applications/AppHead.vue",
+      "resources/PagesVuejs/components/Home/Header.vue",
+      "resources/PagesVuejs/components/Home/BrandLogo.vue",
+      "resources/PagesVuejs/components/Home/NavLinks.vue",
+      "resources/PagesVuejs/components/Home/HeroSection.vue",
+      "resources/PagesVuejs/components/Home/SearchPanel.vue",
+      "resources/PagesVuejs/components/Home/CategoriesSection.vue",
+      "resources/PagesVuejs/components/Home/CategoryCard.vue",
+      "resources/PagesVuejs/components/Home/FeaturedSection.vue",
+      "resources/PagesVuejs/components/Home/FeaturedCard.vue",
+      "resources/PagesVuejs/components/Home/PostsSection.vue",
+      "resources/PagesVuejs/components/Home/PostCard.vue",
+      "resources/PagesVuejs/components/Home/SidebarCard.vue",
+      "resources/PagesVuejs/components/Home/PostPreviewSection.vue",
+      "resources/PagesVuejs/components/Home/MiniInfoCard.vue",
+      "resources/PagesVuejs/components/Home/FaqSection.vue",
+      "resources/PagesVuejs/components/Home/FaqCard.vue",
+      "resources/PagesVuejs/components/Home/CtaSection.vue",
+      "resources/PagesVuejs/components/Home/CtaStat.vue",
+      "resources/PagesVuejs/components/Home/Footer.vue"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/Pages/index/index.vue"
+  },
+  "resources/PagesVuejs/Pages/institutional/show.vue": {
+    "file": "assets/show-2f46b6ec.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/Pages/institutional/show.vue"
+  },
+  "resources/PagesVuejs/Pages/posts/index.vue": {
+    "file": "assets/index-1c6cf21b.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/Pages/posts/index.vue"
+  },
+  "resources/PagesVuejs/Pages/posts/show.vue": {
+    "file": "assets/show-7d853a6b.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/Pages/posts/show.vue"
+  },
+  "resources/PagesVuejs/Pages/posts/taxonomy.vue": {
+    "file": "assets/taxonomy-31628f57.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/Pages/posts/taxonomy.vue"
+  },
+  "resources/PagesVuejs/Pages/search/index.vue": {
+    "file": "assets/index-2ef7d442.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/Pages/search/index.vue"
+  },
+  "resources/PagesVuejs/Pages/tools/index.vue": {
+    "file": "assets/index-628dc87a.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/Pages/tools/index.vue"
+  },
+  "resources/PagesVuejs/Pages/tools/show.vue": {
+    "file": "assets/show-e65bfc7f.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/Pages/tools/show.vue"
+  },
+  "resources/PagesVuejs/components/Applications/AppHead.vue": {
+    "file": "assets/AppHead-0fd4a09e.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Applications/AppHead.vue"
+  },
+  "resources/PagesVuejs/components/Applications/Loading.css": {
+    "file": "assets/Loading-6c2c9b8f.css",
+    "src": "resources/PagesVuejs/components/Applications/Loading.css"
+  },
+  "resources/PagesVuejs/components/Applications/Loading.vue": {
+    "css": [
+      "assets/Loading-6c2c9b8f.css"
+    ],
+    "file": "assets/Loading-36620202.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Applications/Loading.vue"
+  },
+  "resources/PagesVuejs/components/Applications/LoadingContainer.css": {
+    "file": "assets/LoadingContainer-183f3466.css",
+    "src": "resources/PagesVuejs/components/Applications/LoadingContainer.css"
+  },
+  "resources/PagesVuejs/components/Applications/LoadingContainer.vue": {
+    "css": [
+      "assets/LoadingContainer-183f3466.css"
+    ],
+    "file": "assets/LoadingContainer-aa895fec.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Applications/LoadingContainer.vue"
+  },
+  "resources/PagesVuejs/components/Applications/LoadingContainerDiv.css": {
+    "file": "assets/LoadingContainerDiv-2cffb49a.css",
+    "src": "resources/PagesVuejs/components/Applications/LoadingContainerDiv.css"
+  },
+  "resources/PagesVuejs/components/Applications/LoadingContainerDiv.vue": {
+    "css": [
+      "assets/LoadingContainerDiv-2cffb49a.css"
+    ],
+    "file": "assets/LoadingContainerDiv-62a7185d.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Applications/LoadingContainerDiv.vue"
+  },
+  "resources/PagesVuejs/components/Applications/particles.css": {
+    "file": "assets/particles-f6e9213a.css",
+    "src": "resources/PagesVuejs/components/Applications/particles.css"
+  },
+  "resources/PagesVuejs/components/Applications/particles.vue": {
+    "css": [
+      "assets/particles-f6e9213a.css"
+    ],
+    "file": "assets/particles-05c04bb1.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Applications/particles.vue"
+  },
+  "resources/PagesVuejs/components/Applications/particlesCircles.css": {
+    "file": "assets/particlesCircles-eb0825f6.css",
+    "src": "resources/PagesVuejs/components/Applications/particlesCircles.css"
+  },
+  "resources/PagesVuejs/components/Applications/particlesCircles.vue": {
+    "css": [
+      "assets/particlesCircles-eb0825f6.css"
+    ],
+    "file": "assets/particlesCircles-65c91b0f.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Applications/particlesCircles.vue"
+  },
+  "resources/PagesVuejs/components/ContentPages/PostPagination.vue": {
+    "file": "assets/PostPagination-fa299441.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/ContentPages/PostPagination.vue"
+  },
+  "resources/PagesVuejs/components/Home/BrandLogo.vue": {
+    "file": "assets/BrandLogo-be7e8032.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/BrandLogo.vue"
+  },
+  "resources/PagesVuejs/components/Home/CategoriesSection.vue": {
+    "file": "assets/CategoriesSection-acf2755d.js",
+    "imports": [
+      "resources/PagesVuejs/components/Home/CategoryCard.vue",
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/CategoriesSection.vue"
+  },
+  "resources/PagesVuejs/components/Home/CategoryCard.vue": {
+    "file": "assets/CategoryCard-69eff028.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/CategoryCard.vue"
+  },
+  "resources/PagesVuejs/components/Home/CtaSection.vue": {
+    "file": "assets/CtaSection-5c3db289.js",
+    "imports": [
+      "resources/PagesVuejs/components/Home/CtaStat.vue",
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/CtaSection.vue"
+  },
+  "resources/PagesVuejs/components/Home/CtaStat.vue": {
+    "file": "assets/CtaStat-d1259398.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/CtaStat.vue"
+  },
+  "resources/PagesVuejs/components/Home/FaqCard.vue": {
+    "file": "assets/FaqCard-7d2e0977.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/FaqCard.vue"
+  },
+  "resources/PagesVuejs/components/Home/FaqSection.vue": {
+    "file": "assets/FaqSection-72c56b82.js",
+    "imports": [
+      "resources/PagesVuejs/components/Home/FaqCard.vue",
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/FaqSection.vue"
+  },
+  "resources/PagesVuejs/components/Home/FeaturedCard.vue": {
+    "file": "assets/FeaturedCard-ae2ca3dd.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/FeaturedCard.vue"
+  },
+  "resources/PagesVuejs/components/Home/FeaturedSection.vue": {
+    "file": "assets/FeaturedSection-a04c513b.js",
+    "imports": [
+      "resources/PagesVuejs/components/Home/FeaturedCard.vue",
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/FeaturedSection.vue"
+  },
+  "resources/PagesVuejs/components/Home/Footer.vue": {
+    "file": "assets/Footer-8186578f.js",
+    "imports": [
+      "resources/PagesVuejs/components/Home/BrandLogo.vue",
+      "resources/PagesVuejs/components/Home/NavLinks.vue",
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/Footer.vue"
+  },
+  "resources/PagesVuejs/components/Home/Header.vue": {
+    "file": "assets/Header-149109ab.js",
+    "imports": [
+      "resources/PagesVuejs/components/Home/BrandLogo.vue",
+      "resources/PagesVuejs/components/Home/NavLinks.vue",
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/Header.vue"
+  },
+  "resources/PagesVuejs/components/Home/HeroSection.vue": {
+    "file": "assets/HeroSection-f3327b08.js",
+    "imports": [
+      "resources/PagesVuejs/components/Home/SearchPanel.vue",
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/HeroSection.vue"
+  },
+  "resources/PagesVuejs/components/Home/MiniInfoCard.vue": {
+    "file": "assets/MiniInfoCard-973b2c98.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/MiniInfoCard.vue"
+  },
+  "resources/PagesVuejs/components/Home/NavLinks.vue": {
+    "file": "assets/NavLinks-11a478c0.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/NavLinks.vue"
+  },
+  "resources/PagesVuejs/components/Home/PostCard.vue": {
+    "file": "assets/PostCard-9f83a172.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/PostCard.vue"
+  },
+  "resources/PagesVuejs/components/Home/PostPreviewSection.vue": {
+    "file": "assets/PostPreviewSection-f01ed23b.js",
+    "imports": [
+      "resources/PagesVuejs/components/Home/MiniInfoCard.vue",
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/PostPreviewSection.vue"
+  },
+  "resources/PagesVuejs/components/Home/PostsSection.vue": {
+    "file": "assets/PostsSection-0544abe2.js",
+    "imports": [
+      "resources/PagesVuejs/components/Home/PostCard.vue",
+      "resources/PagesVuejs/components/Home/SidebarCard.vue",
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/PostsSection.vue"
+  },
+  "resources/PagesVuejs/components/Home/SearchPanel.vue": {
+    "file": "assets/SearchPanel-e72b6581.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/SearchPanel.vue"
+  },
+  "resources/PagesVuejs/components/Home/SidebarCard.vue": {
+    "file": "assets/SidebarCard-52d476af.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Home/SidebarCard.vue"
+  },
+  "resources/PagesVuejs/components/Layouts/ContentSiteLayout.vue": {
+    "file": "assets/ContentSiteLayout-78f1b38f.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Layouts/ContentSiteLayout.vue"
+  },
+  "resources/PagesVuejs/components/Layouts/HybridSiteLayout.vue": {
+    "file": "assets/HybridSiteLayout-87e693bc.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Layouts/HybridSiteLayout.vue"
+  },
+  "resources/PagesVuejs/components/Layouts/InstitutionalLayout.vue": {
+    "file": "assets/InstitutionalLayout-7676defe.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Layouts/InstitutionalLayout.vue"
+  },
+  "resources/PagesVuejs/components/Layouts/LayoutTopPages.css": {
+    "file": "assets/LayoutTopPages-146a3b0a.css",
+    "src": "resources/PagesVuejs/components/Layouts/LayoutTopPages.css"
+  },
+  "resources/PagesVuejs/components/Layouts/LayoutTopPages.vue": {
+    "css": [
+      "assets/LayoutTopPages-146a3b0a.css"
+    ],
+    "file": "assets/LayoutTopPages-c1febd7d.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Layouts/LayoutTopPages.vue"
+  },
+  "resources/PagesVuejs/components/Layouts/SiteLayout.vue": {
+    "file": "assets/SiteLayout-44a05f43.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Layouts/SiteLayout.vue"
+  },
+  "resources/PagesVuejs/components/Layouts/ToolsSiteLayout.vue": {
+    "file": "assets/ToolsSiteLayout-d4f47f7f.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Layouts/ToolsSiteLayout.vue"
+  },
+  "resources/PagesVuejs/components/Navs/NavBar.css": {
+    "file": "assets/NavBar-a49426e7.css",
+    "src": "resources/PagesVuejs/components/Navs/NavBar.css"
+  },
+  "resources/PagesVuejs/components/Navs/NavBar.vue": {
+    "css": [
+      "assets/NavBar-a49426e7.css"
+    ],
+    "file": "assets/NavBar-151a1699.js",
+    "imports": [
+      "resources/js/config/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/PagesVuejs/components/Navs/NavBar.vue"
+  },
+  "resources/js/config/app.css": {
+    "file": "assets/app-458247ba.css",
+    "src": "resources/js/config/app.css"
+  },
+  "resources/js/config/app.js": {
+    "css": [
+      "assets/app-458247ba.css"
+    ],
+    "dynamicImports": [
+      "resources/PagesVuejs/Pages/index/Home.vue",
+      "resources/PagesVuejs/Pages/index/index.vue",
+      "resources/PagesVuejs/Pages/institutional/show.vue",
+      "resources/PagesVuejs/Pages/posts/index.vue",
+      "resources/PagesVuejs/Pages/posts/show.vue",
+      "resources/PagesVuejs/Pages/posts/taxonomy.vue",
+      "resources/PagesVuejs/Pages/search/index.vue",
+      "resources/PagesVuejs/Pages/tools/index.vue",
+      "resources/PagesVuejs/Pages/tools/show.vue",
+      "resources/PagesVuejs/components/Applications/AppHead.vue",
+      "resources/PagesVuejs/components/Applications/Loading.vue",
+      "resources/PagesVuejs/components/Applications/LoadingContainer.vue",
+      "resources/PagesVuejs/components/Applications/LoadingContainerDiv.vue",
+      "resources/PagesVuejs/components/Applications/particles.vue",
+      "resources/PagesVuejs/components/Applications/particlesCircles.vue",
+      "resources/PagesVuejs/components/ContentPages/PostPagination.vue",
+      "resources/PagesVuejs/components/Home/BrandLogo.vue",
+      "resources/PagesVuejs/components/Home/CategoriesSection.vue",
+      "resources/PagesVuejs/components/Home/CategoryCard.vue",
+      "resources/PagesVuejs/components/Home/CtaSection.vue",
+      "resources/PagesVuejs/components/Home/CtaStat.vue",
+      "resources/PagesVuejs/components/Home/FaqCard.vue",
+      "resources/PagesVuejs/components/Home/FaqSection.vue",
+      "resources/PagesVuejs/components/Home/FeaturedCard.vue",
+      "resources/PagesVuejs/components/Home/FeaturedSection.vue",
+      "resources/PagesVuejs/components/Home/Footer.vue",
+      "resources/PagesVuejs/components/Home/Header.vue",
+      "resources/PagesVuejs/components/Home/HeroSection.vue",
+      "resources/PagesVuejs/components/Home/MiniInfoCard.vue",
+      "resources/PagesVuejs/components/Home/NavLinks.vue",
+      "resources/PagesVuejs/components/Home/PostCard.vue",
+      "resources/PagesVuejs/components/Home/PostPreviewSection.vue",
+      "resources/PagesVuejs/components/Home/PostsSection.vue",
+      "resources/PagesVuejs/components/Home/SearchPanel.vue",
+      "resources/PagesVuejs/components/Home/SidebarCard.vue",
+      "resources/PagesVuejs/components/Layouts/ContentSiteLayout.vue",
+      "resources/PagesVuejs/components/Layouts/HybridSiteLayout.vue",
+      "resources/PagesVuejs/components/Layouts/InstitutionalLayout.vue",
+      "resources/PagesVuejs/components/Layouts/LayoutTopPages.vue",
+      "resources/PagesVuejs/components/Layouts/SiteLayout.vue",
+      "resources/PagesVuejs/components/Layouts/ToolsSiteLayout.vue",
+      "resources/PagesVuejs/components/Navs/NavBar.vue"
+    ],
+    "file": "assets/app-cded29ff.js",
+    "isEntry": true,
+    "src": "resources/js/config/app.js"
+  }
+}
