@@ -85,7 +85,7 @@ return [
 
     'branding' => [
         'logo' => env('PROJECT_LOGO', '/images/seo/logo.png'),
-        'favicon' => env('PROJECT_FAVICON', '/favicon.ico'),
+        'favicon' => env('PROJECT_FAVICON', '/favicon.svg'),
         'default_social_image' => env('PROJECT_DEFAULT_SOCIAL_IMAGE', '/images/seo/default.jpg'),
     ],
 

@@ -23,7 +23,7 @@ return [
     'publisher' => env('SEO_PUBLISHER', ''),
     'theme_color' => env('SEO_THEME_COLOR', '#111827'),
     'background_color' => env('SEO_BACKGROUND_COLOR', '#ffffff'),
-    'favicon' => env('SEO_FAVICON', '/favicon.ico'),
+    'favicon' => env('SEO_FAVICON', '/favicon.svg'),
     'default_image' => env('SEO_DEFAULT_IMAGE', '/images/seo/default.jpg'),
 
     'twitter' => [

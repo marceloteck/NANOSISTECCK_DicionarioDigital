@@ -14,10 +14,10 @@ const links = [
   <footer class="site-footer">
     <div class="container footer-shell">
       <div class="footer-brand">
-        <BrandLogo subtitle="Projeto NANOSISTECCK" :use-icon="false" />
+        <BrandLogo subtitle="Projeto NANOSISTECCK" :use-icon="true" />
 
         <p>
-          Um modelo premium criado para transformar curiosidades da internet em uma experiência clara, elegante e pronta para crescer.
+          Um modelo premium criado para transformar curiosidades da internet em uma experiência clara, <br> elegante e pronta para crescer.
         </p>
       </div>
 
