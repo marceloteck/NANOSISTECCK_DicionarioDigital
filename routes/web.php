@@ -19,8 +19,16 @@ if ((bool) config('project.modules.posts', true)) {
     Route::redirect('/post/o-que-significa-pov', '/posts/o-que-significa-pov', 301)->name('posts.pov');
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
     Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
-    Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
-    Route::patch('/posts/{post}', [PostController::class, 'update'])->middleware('auth')->name('posts.update');
+    Route::post('/posts', [PostController::class, 'store'])->middleware(['auth', 'verified'])->name('posts.store');
+    Route::patch('/posts/{post}', [PostController::class, 'update'])->middleware(['auth', 'verified'])->name('posts.update');
+
+    Route::middleware(['auth', 'verified'])->prefix('admin/posts')->name('admin.posts.')->group(function () {
+        Route::get('/', [PostController::class, 'adminIndex'])->name('index');
+        Route::get('/create', [PostController::class, 'create'])->name('create');
+        Route::get('/{post}/edit', [PostController::class, 'edit'])->name('edit');
+        Route::get('/{post}/preview', [PostController::class, 'preview'])->name('preview');
+        Route::post('/import-json', [PostController::class, 'importJson'])->name('import-json');
+    });
 }
 
 if ((bool) config('project.modules.taxonomy', true)) {

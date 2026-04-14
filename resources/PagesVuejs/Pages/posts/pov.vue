@@ -23,6 +23,7 @@ const faqItems = computed(() => post.value.faq ?? []);
 const ctaStats = computed(() => page.props.cta?.stats ?? []);
 
 const quickAnswer = computed(() => {
+  if (post.value.quick_answer) return post.value.quick_answer;
   if (post.value.excerpt) return post.value.excerpt;
   return 'Conteúdo completo com definição, contexto de uso, exemplos práticos e respostas rápidas.';
 });
@@ -35,7 +36,7 @@ const mappedRelatedPosts = computed(() => relatedPosts.value.map((item) => ({
   href: route('posts.show', item.slug),
 })));
 
-const headingTitle = computed(() => post.value.title || 'Post');
+const headingTitle = computed(() => post.value.hero_title || post.value.title || 'Post');
 </script>
 
 <template>
@@ -56,7 +57,7 @@ const headingTitle = computed(() => post.value.title || 'Post');
           </h1>
 
           <p class="hero-desc">
-            {{ post.excerpt }}
+            {{ post.hero_summary || post.excerpt }}
           </p>
 
           <div class="hero-actions">
@@ -139,7 +140,7 @@ const headingTitle = computed(() => post.value.title || 'Post');
 
     <PostFaqSection v-if="faqItems.length" :items="faqItems" />
 
-    <PostCtaSection v-if="ctaStats.length" :stats="ctaStats" />
+    <PostCtaSection v-if="ctaStats.length" :stats="ctaStats" :title="page.props.cta?.title" :text="page.props.cta?.text" :button-text="page.props.cta?.button_text" :button-url="page.props.cta?.button_url" />
   </main>
 
   <Footer />
