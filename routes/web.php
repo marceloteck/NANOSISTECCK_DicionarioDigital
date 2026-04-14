@@ -21,15 +21,15 @@ if ((bool) config('project.modules.posts', true)) {
     Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
     Route::post('/posts', [PostController::class, 'store'])->middleware(['auth', 'admin'])->name('posts.store');
     Route::patch('/posts/{post}', [PostController::class, 'update'])->middleware(['auth', 'admin'])->name('posts.update');
-
-    Route::middleware(['auth', 'admin'])->prefix('admin/posts')->name('admin.posts.')->group(function () {
-        Route::get('/', [PostController::class, 'adminIndex'])->name('index');
-        Route::get('/create', [PostController::class, 'create'])->name('create');
-        Route::get('/{post}/edit', [PostController::class, 'edit'])->name('edit');
-        Route::get('/{post}/preview', [PostController::class, 'preview'])->name('preview');
-        Route::post('/import-json', [PostController::class, 'importJson'])->name('import-json');
-    });
 }
+
+Route::middleware(['auth', 'admin'])->prefix('admin/posts')->name('admin.posts.')->group(function () {
+    Route::get('/', [PostController::class, 'adminIndex'])->name('index');
+    Route::get('/create', [PostController::class, 'create'])->name('create');
+    Route::get('/{post}/edit', [PostController::class, 'edit'])->name('edit');
+    Route::get('/{post}/preview', [PostController::class, 'preview'])->name('preview');
+    Route::post('/import-json', [PostController::class, 'importJson'])->name('import-json');
+});
 
 if ((bool) config('project.modules.taxonomy', true)) {
     Route::get('/categoria/{category:slug}', [PostController::class, 'category'])->name('posts.category');
