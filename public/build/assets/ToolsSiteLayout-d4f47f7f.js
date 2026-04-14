@@ -1,1 +1,0 @@
-import{r as o,o as p,c as l,w as n,m as r}from"./app-cded29ff.js";const u={__name:"ToolsSiteLayout",props:{title:{type:String,default:""},pageType:{type:String,default:""}},setup(t){return(e,s)=>{const a=o("SiteLayout");return p(),l(a,{title:t.title,"page-type":t.pageType},{default:n(()=>[r(e.$slots,"default")]),_:3},8,["title","page-type"])}}};export{u as default};
