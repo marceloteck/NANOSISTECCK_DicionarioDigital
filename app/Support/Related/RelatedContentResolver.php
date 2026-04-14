@@ -19,6 +19,7 @@ class RelatedContentResolver
             ->map(fn (Post $item) => [
                 'type' => 'post',
                 'id' => $item->id,
+                'slug' => $item->slug,
                 'title' => $item->title,
                 'excerpt' => $item->excerpt,
                 'url' => route('posts.show', $item),

@@ -3,6 +3,10 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["resources/js/*"],
+            "@/components/*": ["resources/PagesVuejs/components/*"],
+            "@components/*": ["resources/PagesVuejs/components/*"],
+            "@PagesVuejs/*": ["resources/PagesVuejs/*"],
+            "@resources/*": ["resources/*"]
         }
     },
     "exclude": ["node_modules", "public"]
