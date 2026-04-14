@@ -1,1 +1,0 @@
-import{o as r,b as c,e as t,t as a}from"./app-a949be90.js";const i={class:"featured-card"},l={href:"#"},m={__name:"FeaturedCard",props:{item:{type:Object,required:!0}},setup(e){return(s,n)=>(r(),c("article",i,[t("small",null,a(e.item.category),1),t("h3",null,a(e.item.title),1),t("p",null,a(e.item.description),1),t("a",l,a(e.item.action),1)]))}};export{m as default};

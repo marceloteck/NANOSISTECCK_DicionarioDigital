@@ -1,0 +1,1 @@
+import{o as n,b as r,e as t,t as i}from"./app-49fcf561.js";const a={class:"mini-info-card"},l={__name:"MiniInfoCard",props:{item:{type:Object,required:!0}},setup(e){return(o,s)=>(n(),r("div",a,[t("strong",null,i(e.item.title),1),t("p",null,i(e.item.description),1)]))}};export{l as default};
