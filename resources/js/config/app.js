@@ -14,19 +14,22 @@ const appName = (import.meta.env.VITE_APP_NAME || 'Laravel').replaceAll(/[_-]/g,
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) => 
-    resolvePageComponent(`../../PagesVuejs/${name}.vue`, import.meta.glob('../../PagesVuejs/**/*.vue')),
- 
+    resolve: (name) =>
+        resolvePageComponent(
+            `../../PagesVuejs/${name}.vue`,
+            import.meta.glob('../../PagesVuejs/**/*.vue')
+        ),
+
     setup({ el, App, props, plugin }) {
         const app = createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy);
 
-             // chamada dos componentes
-             Object.entries(ComponentsMap).forEach(([name, component]) => {
-                app.component(name, component);
-            });
-            app.mount(el);
+        Object.entries(ComponentsMap).forEach(([name, component]) => {
+            app.component(name, component);
+        });
+
+        app.mount(el);
     },
     progress: {
         color: '#FDA543',
