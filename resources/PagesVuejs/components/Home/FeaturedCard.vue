@@ -12,6 +12,6 @@ defineProps({
     <small>{{ item.category }}</small>
     <h3>{{ item.title }}</h3>
     <p>{{ item.description }}</p>
-    <a href="#">{{ item.action }}</a>
+    <a :href="item.href || '#'">{{ item.action }}</a>
   </article>
 </template>

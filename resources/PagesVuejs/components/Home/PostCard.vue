@@ -16,6 +16,6 @@ defineProps({
     </div>
     <h3>{{ item.title }}</h3>
     <p>{{ item.description }}</p>
-    <a href="#">Ler explicação</a>
+    <a :href="item.href || '#'">Ler explicação</a>
   </article>
 </template>
