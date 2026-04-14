@@ -1,1 +1,0 @@
-import a from"./PostInfoCard-47d5c934.js";import{o as e,b as t,F as c,l as o,c as n}from"./app-6d95ea46.js";const i={class:"system-sidebar"},d={__name:"PostSidebar",props:{cards:{type:Array,required:!0}},setup(s){return(l,m)=>(e(),t("aside",i,[(e(!0),t(c,null,o(s.cards,r=>(e(),n(a,{key:r.title,item:r},null,8,["item"]))),128))]))}};export{d as default};
