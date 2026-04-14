@@ -59,6 +59,13 @@ class PostController extends Controller
         ]);
     }
 
+    public function povPreview(): Response
+    {
+        return Inertia::render('Pages/posts/pov', [
+            'pageType' => 'post',
+        ]);
+    }
+
     public function store(PostStoreRequest $request): RedirectResponse
     {
         $post = $this->postCreator->create($request->validated(), $request->user()?->id);

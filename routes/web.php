@@ -16,6 +16,7 @@ Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('seo.sitemap
 Route::get('/', [HomeContollerRoutes::class, 'index'])->name('index.home');
 
 if ((bool) config('project.modules.posts', true)) {
+    Route::get('/post/o-que-significa-pov', [PostController::class, 'povPreview'])->name('posts.pov');
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
     Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
     Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
