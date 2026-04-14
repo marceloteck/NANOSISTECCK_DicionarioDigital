@@ -116,7 +116,7 @@ class PostController extends Controller
     {
         $request->validate(['payload_json' => ['required', 'string']]);
 
-        $parsed = json_decode((string) $request->input('payload_json'), true);
+        $parsed = $this->decodePostPayload((string) $request->input('payload_json'));
 
         if (! is_array($parsed)) {
             return response()->json([
@@ -131,6 +131,118 @@ class PostController extends Controller
             'message' => 'JSON importado com sucesso. Revise os dados antes de salvar.',
             'data' => $validated,
         ]);
+    }
+
+    private function decodePostPayload(string $rawPayload): ?array
+    {
+        $attempts = [];
+        $trimmed = trim($rawPayload);
+
+        $attempts[] = $trimmed;
+        $attempts[] = $this->stripCodeFence($trimmed);
+        $attempts[] = $this->decodeEscapedJsonString($trimmed);
+        $attempts[] = $this->decodeEscapedJsonString($this->stripCodeFence($trimmed));
+        $attempts[] = $this->extractFirstJsonDocument($trimmed);
+
+        foreach ($attempts as $candidate) {
+            if (! is_string($candidate) || trim($candidate) === '') {
+                continue;
+            }
+
+            $decoded = json_decode($candidate, true);
+
+            if (! is_array($decoded)) {
+                continue;
+            }
+
+            if (array_is_list($decoded)) {
+                $first = $decoded[0] ?? null;
+
+                return is_array($first) ? $first : null;
+            }
+
+            return $decoded;
+        }
+
+        return null;
+    }
+
+    private function stripCodeFence(string $payload): string
+    {
+        return (string) preg_replace('/^\s*```(?:json)?\s*|\s*```\s*$/i', '', trim($payload));
+    }
+
+    private function decodeEscapedJsonString(string $payload): string
+    {
+        $decoded = json_decode($payload, true);
+
+        return is_string($decoded) ? $decoded : '';
+    }
+
+    private function extractFirstJsonDocument(string $payload): string
+    {
+        $source = $this->stripCodeFence(trim($payload));
+        $length = strlen($source);
+        $buffer = '';
+        $depth = 0;
+        $inString = false;
+        $escaped = false;
+        $started = false;
+
+        for ($index = 0; $index < $length; $index++) {
+            $char = $source[$index];
+
+            if (! $started) {
+                if ($char !== '{' && $char !== '[') {
+                    continue;
+                }
+
+                $started = true;
+                $depth = 1;
+                $buffer .= $char;
+                continue;
+            }
+
+            $buffer .= $char;
+
+            if ($inString) {
+                if ($escaped) {
+                    $escaped = false;
+                    continue;
+                }
+
+                if ($char === '\\') {
+                    $escaped = true;
+                    continue;
+                }
+
+                if ($char === '"') {
+                    $inString = false;
+                }
+
+                continue;
+            }
+
+            if ($char === '"') {
+                $inString = true;
+                continue;
+            }
+
+            if ($char === '{' || $char === '[') {
+                $depth++;
+                continue;
+            }
+
+            if ($char === '}' || $char === ']') {
+                $depth--;
+
+                if ($depth === 0) {
+                    return $buffer;
+                }
+            }
+        }
+
+        return '';
     }
 
     public function povPreview(): Response

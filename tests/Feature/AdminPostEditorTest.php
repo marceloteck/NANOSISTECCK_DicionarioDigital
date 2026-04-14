@@ -50,6 +50,54 @@ class AdminPostEditorTest extends TestCase
             ->assertJsonPath('data.tags.1', 'novo termo');
     }
 
+    public function test_admin_can_import_payload_with_code_fence_and_duplicate_content_using_first_json_object(): void
+    {
+        $user = User::factory()->admin()->create();
+
+        $firstPayload = [
+            'title' => 'Primeiro post',
+            'slug' => 'primeiro-post',
+            'content_html' => '<p>Primeiro conteúdo válido.</p>',
+            'status' => 'draft',
+        ];
+
+        $secondPayload = [
+            'title' => 'Segundo post',
+            'slug' => 'segundo-post',
+            'content_html' => '<p>Segundo conteúdo.</p>',
+            'status' => 'draft',
+        ];
+
+        $raw = "```json\n".json_encode($firstPayload).json_encode($secondPayload)."\n```";
+
+        $response = $this->actingAs($user)
+            ->post(route('admin.posts.import-json'), ['payload_json' => $raw]);
+
+        $response->assertOk()
+            ->assertJsonPath('data.title', 'Primeiro post')
+            ->assertJsonPath('data.slug', 'primeiro-post');
+    }
+
+    public function test_admin_can_import_json_stringified_payload(): void
+    {
+        $user = User::factory()->admin()->create();
+        $payload = [
+            'title' => 'Payload stringificado',
+            'slug' => 'payload-stringificado',
+            'content_html' => '<p>Conteúdo válido.</p>',
+            'status' => 'draft',
+        ];
+
+        $escapedPayload = json_encode(json_encode($payload, JSON_UNESCAPED_UNICODE), JSON_UNESCAPED_UNICODE);
+
+        $response = $this->actingAs($user)
+            ->post(route('admin.posts.import-json'), ['payload_json' => $escapedPayload]);
+
+        $response->assertOk()
+            ->assertJsonPath('data.title', 'Payload stringificado')
+            ->assertJsonPath('data.slug', 'payload-stringificado');
+    }
+
     public function test_failed_publish_does_not_create_tags_before_validation(): void
     {
         $user = User::factory()->admin()->create();
