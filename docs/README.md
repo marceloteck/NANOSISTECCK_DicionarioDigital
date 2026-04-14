@@ -16,5 +16,6 @@ Esta central organiza o projeto por domínio técnico, para leitura rápida por 
 ## Documentação legada / específica
 
 - [Sistema de posts SEO-first](post-system.md)
+- [Guia de postagem via JSON](guia-postagem-json.md)
 - [Universal Site Engine](engine/universal-site-engine.md)
 
