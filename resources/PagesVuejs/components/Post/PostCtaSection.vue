@@ -4,6 +4,22 @@ defineProps({
     type: Array,
     required: true,
   },
+  title: {
+    type: String,
+    default: '',
+  },
+  text: {
+    type: String,
+    default: '',
+  },
+  buttonText: {
+    type: String,
+    default: '',
+  },
+  buttonUrl: {
+    type: String,
+    default: '',
+  },
 });
 </script>
 
@@ -13,14 +29,13 @@ defineProps({
       <div class="cta-panel">
         <div class="cta-content">
           <small>Continue explorando o dicionário</small>
-          <h2>Entender uma palavra leva a outras curiosidades.</h2>
+          <h2>{{ title || 'Entender uma palavra leva a outras curiosidades.' }}</h2>
           <p>
-            Esse é o tipo de página ideal para responder rápido, aprofundar com clareza e ainda conduzir o visitante para novos conteúdos,
-            fortalecendo SEO, retenção e monetização de forma natural.
+            {{ text || 'Esse é o tipo de página ideal para responder rápido, aprofundar com clareza e ainda conduzir o visitante para novos conteúdos, fortalecendo SEO, retenção e monetização de forma natural.' }}
           </p>
 
           <div class="cta-actions">
-            <a href="/#posts" class="btn btn-primary">Ver mais posts</a>
+            <a :href="buttonUrl || '/#posts'" class="btn btn-primary">{{ buttonText || 'Ver mais posts' }}</a>
             <a href="/#categorias" class="btn btn-outline">Explorar categorias</a>
           </div>
         </div>

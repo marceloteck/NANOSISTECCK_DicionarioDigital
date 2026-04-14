@@ -64,6 +64,33 @@ class PostSystemTest extends TestCase
         $response->assertSee($related->title);
     }
 
+
+    public function test_post_show_exposes_seo_and_premium_payload_for_pov_rendering(): void
+    {
+        $post = Post::factory()->create([
+            'title' => 'Post Premium SEO',
+            'seo_title' => 'SEO Premium Final',
+            'meta_description' => 'Descrição final para SEO.',
+            'canonical_url' => 'https://example.com/posts/post-premium-seo',
+            'hero_title' => 'Hero premium',
+            'hero_summary' => 'Resumo hero premium',
+            'quick_answer' => 'Resposta premium',
+            'cta_title' => 'CTA premium',
+        ]);
+
+        $this->get(route('posts.show', $post))
+            ->assertOk()
+            ->assertInertia(fn ($page) => $page
+                ->where('seo.title', 'SEO Premium Final')
+                ->where('seo.description', 'Descrição final para SEO.')
+                ->where('seo.canonical', 'https://example.com/posts/post-premium-seo')
+                ->where('post.hero_title', 'Hero premium')
+                ->where('post.hero_summary', 'Resumo hero premium')
+                ->where('post.quick_answer', 'Resposta premium')
+                ->where('cta.title', 'CTA premium')
+            );
+    }
+
     public function test_paginated_posts_list_uses_noindex(): void
     {
         Post::factory()->count(13)->create();

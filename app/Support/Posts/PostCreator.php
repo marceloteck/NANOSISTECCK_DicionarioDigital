@@ -3,7 +3,9 @@
 namespace App\Support\Posts;
 
 use App\Models\Post;
+use App\Models\PostTag;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class PostCreator
@@ -32,27 +34,62 @@ class PostCreator
         $baseTitle = (string) Arr::get($payload, 'title', $post->title ?? 'post');
         $requestedSlug = (string) Arr::get($payload, 'slug', $post->slug ?? '');
 
-        $post->fill([
-            ...$payload,
-            'slug' => $this->makeUniqueSlug($requestedSlug !== '' ? $requestedSlug : Str::slug($baseTitle), $post->id),
-            'content_html' => $formatted['content_html'],
-            'reading_time' => $formatted['reading_time'],
-            'faq_json' => $faq,
-            'status' => Arr::get($payload, 'status', Arr::get($payload, 'is_published', $post->is_published) ? 'published' : 'draft'),
-            'updated_by' => $userId,
-        ]);
+        $tagIds = $this->resolveTagIds(Arr::get($payload, 'tags', []));
 
-        if ($isCreating) {
-            $post->created_by = $userId;
+        return DB::transaction(function () use ($post, $payload, $userId, $isCreating, $formatted, $faq, $baseTitle, $requestedSlug, $tagIds): Post {
+            $post->fill([
+                ...$payload,
+                'slug' => $this->makeUniqueSlug($requestedSlug !== '' ? $requestedSlug : Str::slug($baseTitle), $post->id),
+                'content_html' => $formatted['content_html'],
+                'reading_time' => $formatted['reading_time'],
+                'faq_json' => $faq,
+                'status' => Arr::get($payload, 'status', Arr::get($payload, 'is_published', $post->is_published) ? 'published' : 'draft'),
+                'updated_by' => $userId,
+            ]);
+
+            if ($isCreating) {
+                $post->created_by = $userId;
+            }
+
+            $post->save();
+
+            if (isset($payload['tags']) && is_array($payload['tags'])) {
+                $post->tags()->sync($tagIds);
+            }
+
+            return $post->refresh()->load(['category', 'tags']);
+        });
+    }
+
+    protected function resolveTagIds(array $tags): array
+    {
+        $ids = [];
+
+        foreach ($tags as $tag) {
+            if (is_int($tag) || ctype_digit((string) $tag)) {
+                $ids[] = (int) $tag;
+                continue;
+            }
+
+            if (! is_string($tag)) {
+                continue;
+            }
+
+            $name = trim($tag);
+            if ($name === '') {
+                continue;
+            }
+
+            $model = PostTag::query()->firstOrCreate([
+                'slug' => Str::slug($name),
+            ], [
+                'name' => $name,
+            ]);
+
+            $ids[] = $model->id;
         }
 
-        $post->save();
-
-        if (isset($payload['tags']) && is_array($payload['tags'])) {
-            $post->tags()->sync($payload['tags']);
-        }
-
-        return $post->refresh()->load(['category', 'tags']);
+        return array_values(array_unique($ids));
     }
 
     protected function makeUniqueSlug(string $slug, ?int $ignoreId = null): string
