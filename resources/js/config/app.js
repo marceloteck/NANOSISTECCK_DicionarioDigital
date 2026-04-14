@@ -10,7 +10,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../../vendor/tightenco/ziggy/dist/vue.m';
 import ComponentsMap from '../componentsJs/components.js';
 
-const appName = (import.meta.env.VITE_APP_NAME.replaceAll(/[_-]/g, ' ')) || 'Laravel';
+const appName = (import.meta.env.VITE_APP_NAME || 'Laravel').replaceAll(/[_-]/g, ' ');
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
