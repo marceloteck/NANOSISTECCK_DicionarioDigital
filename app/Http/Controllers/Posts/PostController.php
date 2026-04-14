@@ -92,26 +92,89 @@ class PostController extends Controller
         $faq = $this->contentFormatter->normalizeFaq($post->faq_json);
 
         $relatedPosts = $this->relatedContentResolver->relatedForPost($post);
+        $topSearches = collect($post->related_keywords ?? [])
+            ->map(fn ($keyword) => trim((string) $keyword))
+            ->filter()
+            ->values()
+            ->take(6)
+            ->all();
 
         $post->reading_time = $post->reading_time ?: $formatted['reading_time'];
+        $postArray = $post->toArray();
+        $categoryName = (string) ($postArray['category']['name'] ?? 'Sem categoria');
+        $categorySlug = (string) ($postArray['category']['slug'] ?? '');
+        $postUrl = route('posts.show', $post);
+
+        $breadcrumbs = [
+            ['name' => 'Início', 'url' => route('index.home')],
+            ['name' => 'Posts', 'url' => route('posts.index')],
+        ];
+
+        if ($categorySlug !== '' && $categoryName !== '') {
+            $breadcrumbs[] = ['name' => $categoryName, 'url' => route('posts.category', $categorySlug)];
+        }
+
+        $breadcrumbs[] = ['name' => (string) $post->title, 'url' => $postUrl];
+
+        $sidebarCards = [
+            [
+                'label' => 'Resumo do termo',
+                'title' => (string) $post->title,
+                'description' => (string) ($post->excerpt ?: 'Conteúdo completo com contexto, exemplos práticos e respostas diretas.'),
+            ],
+            [
+                'label' => 'Leitura estimada',
+                'title' => "{$post->reading_time} min de leitura",
+                'description' => 'Tempo médio calculado automaticamente com base no conteúdo sanitizado do artigo.',
+            ],
+            [
+                'label' => 'Categoria',
+                'title' => $categoryName,
+                'description' => $categorySlug !== '' ? route('posts.category', $categorySlug) : route('posts.index'),
+            ],
+            [
+                'label' => 'Publicação',
+                'title' => optional($post->published_at)->format('d/m/Y') ?: 'Em atualização',
+                'description' => 'Estrutura otimizada para SEO técnico, escaneabilidade e navegação interna.',
+            ],
+        ];
+
+        $cta = [
+            'stats' => [
+                ['title' => 'Resposta imediata', 'description' => 'Significado, contexto e aplicação entregues de forma direta.'],
+                ['title' => 'Navegação interna', 'description' => 'Relacionados, categoria e tag para ampliar retenção.'],
+                ['title' => 'Escalável', 'description' => 'Contrato padronizado para publicar novos posts sem retrabalho.'],
+            ],
+        ];
 
         $seo = $seoBuilder->buildPost([
-            ...$post->toArray(),
+            ...$postArray,
             'content_html' => $formatted['content_html'],
             'faq_json' => $faq,
             'title_suggestions' => $this->titleTemplate->suggest($post->title, $post->search_intent),
         ]);
 
-        return Inertia::render('Pages/posts/show', [
+        return Inertia::render('Pages/posts/pov', [
             'seo' => $seo,
             'post' => [
-                ...$post->toArray(),
+                ...$postArray,
                 'content_html' => $formatted['content_html'],
                 'toc' => $formatted['toc'],
                 'faq' => $faq,
                 'title_suggestions' => $this->titleTemplate->suggest($post->title, $post->search_intent),
             ],
+            'breadcrumbs' => $breadcrumbs,
             'relatedPosts' => $relatedPosts,
+            'topSearches' => $topSearches,
+            'sidebar' => [
+                'cards' => $sidebarCards,
+                'categories' => PostCategory::query()->where('is_indexable', true)->orderBy('name')->limit(8)->get(['name', 'slug']),
+                'internalLinks' => collect($relatedPosts)->map(fn ($item) => [
+                    'label' => $item['title'] ?? '',
+                    'href' => isset($item['slug']) ? route('posts.show', $item['slug']) : ($item['url'] ?? '#'),
+                ])->values()->all(),
+            ],
+            'cta' => $cta,
             'pageType' => 'post',
             'adSlots' => $monetizationPolicy->slotsFor('post'),
             'showAdSlots' => $monetizationPolicy->shouldShowSlots('post', (bool) $post->is_indexable),

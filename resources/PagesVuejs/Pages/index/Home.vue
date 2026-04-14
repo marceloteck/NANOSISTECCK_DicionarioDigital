@@ -65,7 +65,7 @@ const featured = [
     title: 'O que significa POV? Entenda por que esse termo ficou tão popular',
     description: 'Veja o significado, onde é usado e por que ele aparece tanto em vídeos, memes e conteúdos do TikTok.',
     action: 'Ler artigo completo',
-    href: '/post/o-que-significa-pov',
+    href: '/posts/o-que-significa-pov',
   },
   {
     category: 'Emojis',
@@ -87,7 +87,7 @@ const posts = [
     badge: 'Leitura rápida',
     title: 'O que significa low profile?',
     description: 'Entenda quando essa expressão é usada e por que ela ficou tão comum nas redes sociais.',
-    href: '/post/o-que-significa-pov',
+    href: '/posts/o-que-significa-pov',
   },
   {
     category: 'Emojis',
