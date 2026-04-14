@@ -1,1 +1,0 @@
-import{r as o,o as p,c as n,w as l,p as r}from"./app-8e944d67.js";const u={__name:"ContentSiteLayout",props:{title:{type:String,default:""},pageType:{type:String,default:""}},setup(t){return(e,s)=>{const a=o("SiteLayout");return p(),n(a,{title:t.title,"page-type":t.pageType},{default:l(()=>[r(e.$slots,"default")]),_:3},8,["title","page-type"])}}};export{u as default};
