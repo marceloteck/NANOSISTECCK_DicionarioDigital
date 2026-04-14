@@ -15,7 +15,7 @@ class AdminPostEditorTest extends TestCase
 
     public function test_admin_can_open_editor_pages(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->admin()->create();
         $post = Post::factory()->create();
 
         $this->actingAs($user)->get(route('admin.posts.index'))->assertOk();
@@ -25,7 +25,7 @@ class AdminPostEditorTest extends TestCase
 
     public function test_admin_can_import_valid_json_payload_with_tags_and_keep_contract(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->admin()->create();
         $category = PostCategory::factory()->create();
         $existingTag = PostTag::factory()->create();
 
@@ -52,7 +52,7 @@ class AdminPostEditorTest extends TestCase
 
     public function test_failed_publish_does_not_create_tags_before_validation(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->admin()->create();
 
         $this->actingAs($user)
             ->post(route('posts.store'), [
@@ -69,7 +69,7 @@ class AdminPostEditorTest extends TestCase
 
     public function test_manual_create_persists_premium_fields_and_tags_and_preview_works_for_draft(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->admin()->create();
         $category = PostCategory::factory()->create();
 
         $this->actingAs($user)
@@ -112,7 +112,7 @@ class AdminPostEditorTest extends TestCase
 
     public function test_ui_auxiliary_tags_input_is_not_persisted_when_tags_array_is_missing(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->admin()->create();
         $category = PostCategory::factory()->create();
 
         $this->actingAs($user)
@@ -138,7 +138,7 @@ class AdminPostEditorTest extends TestCase
 
     public function test_publish_requires_critical_fields(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->admin()->create();
 
         $this->actingAs($user)
             ->post(route('posts.store'), [
