@@ -21,20 +21,20 @@ Se faltar dado no briefing, complete com coerência editorial e SEO.
 
 Texto natural, claro, útil e humano (evitar linguagem robotizada).
 
-O conteúdo deve ser orientado a intenção de busca e boa escaneabilidade.
+O conteúdo deve ser orientado à intenção de busca e boa escaneabilidade.
 
 ERROS PROIBIDOS (IMPORTANTÍSSIMO)
-Não retornar JSON escapado como string (\n, \" etc).
+Não retornar JSON escapado como string (\n, " etc).
 
 Não retornar dois objetos colados (}{).
 
-Não usar URLs em formato Markdown: proibido "[https://...](https://...)".
+Não usar URLs em formato Markdown: proibido "https://...".
 
 URLs devem ser string simples: "https://...".
 
 Não inventar campo fora do contrato.
 
-Não usar "category"; usar category_id.
+Não usar "category" nem "category_id"; usar somente "category_name".
 
 meta_keywords deve ser string separada por vírgulas.
 
@@ -58,7 +58,7 @@ MODELO OFICIAL (CONTRATO DO PAYLOAD)
 "schema_type": "Article",
 "search_intent": "informational",
 "content_type": "guide",
-"category_id": 1,
+"category_name": "SEO",
 "author_name": "Equipe NANOSISTECCK",
 "is_published": false,
 "is_indexable": true,
@@ -72,6 +72,14 @@ MODELO OFICIAL (CONTRATO DO PAYLOAD)
 {
 "question": "Como usar X?",
 "answer": "Você pode usar X para ..."
+},
+{
+"question": "Quais erros evitar ao aplicar X?",
+"answer": "Evite práticas genéricas e falta de contexto."
+},
+{
+"question": "X funciona para iniciantes?",
+"answer": "Sim, com uma implementação simples e progressiva."
 }
 ],
 "related_keywords": ["x significado", "como usar x", "x exemplos"],
@@ -110,24 +118,17 @@ canonical_url: URL absoluta válida no domínio do projeto.
 schema_type: usar "Article" por padrão.
 
 search_intent: usar um entre:
-
 informational
-
 transactional
-
 navigational
-
 commercial
-
 tool-support
-
 tutorial
-
 glossary
 
 content_type: exemplo: guide, definition, tutorial, comparison, list, faq.
 
-category_id: número inteiro válido.
+category_name: string com nome humano da categoria (ex.: "SEO", "Marketing Digital", "Laravel"); nunca enviar ID numérico.
 
 author_name: padrão "Equipe NANOSISTECCK" (salvo instrução contrária).
 
@@ -149,30 +150,20 @@ cta_title, cta_text, cta_button_text, cta_button_url: CTA final coerente com o t
 
 REGRAS DE CONTEÚDO (SEO + UX)
 O content_html deve conter, nesta ordem recomendada:
-
 Introdução
-
 Explicação principal
-
 Exemplos práticos
-
 Erros comuns / diferenças / observações
-
 Conclusão curta
 
 Evitar:
-
 parágrafos gigantes,
-
 repetição excessiva de palavra-chave,
-
 conteúdo genérico sem utilidade prática.
 
 FAQ
 Mínimo: 4 perguntas.
-
 Ideal: 4 a 8 perguntas.
-
 Perguntas reais, com respostas claras e diretas.
 
 FORMATO DE SAÍDA
@@ -187,8 +178,8 @@ TEMA / BRIEFING:
 QUANTIDADE DE POSTS:
 [ex: 1, 5, 10]
 
-CATEGORIA PRINCIPAL (ID):
-[ex: 1]
+CATEGORIA PRINCIPAL (NOME):
+[ex: SEO]
 
 PALAVRAS-CHAVE PRINCIPAIS:
 [lista]
