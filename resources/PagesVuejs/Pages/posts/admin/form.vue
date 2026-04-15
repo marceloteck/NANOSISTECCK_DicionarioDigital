@@ -9,6 +9,44 @@ const categories = computed(() => page.props.categories || []);
 const searchIntents = computed(() => page.props.searchIntents || []);
 const post = computed(() => page.props.post || {});
 const importedTagsPreview = ref([]);
+const importDiagnostics = ref([]);
+const importMessage = ref('');
+const samplePayload = `{
+  "title": "O que é SEO semântico e como aplicar no conteúdo",
+  "slug": "o-que-e-seo-semantico-e-como-aplicar-no-conteudo",
+  "excerpt": "Entenda SEO semântico na prática para criar conteúdo útil, escaneável e alinhado à intenção de busca.",
+  "hero_title": "SEO semântico na prática para conteúdo que rankeia",
+  "hero_summary": "Aprenda como organizar contexto, entidades e intenção de busca para melhorar relevância e experiência do usuário.",
+  "quick_answer": "SEO semântico é a otimização de conteúdo com foco em contexto e intenção, não apenas repetição de palavra-chave. Na prática, você estrutura o texto por tópicos, perguntas e relações entre termos.",
+  "content_html": "<h2>Introdução</h2><p>SEO semântico é a evolução do SEO tradicional. Em vez de repetir termos, você cobre o assunto com profundidade, clareza e contexto.</p><h2>Explicação principal</h2><p>Ao aplicar SEO semântico, você organiza o conteúdo por intenção de busca, utiliza linguagem natural e conecta tópicos relacionados. Isso ajuda o usuário e facilita a compreensão pelos mecanismos de busca.</p><h3>Pilares da aplicação</h3><ul><li><strong>Contexto:</strong> explique o tema central e seus desdobramentos.</li><li><strong>Entidades:</strong> cite pessoas, ferramentas, conceitos e processos ligados ao assunto.</li><li><strong>Estrutura:</strong> use títulos claros, listas e FAQs para escaneabilidade.</li></ul><h2>Exemplos práticos</h2><ul><li>Responder perguntas reais do público em blocos curtos.</li><li>Criar seção de diferenças entre conceitos parecidos.</li><li>Adicionar FAQ com dúvidas recorrentes sobre implementação.</li></ul><h2>Erros comuns e observações</h2><ul><li>Focar só em densidade de palavra-chave.</li><li>Ignorar intenção de busca da página.</li><li>Publicar conteúdo sem exemplos práticos.</li></ul><h2>Conclusão</h2><p>Quando o conteúdo é útil, bem estruturado e orientado à intenção, ele tende a performar melhor em tráfego orgânico e retenção.</p>",
+  "featured_image": "",
+  "featured_image_alt": "Ilustração sobre SEO semântico e estrutura de conteúdo",
+  "seo_title": "SEO semântico: o que é e como aplicar no conteúdo",
+  "meta_description": "Guia objetivo para entender SEO semântico e aplicar em conteúdos mais relevantes, escaneáveis e orientados à intenção de busca.",
+  "meta_keywords": "seo semantico, intencao de busca, conteudo otimizado, estrutura de artigo",
+  "canonical_url": "https://dicionario.nanosistecck.com/posts/o-que-e-seo-semantico-e-como-aplicar-no-conteudo",
+  "schema_type": "Article",
+  "search_intent": "informational",
+  "content_type": "guide",
+  "category_id": null,
+  "author_name": "Equipe NANOSISTECCK",
+  "is_published": false,
+  "is_indexable": true,
+  "published_at": null,
+  "status": "draft",
+  "faq_json": [
+    { "question": "SEO semântico substitui SEO tradicional?", "answer": "Não substitui. Ele amplia a abordagem tradicional ao considerar contexto e intenção de busca." },
+    { "question": "Preciso repetir palavra-chave muitas vezes?", "answer": "Não. O ideal é cobrir o tema com naturalidade e termos relacionados, sem exagero." },
+    { "question": "Qual a diferença entre palavra-chave e intenção?", "answer": "Palavra-chave é o termo usado na busca; intenção é o objetivo real por trás dessa busca." },
+    { "question": "FAQ ajuda no SEO?", "answer": "Sim. FAQ melhora escaneabilidade, responde dúvidas diretas e pode enriquecer sinais de relevância da página." }
+  ],
+  "related_keywords": ["seo semantico", "intencao de busca", "como otimizar conteudo", "faq para seo"],
+  "tags": ["seo", "conteudo"],
+  "cta_title": "Quer acelerar resultados com SEO?",
+  "cta_text": "Veja como estruturar conteúdo com padrão editorial pronto para produção no Dicionário Digital.",
+  "cta_button_text": "Saiba mais",
+  "cta_button_url": "https://dicionario.nanosistecck.com/posts"
+}`;
 
 const form = useForm({
   title: post.value.title || '',
@@ -116,10 +154,13 @@ const submit = () => {
 
 const importJson = async () => {
   jsonForm.clearErrors();
+  importDiagnostics.value = [];
+  importMessage.value = '';
 
   try {
     const response = await axios.post(route('admin.posts.import-json'), jsonForm.data());
     const payload = response.data.data || {};
+    importMessage.value = response.data.message || 'JSON importado com sucesso.';
 
     Object.entries(payload).forEach(([key, value]) => {
       if (Object.prototype.hasOwnProperty.call(form.data(), key)) {
@@ -140,12 +181,34 @@ const importJson = async () => {
     importedTagsPreview.value = mappedTags;
     form.tags_input = mappedTags.join(', ');
   } catch (error) {
-    jsonForm.setError('payload_json', error.response?.data?.message || 'Falha ao importar JSON');
+    const apiMessage = error.response?.data?.message || 'Falha ao importar JSON';
+    const diagnostics = Array.isArray(error.response?.data?.diagnostics) ? error.response.data.diagnostics : [];
+    const fieldErrors = error.response?.data?.errors || {};
+    const flattenedFieldErrors = Object.entries(fieldErrors).flatMap(([field, messages]) => {
+      return (Array.isArray(messages) ? messages : [messages]).map((message) => ({
+        field,
+        message: String(message),
+      }));
+    });
+    const mergedDiagnostics = diagnostics.length ? diagnostics : flattenedFieldErrors;
+    const uniqueDiagnostics = mergedDiagnostics.filter((item, index, list) => {
+      const field = item.field || '';
+      const message = item.message || item.suggestion || item.code || '';
+      return list.findIndex((entry) => ((entry.field || '') === field) && ((entry.message || entry.suggestion || entry.code || '') === message)) === index;
+    });
+
+    importDiagnostics.value = uniqueDiagnostics;
+    jsonForm.setError('payload_json', apiMessage);
   }
 };
 
 const addFaq = () => form.faq_json.push({ question: '', answer: '' });
 const removeFaq = (index) => form.faq_json.splice(index, 1);
+const loadSamplePayload = () => {
+  jsonForm.payload_json = samplePayload;
+  importDiagnostics.value = [];
+  importMessage.value = 'Modelo carregado. Clique em Importar para validar e preencher o formulário.';
+};
 </script>
 
 <template>
@@ -159,7 +222,20 @@ const removeFaq = (index) => form.faq_json.splice(index, 1);
       <h2 class="h5">Importar JSON</h2>
       <textarea v-model="jsonForm.payload_json" rows="6" class="form-control" placeholder="Cole aqui o JSON do post"></textarea>
       <div v-if="jsonForm.errors.payload_json" class="text-danger small mt-2">{{ jsonForm.errors.payload_json }}</div>
-      <button type="button" class="btn btn-outline-primary mt-3" @click="importJson">Importar</button>
+      <div v-if="importMessage" class="text-success small mt-2">{{ importMessage }}</div>
+      <div v-if="importDiagnostics.length" class="alert alert-warning mt-3 mb-0">
+        <strong>Diagnóstico da importação</strong>
+        <ul class="mb-0 mt-2 ps-3">
+          <li v-for="(item, index) in importDiagnostics" :key="index">
+            <template v-if="item.field"><strong>{{ item.field }}:</strong> </template>{{ item.message || item.suggestion || item.code }}
+            <template v-if="item.suggestion"> — {{ item.suggestion }}</template>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex gap-2 mt-3">
+        <button type="button" class="btn btn-outline-primary" @click="importJson">Importar</button>
+        <button type="button" class="btn btn-outline-secondary" @click="loadSamplePayload">Carregar JSON modelo válido</button>
+      </div>
     </div>
 
     <form @submit.prevent="submit" class="d-grid gap-4">

@@ -46,7 +46,16 @@ class PostPayloadValidator
             'cta_button_url' => ['nullable', 'url', 'max:2048'],
         ];
 
-        $validator = Validator::make($payload, $rules);
+        $messages = [
+            'category_id.exists' => 'A categoria informada não existe.',
+            'featured_image.url' => 'featured_image deve ser uma URL válida.',
+            'canonical_url.url' => 'canonical_url deve ser uma URL válida.',
+            'cta_button_url.url' => 'cta_button_url deve ser uma URL válida.',
+            'faq_json.*.question.required_with' => 'Cada item de FAQ precisa de pergunta.',
+            'faq_json.*.answer.required_with' => 'Cada item de FAQ precisa de resposta.',
+        ];
+
+        $validator = Validator::make($payload, $rules, $messages);
 
         $validator->after(function ($validator) use ($payload): void {
             $isPublishing = (($payload['status'] ?? null) === 'published') || (($payload['is_published'] ?? false) === true || (int) ($payload['is_published'] ?? 0) === 1);

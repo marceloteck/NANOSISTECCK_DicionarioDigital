@@ -18,6 +18,7 @@ use App\Support\Seo\SeoBuilder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -116,16 +117,27 @@ class PostController extends Controller
     {
         $request->validate(['payload_json' => ['required', 'string']]);
 
-        $parsed = $this->decodePostPayload((string) $request->input('payload_json'));
+        $rawPayload = (string) $request->input('payload_json');
+        $parsed = $this->decodePostPayload($rawPayload);
 
         if (! is_array($parsed)) {
             return response()->json([
                 'message' => 'JSON inválido. Verifique a estrutura enviada.',
+                'diagnostics' => $this->diagnoseJsonPayload($rawPayload),
             ], 422);
         }
 
         $normalized = $this->inputNormalizer->normalize($parsed);
-        $validated = $this->payloadValidator->validate($normalized, false);
+
+        try {
+            $validated = $this->payloadValidator->validate($normalized, false);
+        } catch (ValidationException $exception) {
+            return response()->json([
+                'message' => 'JSON válido, mas com erros de validação por campo.',
+                'diagnostics' => $this->formatValidationDiagnostics($exception),
+                'errors' => $exception->errors(),
+            ], 422);
+        }
 
         return response()->json([
             'message' => 'JSON importado com sucesso. Revise os dados antes de salvar.',
@@ -243,6 +255,86 @@ class PostController extends Controller
         }
 
         return '';
+    }
+
+    /**
+     * @return array<int, array{code:string, message:string, suggestion:string, context?:string}>
+     */
+    private function diagnoseJsonPayload(string $rawPayload): array
+    {
+        $trimmed = trim($rawPayload);
+        $diagnostics = [];
+
+        if ($trimmed === '') {
+            return [[
+                'code' => 'empty_payload',
+                'message' => 'O conteúdo enviado está vazio.',
+                'suggestion' => 'Cole um objeto JSON completo com chaves e valores.',
+            ]];
+        }
+
+        if (preg_match('/^\s*```/i', $trimmed) === 1) {
+            $diagnostics[] = [
+                'code' => 'code_fence_detected',
+                'message' => 'Foram encontrados delimitadores de bloco Markdown (```json).',
+                'suggestion' => 'Remova os delimitadores ``` e envie somente JSON puro.',
+            ];
+        }
+
+        if (preg_match('/]\\(https?:\\/\\/[^)]+\\)/i', $trimmed) === 1) {
+            $diagnostics[] = [
+                'code' => 'markdown_url_detected',
+                'message' => 'Foi detectada URL em formato Markdown.',
+                'suggestion' => 'Use URL como string simples, por exemplo: "https://...".',
+            ];
+        }
+
+        if (preg_match('/}\\s*{/', $trimmed) === 1) {
+            $diagnostics[] = [
+                'code' => 'concatenated_objects',
+                'message' => 'Foram detectados objetos JSON colados sem vírgula ou array.',
+                'suggestion' => 'Use apenas 1 objeto ou envolva múltiplos objetos em um array JSON.',
+                'context' => 'Padrão detectado: }{',
+            ];
+        }
+
+        json_decode($trimmed, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $diagnostics[] = [
+                'code' => 'json_parse_error',
+                'message' => json_last_error_msg(),
+                'suggestion' => 'Revise vírgulas, aspas duplas, colchetes/chaves e tipos de dados.',
+            ];
+        }
+
+        if ($diagnostics === []) {
+            $diagnostics[] = [
+                'code' => 'unknown_json_issue',
+                'message' => 'Não foi possível identificar a estrutura esperada para importação.',
+                'suggestion' => 'Envie um objeto JSON compatível com o contrato do post.',
+            ];
+        }
+
+        return $diagnostics;
+    }
+
+    /**
+     * @return array<int, array{field:string, message:string}>
+     */
+    private function formatValidationDiagnostics(ValidationException $exception): array
+    {
+        $diagnostics = [];
+
+        foreach ($exception->errors() as $field => $messages) {
+            foreach ($messages as $message) {
+                $diagnostics[] = [
+                    'field' => (string) $field,
+                    'message' => (string) $message,
+                ];
+            }
+        }
+
+        return $diagnostics;
     }
 
     public function povPreview(): Response
