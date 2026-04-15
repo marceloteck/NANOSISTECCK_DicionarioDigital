@@ -15,7 +15,7 @@
   "schema_type": "Article",
   "search_intent": "informational",
   "content_type": "guide",
-  "category_id": 1,
+  "category_id": null,
   "author_name": "Equipe NANOSISTECCK",
   "is_published": false,
   "is_indexable": true,
@@ -46,7 +46,6 @@
     "faq para seo"
   ],
   "tags": [
-    1,
     "seo",
     "conteudo"
   ],

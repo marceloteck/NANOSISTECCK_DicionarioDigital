@@ -28,7 +28,7 @@ const samplePayload = `{
   "schema_type": "Article",
   "search_intent": "informational",
   "content_type": "guide",
-  "category_id": 1,
+  "category_id": null,
   "author_name": "Equipe NANOSISTECCK",
   "is_published": false,
   "is_indexable": true,
@@ -41,7 +41,7 @@ const samplePayload = `{
     { "question": "FAQ ajuda no SEO?", "answer": "Sim. FAQ melhora escaneabilidade, responde dúvidas diretas e pode enriquecer sinais de relevância da página." }
   ],
   "related_keywords": ["seo semantico", "intencao de busca", "como otimizar conteudo", "faq para seo"],
-  "tags": [1, "seo", "conteudo"],
+  "tags": ["seo", "conteudo"],
   "cta_title": "Quer acelerar resultados com SEO?",
   "cta_text": "Veja como estruturar conteúdo com padrão editorial pronto para produção no Dicionário Digital.",
   "cta_button_text": "Saiba mais",
@@ -190,8 +190,14 @@ const importJson = async () => {
         message: String(message),
       }));
     });
+    const mergedDiagnostics = diagnostics.length ? diagnostics : flattenedFieldErrors;
+    const uniqueDiagnostics = mergedDiagnostics.filter((item, index, list) => {
+      const field = item.field || '';
+      const message = item.message || item.suggestion || item.code || '';
+      return list.findIndex((entry) => ((entry.field || '') === field) && ((entry.message || entry.suggestion || entry.code || '') === message)) === index;
+    });
 
-    importDiagnostics.value = [...diagnostics, ...flattenedFieldErrors];
+    importDiagnostics.value = uniqueDiagnostics;
     jsonForm.setError('payload_json', apiMessage);
   }
 };
