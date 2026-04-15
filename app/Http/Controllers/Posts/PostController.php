@@ -67,10 +67,23 @@ class PostController extends Controller
 
     public function adminIndex(Request $request): Response
     {
+        $perPage = max(10, min(100, (int) $request->integer('per_page', 20)));
+
         $posts = Post::query()
+            ->select([
+                'id',
+                'title',
+                'slug',
+                'status',
+                'is_published',
+                'published_at',
+                'updated_at',
+                'category_id',
+            ])
             ->with('category:id,name')
-            ->latest('updated_at')
-            ->paginate(20)
+            ->orderByDesc('updated_at')
+            ->orderByDesc('id')
+            ->paginate($perPage)
             ->through(fn (Post $post) => [
                 'id' => $post->id,
                 'title' => $post->title,
@@ -87,6 +100,23 @@ class PostController extends Controller
         return Inertia::render('Pages/posts/admin/index', [
             'posts' => $posts,
         ]);
+    }
+
+    public function destroy(Request $request, Post $post): RedirectResponse
+    {
+        try {
+            $post->delete();
+        } catch (\Throwable $exception) {
+            report($exception);
+
+            return redirect()
+                ->route('admin.posts.index', $request->query())
+                ->with('error', 'Não foi possível excluir o post. Tente novamente.');
+        }
+
+        return redirect()
+            ->route('admin.posts.index', $request->query())
+            ->with('success', 'Post excluído com sucesso.');
     }
 
     public function create(): Response
