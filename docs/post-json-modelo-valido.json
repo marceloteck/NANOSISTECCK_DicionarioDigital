@@ -1,0 +1,57 @@
+{
+  "title": "O que é SEO semântico e como aplicar no conteúdo",
+  "slug": "o-que-e-seo-semantico-e-como-aplicar-no-conteudo",
+  "excerpt": "Entenda SEO semântico na prática para criar conteúdo útil, escaneável e alinhado à intenção de busca.",
+  "hero_title": "SEO semântico na prática para conteúdo que rankeia",
+  "hero_summary": "Aprenda como organizar contexto, entidades e intenção de busca para melhorar relevância e experiência do usuário.",
+  "quick_answer": "SEO semântico é a otimização de conteúdo com foco em contexto e intenção, não apenas repetição de palavra-chave. Na prática, você estrutura o texto por tópicos, perguntas e relações entre termos.",
+  "content_html": "<h2>Introdução</h2><p>SEO semântico é a evolução do SEO tradicional. Em vez de repetir termos, você cobre o assunto com profundidade, clareza e contexto.</p><h2>Explicação principal</h2><p>Ao aplicar SEO semântico, você organiza o conteúdo por intenção de busca, utiliza linguagem natural e conecta tópicos relacionados. Isso ajuda o usuário e facilita a compreensão pelos mecanismos de busca.</p><h3>Pilares da aplicação</h3><ul><li><strong>Contexto:</strong> explique o tema central e seus desdobramentos.</li><li><strong>Entidades:</strong> cite pessoas, ferramentas, conceitos e processos ligados ao assunto.</li><li><strong>Estrutura:</strong> use títulos claros, listas e FAQs para escaneabilidade.</li></ul><h2>Exemplos práticos</h2><ul><li>Responder perguntas reais do público em blocos curtos.</li><li>Criar seção de diferenças entre conceitos parecidos.</li><li>Adicionar FAQ com dúvidas recorrentes sobre implementação.</li></ul><h2>Erros comuns e observações</h2><ul><li>Focar só em densidade de palavra-chave.</li><li>Ignorar intenção de busca da página.</li><li>Publicar conteúdo sem exemplos práticos.</li></ul><h2>Conclusão</h2><p>Quando o conteúdo é útil, bem estruturado e orientado à intenção, ele tende a performar melhor em tráfego orgânico e retenção.</p>",
+  "featured_image": "",
+  "featured_image_alt": "Ilustração sobre SEO semântico e estrutura de conteúdo",
+  "seo_title": "SEO semântico: o que é e como aplicar no conteúdo",
+  "meta_description": "Guia objetivo para entender SEO semântico e aplicar em conteúdos mais relevantes, escaneáveis e orientados à intenção de busca.",
+  "meta_keywords": "seo semantico, intencao de busca, conteudo otimizado, estrutura de artigo",
+  "canonical_url": "https://dicionario.nanosistecck.com/posts/o-que-e-seo-semantico-e-como-aplicar-no-conteudo",
+  "schema_type": "Article",
+  "search_intent": "informational",
+  "content_type": "guide",
+  "category_id": 1,
+  "author_name": "Equipe NANOSISTECCK",
+  "is_published": false,
+  "is_indexable": true,
+  "published_at": null,
+  "status": "draft",
+  "faq_json": [
+    {
+      "question": "SEO semântico substitui SEO tradicional?",
+      "answer": "Não substitui. Ele amplia a abordagem tradicional ao considerar contexto e intenção de busca."
+    },
+    {
+      "question": "Preciso repetir palavra-chave muitas vezes?",
+      "answer": "Não. O ideal é cobrir o tema com naturalidade e termos relacionados, sem exagero."
+    },
+    {
+      "question": "Qual a diferença entre palavra-chave e intenção?",
+      "answer": "Palavra-chave é o termo usado na busca; intenção é o objetivo real por trás dessa busca."
+    },
+    {
+      "question": "FAQ ajuda no SEO?",
+      "answer": "Sim. FAQ melhora escaneabilidade, responde dúvidas diretas e pode enriquecer sinais de relevância da página."
+    }
+  ],
+  "related_keywords": [
+    "seo semantico",
+    "intencao de busca",
+    "como otimizar conteudo",
+    "faq para seo"
+  ],
+  "tags": [
+    1,
+    "seo",
+    "conteudo"
+  ],
+  "cta_title": "Quer acelerar resultados com SEO?",
+  "cta_text": "Veja como estruturar conteúdo com padrão editorial pronto para produção no Dicionário Digital.",
+  "cta_button_text": "Saiba mais",
+  "cta_button_url": "https://dicionario.nanosistecck.com/posts"
+}
