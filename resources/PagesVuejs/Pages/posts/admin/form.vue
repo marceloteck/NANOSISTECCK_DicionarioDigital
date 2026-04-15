@@ -224,6 +224,9 @@ const loadSamplePayload = () => {
 </script>
 
 <template>
+    <AppHead
+    title="Criar e editar Postagens"
+  />
   <main class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h1 class="h3 m-0">{{ mode === 'create' ? 'Criar post' : 'Editar post' }}</h1>
@@ -372,11 +375,6 @@ const loadSamplePayload = () => {
 </template>
 
 <style scoped>
-/* =========================================
-   POST EDITOR PREMIUM
-   Para o componente atual sem alterar HTML
-========================================= */
-
 :root {
   --editor-bg: #0b1020;
   --editor-surface: rgba(255, 255, 255, 0.72);

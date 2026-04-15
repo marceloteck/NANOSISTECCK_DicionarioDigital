@@ -75,6 +75,9 @@ const confirmAndDelete = (post) => {
 </script>
 
 <template>
+      <AppHead
+    title="Postagens"
+  />
   <main class="post-admin py-4">
     <div class="container">
       <header class="post-admin__header">
