@@ -7,7 +7,7 @@
     "css": [
       "assets/Login-7a7048b6.css"
     ],
-    "file": "assets/Login-c7ad14d8.js",
+    "file": "assets/Login-82912337.js",
     "imports": [
       "resources/js/config/app.js",
       "resources/PagesVuejs/components/Layouts/AuthLayout.vue"
@@ -23,7 +23,7 @@
     "css": [
       "assets/Register-1e24e998.css"
     ],
-    "file": "assets/Register-c46e605a.js",
+    "file": "assets/Register-513d06d6.js",
     "imports": [
       "resources/js/config/app.js",
       "resources/PagesVuejs/components/Layouts/AuthLayout.vue"
@@ -32,7 +32,7 @@
     "src": "resources/PagesVuejs/Auth/Register.vue"
   },
   "resources/PagesVuejs/Pages/index/Home.vue": {
-    "file": "assets/Home-7102bd62.js",
+    "file": "assets/Home-4ab3eb91.js",
     "imports": [
       "resources/js/config/app.js",
       "resources/PagesVuejs/components/Home/Header.vue",
@@ -59,7 +59,7 @@
     "src": "resources/PagesVuejs/Pages/index/Home.vue"
   },
   "resources/PagesVuejs/Pages/index/index.vue": {
-    "file": "assets/index-5ab5a2ec.js",
+    "file": "assets/index-b40f44f9.js",
     "imports": [
       "resources/PagesVuejs/Pages/index/Home.vue",
       "resources/js/config/app.js",
@@ -87,7 +87,7 @@
     "src": "resources/PagesVuejs/Pages/index/index.vue"
   },
   "resources/PagesVuejs/Pages/institutional/show.vue": {
-    "file": "assets/show-b7231fb7.js",
+    "file": "assets/show-9bf963ea.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -95,14 +95,14 @@
     "src": "resources/PagesVuejs/Pages/institutional/show.vue"
   },
   "resources/PagesVuejs/Pages/posts/admin/form.css": {
-    "file": "assets/form-dee59124.css",
+    "file": "assets/form-45b54a5a.css",
     "src": "resources/PagesVuejs/Pages/posts/admin/form.css"
   },
   "resources/PagesVuejs/Pages/posts/admin/form.vue": {
     "css": [
-      "assets/form-dee59124.css"
+      "assets/form-45b54a5a.css"
     ],
-    "file": "assets/form-d4764853.js",
+    "file": "assets/form-d8259a3e.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -110,7 +110,7 @@
     "src": "resources/PagesVuejs/Pages/posts/admin/form.vue"
   },
   "resources/PagesVuejs/Pages/posts/admin/index.vue": {
-    "file": "assets/index-5f613bb0.js",
+    "file": "assets/index-69d4109f.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -118,7 +118,7 @@
     "src": "resources/PagesVuejs/Pages/posts/admin/index.vue"
   },
   "resources/PagesVuejs/Pages/posts/index.vue": {
-    "file": "assets/index-220f105c.js",
+    "file": "assets/index-3a6b5c06.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -126,7 +126,7 @@
     "src": "resources/PagesVuejs/Pages/posts/index.vue"
   },
   "resources/PagesVuejs/Pages/posts/pov.vue": {
-    "file": "assets/pov-3725168a.js",
+    "file": "assets/pov-207c70ef.js",
     "imports": [
       "resources/js/config/app.js",
       "resources/PagesVuejs/components/Home/Footer.vue",
@@ -147,7 +147,7 @@
     "src": "resources/PagesVuejs/Pages/posts/pov.vue"
   },
   "resources/PagesVuejs/Pages/posts/show.vue": {
-    "file": "assets/show-74c93087.js",
+    "file": "assets/show-d82d2a37.js",
     "imports": [
       "resources/PagesVuejs/Pages/posts/pov.vue",
       "resources/js/config/app.js",
@@ -169,7 +169,7 @@
     "src": "resources/PagesVuejs/Pages/posts/show.vue"
   },
   "resources/PagesVuejs/Pages/posts/taxonomy.vue": {
-    "file": "assets/taxonomy-d3c8d855.js",
+    "file": "assets/taxonomy-ff4a88bb.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -177,7 +177,7 @@
     "src": "resources/PagesVuejs/Pages/posts/taxonomy.vue"
   },
   "resources/PagesVuejs/Pages/search/index.vue": {
-    "file": "assets/index-9d390761.js",
+    "file": "assets/index-3d941086.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -185,7 +185,7 @@
     "src": "resources/PagesVuejs/Pages/search/index.vue"
   },
   "resources/PagesVuejs/Pages/tools/index.vue": {
-    "file": "assets/index-6d3d1fdb.js",
+    "file": "assets/index-014d7342.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -193,7 +193,7 @@
     "src": "resources/PagesVuejs/Pages/tools/index.vue"
   },
   "resources/PagesVuejs/Pages/tools/show.vue": {
-    "file": "assets/show-4c9770c2.js",
+    "file": "assets/show-503fbffb.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -201,7 +201,7 @@
     "src": "resources/PagesVuejs/Pages/tools/show.vue"
   },
   "resources/PagesVuejs/components/Home/BrandLogo.vue": {
-    "file": "assets/BrandLogo-1275cf12.js",
+    "file": "assets/BrandLogo-adefe101.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -209,7 +209,7 @@
     "src": "resources/PagesVuejs/components/Home/BrandLogo.vue"
   },
   "resources/PagesVuejs/components/Home/CategoriesSection.vue": {
-    "file": "assets/CategoriesSection-e70a6b4f.js",
+    "file": "assets/CategoriesSection-8e943fb5.js",
     "imports": [
       "resources/PagesVuejs/components/Home/CategoryCard.vue",
       "resources/js/config/app.js"
@@ -218,7 +218,7 @@
     "src": "resources/PagesVuejs/components/Home/CategoriesSection.vue"
   },
   "resources/PagesVuejs/components/Home/CategoryCard.vue": {
-    "file": "assets/CategoryCard-4ca21f2f.js",
+    "file": "assets/CategoryCard-ed245870.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -226,7 +226,7 @@
     "src": "resources/PagesVuejs/components/Home/CategoryCard.vue"
   },
   "resources/PagesVuejs/components/Home/CtaSection.vue": {
-    "file": "assets/CtaSection-78f9ab36.js",
+    "file": "assets/CtaSection-0eff54f8.js",
     "imports": [
       "resources/PagesVuejs/components/Home/CtaStat.vue",
       "resources/js/config/app.js"
@@ -235,7 +235,7 @@
     "src": "resources/PagesVuejs/components/Home/CtaSection.vue"
   },
   "resources/PagesVuejs/components/Home/CtaStat.vue": {
-    "file": "assets/CtaStat-e0dd300d.js",
+    "file": "assets/CtaStat-95b2fbe8.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -243,7 +243,7 @@
     "src": "resources/PagesVuejs/components/Home/CtaStat.vue"
   },
   "resources/PagesVuejs/components/Home/FaqCard.vue": {
-    "file": "assets/FaqCard-2a383c77.js",
+    "file": "assets/FaqCard-b8aad129.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -251,7 +251,7 @@
     "src": "resources/PagesVuejs/components/Home/FaqCard.vue"
   },
   "resources/PagesVuejs/components/Home/FaqSection.vue": {
-    "file": "assets/FaqSection-1c7101c5.js",
+    "file": "assets/FaqSection-04692ce6.js",
     "imports": [
       "resources/PagesVuejs/components/Home/FaqCard.vue",
       "resources/js/config/app.js"
@@ -260,7 +260,7 @@
     "src": "resources/PagesVuejs/components/Home/FaqSection.vue"
   },
   "resources/PagesVuejs/components/Home/FeaturedCard.vue": {
-    "file": "assets/FeaturedCard-a54f0678.js",
+    "file": "assets/FeaturedCard-3d4dedfd.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -268,7 +268,7 @@
     "src": "resources/PagesVuejs/components/Home/FeaturedCard.vue"
   },
   "resources/PagesVuejs/components/Home/FeaturedSection.vue": {
-    "file": "assets/FeaturedSection-eefe8152.js",
+    "file": "assets/FeaturedSection-30227270.js",
     "imports": [
       "resources/PagesVuejs/components/Home/FeaturedCard.vue",
       "resources/js/config/app.js"
@@ -277,7 +277,7 @@
     "src": "resources/PagesVuejs/components/Home/FeaturedSection.vue"
   },
   "resources/PagesVuejs/components/Home/Footer.vue": {
-    "file": "assets/Footer-588811f4.js",
+    "file": "assets/Footer-ee771acc.js",
     "imports": [
       "resources/PagesVuejs/components/Home/BrandLogo.vue",
       "resources/PagesVuejs/components/Home/NavLinks.vue",
@@ -287,7 +287,7 @@
     "src": "resources/PagesVuejs/components/Home/Footer.vue"
   },
   "resources/PagesVuejs/components/Home/Header.vue": {
-    "file": "assets/Header-42b6723a.js",
+    "file": "assets/Header-ebd38d27.js",
     "imports": [
       "resources/PagesVuejs/components/Home/BrandLogo.vue",
       "resources/PagesVuejs/components/Home/NavLinks.vue",
@@ -297,7 +297,7 @@
     "src": "resources/PagesVuejs/components/Home/Header.vue"
   },
   "resources/PagesVuejs/components/Home/HeroSection.vue": {
-    "file": "assets/HeroSection-bd417a98.js",
+    "file": "assets/HeroSection-911f4c2e.js",
     "imports": [
       "resources/PagesVuejs/components/Home/SearchPanel.vue",
       "resources/js/config/app.js"
@@ -306,7 +306,7 @@
     "src": "resources/PagesVuejs/components/Home/HeroSection.vue"
   },
   "resources/PagesVuejs/components/Home/MiniInfoCard.vue": {
-    "file": "assets/MiniInfoCard-072717ab.js",
+    "file": "assets/MiniInfoCard-c51f3d41.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -314,7 +314,7 @@
     "src": "resources/PagesVuejs/components/Home/MiniInfoCard.vue"
   },
   "resources/PagesVuejs/components/Home/NavLinks.vue": {
-    "file": "assets/NavLinks-b66241cf.js",
+    "file": "assets/NavLinks-a4b99b47.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -322,7 +322,7 @@
     "src": "resources/PagesVuejs/components/Home/NavLinks.vue"
   },
   "resources/PagesVuejs/components/Home/PostCard.vue": {
-    "file": "assets/PostCard-b270b7cb.js",
+    "file": "assets/PostCard-44d07922.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -330,7 +330,7 @@
     "src": "resources/PagesVuejs/components/Home/PostCard.vue"
   },
   "resources/PagesVuejs/components/Home/PostPreviewSection.vue": {
-    "file": "assets/PostPreviewSection-ea23e843.js",
+    "file": "assets/PostPreviewSection-f4e33145.js",
     "imports": [
       "resources/PagesVuejs/components/Home/MiniInfoCard.vue",
       "resources/js/config/app.js"
@@ -339,7 +339,7 @@
     "src": "resources/PagesVuejs/components/Home/PostPreviewSection.vue"
   },
   "resources/PagesVuejs/components/Home/PostsSection.vue": {
-    "file": "assets/PostsSection-850d950a.js",
+    "file": "assets/PostsSection-c0126668.js",
     "imports": [
       "resources/PagesVuejs/components/Home/PostCard.vue",
       "resources/PagesVuejs/components/Home/SidebarCard.vue",
@@ -349,7 +349,7 @@
     "src": "resources/PagesVuejs/components/Home/PostsSection.vue"
   },
   "resources/PagesVuejs/components/Home/SearchPanel.vue": {
-    "file": "assets/SearchPanel-df319235.js",
+    "file": "assets/SearchPanel-fe886310.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -357,7 +357,7 @@
     "src": "resources/PagesVuejs/components/Home/SearchPanel.vue"
   },
   "resources/PagesVuejs/components/Home/SidebarCard.vue": {
-    "file": "assets/SidebarCard-e95992cd.js",
+    "file": "assets/SidebarCard-a598da44.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -372,7 +372,7 @@
     "css": [
       "assets/AuthLayout-17e46680.css"
     ],
-    "file": "assets/AuthLayout-afe724ce.js",
+    "file": "assets/AuthLayout-c2302280.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -380,7 +380,7 @@
     "src": "resources/PagesVuejs/components/Layouts/AuthLayout.vue"
   },
   "resources/PagesVuejs/components/Post/PostBreadcrumb.vue": {
-    "file": "assets/PostBreadcrumb-8a89842a.js",
+    "file": "assets/PostBreadcrumb-b73c4b3d.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -388,7 +388,7 @@
     "src": "resources/PagesVuejs/components/Post/PostBreadcrumb.vue"
   },
   "resources/PagesVuejs/components/Post/PostContent.vue": {
-    "file": "assets/PostContent-42618ebf.js",
+    "file": "assets/PostContent-e2ae5114.js",
     "imports": [
       "resources/PagesVuejs/components/Post/PostBreadcrumb.vue",
       "resources/PagesVuejs/components/Post/QuickAnswerBox.vue",
@@ -399,7 +399,7 @@
     "src": "resources/PagesVuejs/components/Post/PostContent.vue"
   },
   "resources/PagesVuejs/components/Post/PostCtaSection.vue": {
-    "file": "assets/PostCtaSection-597c3157.js",
+    "file": "assets/PostCtaSection-125a4aac.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -407,7 +407,7 @@
     "src": "resources/PagesVuejs/components/Post/PostCtaSection.vue"
   },
   "resources/PagesVuejs/components/Post/PostFaqCard.vue": {
-    "file": "assets/PostFaqCard-28ad7875.js",
+    "file": "assets/PostFaqCard-49e1c28a.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -415,7 +415,7 @@
     "src": "resources/PagesVuejs/components/Post/PostFaqCard.vue"
   },
   "resources/PagesVuejs/components/Post/PostFaqSection.vue": {
-    "file": "assets/PostFaqSection-6a1e3af8.js",
+    "file": "assets/PostFaqSection-b57c76a8.js",
     "imports": [
       "resources/PagesVuejs/components/Post/PostFaqCard.vue",
       "resources/js/config/app.js"
@@ -424,7 +424,7 @@
     "src": "resources/PagesVuejs/components/Post/PostFaqSection.vue"
   },
   "resources/PagesVuejs/components/Post/PostHeader.vue": {
-    "file": "assets/PostHeader-6f27da9b.js",
+    "file": "assets/PostHeader-78ae833d.js",
     "imports": [
       "resources/js/config/app.js",
       "resources/PagesVuejs/components/Home/BrandLogo.vue"
@@ -433,7 +433,7 @@
     "src": "resources/PagesVuejs/components/Post/PostHeader.vue"
   },
   "resources/PagesVuejs/components/Post/PostHero.vue": {
-    "file": "assets/PostHero-6a91d51a.js",
+    "file": "assets/PostHero-442045f2.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -441,7 +441,7 @@
     "src": "resources/PagesVuejs/components/Post/PostHero.vue"
   },
   "resources/PagesVuejs/components/Post/PostInfoCard.vue": {
-    "file": "assets/PostInfoCard-9d6abd77.js",
+    "file": "assets/PostInfoCard-f351d74a.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -449,7 +449,7 @@
     "src": "resources/PagesVuejs/components/Post/PostInfoCard.vue"
   },
   "resources/PagesVuejs/components/Post/PostSectionBlock.vue": {
-    "file": "assets/PostSectionBlock-e81dcaae.js",
+    "file": "assets/PostSectionBlock-2db553dc.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -457,7 +457,7 @@
     "src": "resources/PagesVuejs/components/Post/PostSectionBlock.vue"
   },
   "resources/PagesVuejs/components/Post/PostSidebar.vue": {
-    "file": "assets/PostSidebar-2270a1ba.js",
+    "file": "assets/PostSidebar-31fa7246.js",
     "imports": [
       "resources/PagesVuejs/components/Post/PostInfoCard.vue",
       "resources/js/config/app.js"
@@ -466,7 +466,7 @@
     "src": "resources/PagesVuejs/components/Post/PostSidebar.vue"
   },
   "resources/PagesVuejs/components/Post/QuickAnswerBox.vue": {
-    "file": "assets/QuickAnswerBox-86843ce4.js",
+    "file": "assets/QuickAnswerBox-7b047644.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -474,7 +474,7 @@
     "src": "resources/PagesVuejs/components/Post/QuickAnswerBox.vue"
   },
   "resources/PagesVuejs/components/Post/RelatedPostCard.vue": {
-    "file": "assets/RelatedPostCard-9cbd77cd.js",
+    "file": "assets/RelatedPostCard-f42a4cc7.js",
     "imports": [
       "resources/js/config/app.js"
     ],
@@ -482,7 +482,7 @@
     "src": "resources/PagesVuejs/components/Post/RelatedPostCard.vue"
   },
   "resources/PagesVuejs/components/Post/RelatedPostsSection.vue": {
-    "file": "assets/RelatedPostsSection-fb4bb754.js",
+    "file": "assets/RelatedPostsSection-9e53c246.js",
     "imports": [
       "resources/PagesVuejs/components/Post/RelatedPostCard.vue",
       "resources/js/config/app.js"
@@ -547,7 +547,7 @@
       "resources/PagesVuejs/components/Post/RelatedPostCard.vue",
       "resources/PagesVuejs/components/Post/RelatedPostsSection.vue"
     ],
-    "file": "assets/app-a02760f8.js",
+    "file": "assets/app-7f646e24.js",
     "isEntry": true,
     "src": "resources/js/config/app.js"
   }
