@@ -43,6 +43,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin/posts')->name('admin.posts.'
     Route::get('/create', [PostController::class, 'create'])->name('create');
     Route::get('/{post}/edit', [PostController::class, 'edit'])->name('edit');
     Route::get('/{post}/preview', [PostController::class, 'preview'])->name('preview');
+    Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
     Route::post('/import-json', [PostController::class, 'importJson'])->name('import-json');
 });
 
