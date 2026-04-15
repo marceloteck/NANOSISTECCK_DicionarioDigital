@@ -1,4 +1,5 @@
 <?php
+///file: web.php
 
 use App\Http\Controllers\Institutional\InstitutionalPageController;
 use App\Http\Controllers\Pages\index\HomeContollerRoutes;
@@ -22,6 +23,20 @@ if ((bool) config('project.modules.posts', true)) {
     Route::post('/posts', [PostController::class, 'store'])->middleware(['auth', 'admin'])->name('posts.store');
     Route::patch('/posts/{post}', [PostController::class, 'update'])->middleware(['auth', 'admin'])->name('posts.update');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::middleware(['auth', 'admin'])->prefix('admin/posts')->name('admin.posts.')->group(function () {
     Route::get('/', [PostController::class, 'adminIndex'])->name('index');

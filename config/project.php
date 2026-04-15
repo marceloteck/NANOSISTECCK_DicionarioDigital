@@ -1,9 +1,10 @@
 <?php
+// file project.php
 
 return [
     'name' => env('PROJECT_NAME', env('APP_NAME', 'Universal Site Engine')),
     'organization' => env('PROJECT_ORGANIZATION', 'NANOSISTECCK'),
-    'project_type' => env('PROJECT_TYPE', 'content'), // content | tools | hybrid | custom
+    'project_type' => env('PROJECT_TYPE', 'hybrid'), // content | tools | hybrid | custom
 
     'modules' => [
         'posts' => filter_var(env('PROJECT_MODULE_POSTS', true), FILTER_VALIDATE_BOOLEAN),
