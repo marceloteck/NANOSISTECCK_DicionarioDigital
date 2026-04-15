@@ -28,7 +28,7 @@ const samplePayload = `{
   "schema_type": "Article",
   "search_intent": "informational",
   "content_type": "guide",
-  "category_id": null,
+  "category_name": "SEO",
   "author_name": "Equipe NANOSISTECCK",
   "is_published": false,
   "is_indexable": true,
@@ -55,7 +55,7 @@ const form = useForm({
   author_name: post.value.author_name || '',
   status: post.value.status || 'draft',
   published_at: post.value.published_at || '',
-  category_id: post.value.category_id || '',
+  category_name: post.value.category_name || post.value.category?.name || '',
   tags: (post.value.tags || []).map((tag) => tag.id),
   tags_input: (post.value.tags || []).map((tag) => tag.name).join(', '),
   related_keywords: (post.value.related_keywords || []).join(', '),
@@ -82,6 +82,9 @@ const form = useForm({
 });
 
 const jsonForm = useForm({ payload_json: '' });
+const categorySuggestions = computed(() => {
+  return [...new Set((categories.value || []).map((category) => String(category.name || '').trim()).filter(Boolean))];
+});
 const readingTime = computed(() => {
   const text = String(form.content_html || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
   const words = text ? text.split(' ').length : 0;
@@ -107,6 +110,10 @@ watch(() => form.tags_input, (value) => {
   importedTagsPreview.value = mapped;
 });
 
+watch(() => form.category_name, (value) => {
+  form.category_name = String(value || '').replace(/\s+/g, ' ').trimStart();
+});
+
 const buildPayload = () => ({
   title: form.title,
   slug: form.slug,
@@ -114,7 +121,7 @@ const buildPayload = () => ({
   author_name: form.author_name,
   status: form.status,
   published_at: form.published_at || null,
-  category_id: form.category_id || null,
+  category_name: String(form.category_name || '').replace(/\s+/g, ' ').trim() || null,
   tags: Array.isArray(form.tags) ? form.tags : [],
   related_keywords: String(form.related_keywords).split(',').map((item) => item.trim()).filter(Boolean),
   search_intent: form.search_intent,
@@ -167,6 +174,11 @@ const importJson = async () => {
         form[key] = value;
       }
     });
+
+    if (!payload.category_name && payload.category_id) {
+      const legacyCategory = categories.value.find((category) => Number(category.id) === Number(payload.category_id));
+      form.category_name = legacyCategory?.name || '';
+    }
 
     form.related_keywords = (payload.related_keywords || []).join(', ');
 
@@ -255,10 +267,31 @@ const loadSamplePayload = () => {
         <h2 class="h5">2. Taxonomia</h2>
         <div class="row g-3">
           <div class="col-md-6">
-            <select v-model="form.category_id" class="form-select">
-              <option value="">Sem categoria</option>
-              <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
-            </select>
+            <label class="form-label">Categoria</label>
+            <input
+              v-model="form.category_name"
+              class="form-control"
+              list="category-name-suggestions"
+              placeholder="Digite o nome da categoria (ex.: SEO)"
+            />
+            <datalist id="category-name-suggestions">
+              <option v-for="category in categorySuggestions" :key="category" :value="category">{{ category }}</option>
+            </datalist>
+            <small class="text-muted">Digite livremente. Se já existir, a categoria será reaproveitada automaticamente.</small>
+          </div>
+          <div class="col-md-6">
+            <small class="text-muted">Sugestões rápidas</small>
+            <div class="d-flex gap-2 flex-wrap mt-1">
+              <button
+                v-for="category in categorySuggestions.slice(0, 8)"
+                :key="category"
+                type="button"
+                class="btn btn-sm btn-outline-secondary"
+                @click="form.category_name = category"
+              >
+                {{ category }}
+              </button>
+            </div>
           </div>
           <div class="col-md-6"><input v-model="form.tags_input" class="form-control" placeholder="tags dinâmico: seo, laravel" /></div>
           <div class="col-md-6">

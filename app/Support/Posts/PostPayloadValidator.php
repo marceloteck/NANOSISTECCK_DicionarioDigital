@@ -28,6 +28,7 @@ class PostPayloadValidator
             'schema_type' => ['nullable', 'string', 'max:60'],
             'search_intent' => ['nullable', Rule::in(['informational', 'transactional', 'navigational', 'commercial', 'tool-support', 'tutorial', 'glossary'])],
             'content_type' => ['nullable', 'string', 'max:80'],
+            'category_name' => ['nullable', 'string', 'max:120'],
             'category_id' => ['nullable', 'exists:post_categories,id'],
             'author_name' => ['nullable', 'string', 'max:120'],
             'is_published' => ['nullable', 'boolean'],
@@ -48,6 +49,7 @@ class PostPayloadValidator
 
         $messages = [
             'category_id.exists' => 'A categoria informada não existe.',
+            'category_name.max' => 'category_name deve ter no máximo 120 caracteres.',
             'featured_image.url' => 'featured_image deve ser uma URL válida.',
             'canonical_url.url' => 'canonical_url deve ser uma URL válida.',
             'cta_button_url.url' => 'cta_button_url deve ser uma URL válida.',
@@ -61,10 +63,14 @@ class PostPayloadValidator
             $isPublishing = (($payload['status'] ?? null) === 'published') || (($payload['is_published'] ?? false) === true || (int) ($payload['is_published'] ?? 0) === 1);
 
             if ($isPublishing) {
-                foreach (['title', 'slug', 'excerpt', 'category_id', 'content_html', 'seo_title', 'meta_description'] as $requiredField) {
+                foreach (['title', 'slug', 'excerpt', 'content_html', 'seo_title', 'meta_description'] as $requiredField) {
                     if (blank($payload[$requiredField] ?? null)) {
                         $validator->errors()->add($requiredField, "O campo {$requiredField} é obrigatório para publicar.");
                     }
+                }
+
+                if (blank($payload['category_name'] ?? null) && blank($payload['category_id'] ?? null)) {
+                    $validator->errors()->add('category_name', 'O campo category_name é obrigatório para publicar.');
                 }
             }
 

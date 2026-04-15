@@ -3,6 +3,7 @@
 namespace App\Support\Posts;
 
 use App\Models\Post;
+use App\Models\PostCategory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -27,6 +28,10 @@ class PostInputNormalizer
             'author_name' => $this->cleanString(Arr::get($input, 'author_name', $post?->author_name)),
             'status' => $status,
             'published_at' => Arr::get($input, 'published_at', $post?->published_at),
+            'category_name' => $this->normalizeCategoryName(
+                Arr::get($input, 'category_name', $post?->category?->name),
+                $this->nullableInt(Arr::get($input, 'category_id'))
+            ),
             'category_id' => $this->nullableInt(Arr::get($input, 'category_id', $post?->category_id)),
             'related_keywords' => $this->normalizeStringList(Arr::get($input, 'related_keywords', $post?->related_keywords ?? [])),
             'search_intent' => $this->cleanString(Arr::get($input, 'search_intent', $post?->search_intent ?? 'informational')),
@@ -139,6 +144,23 @@ class PostInputNormalizer
         $cleaned = trim((string) $value);
 
         return $cleaned === '' ? null : $cleaned;
+    }
+
+    protected function normalizeCategoryName(mixed $value, ?int $legacyCategoryId = null): ?string
+    {
+        $cleaned = $this->cleanString($value);
+
+        if ($cleaned !== null) {
+            return (string) preg_replace('/\s+/u', ' ', $cleaned);
+        }
+
+        if ($legacyCategoryId === null) {
+            return null;
+        }
+
+        return PostCategory::query()
+            ->whereKey($legacyCategoryId)
+            ->value('name');
     }
 
     protected function nullableInt(mixed $value): ?int
