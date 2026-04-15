@@ -15,15 +15,16 @@ import Footer from '../../components/Home/Footer.vue';
 const page = usePage();
 
 const seo = computed(() => page.props.seo ?? {});
+const homeData = computed(() => page.props.homeData ?? {});
 
-const searchSuggestions = [
+const fallbackSearchSuggestions = [
   'cringe significado',
   'emoji 🤡 significado',
   'o que é ghosting',
   'fyp significado',
 ];
 
-const searchPreviews = [
+const fallbackSearchPreviews = [
   {
     label: 'Resultado sugerido',
     title: 'O que significa POV?',
@@ -36,7 +37,7 @@ const searchPreviews = [
   },
 ];
 
-const categories = [
+const fallbackCategories = [
   {
     icon: '#',
     title: 'Gírias da Internet',
@@ -59,7 +60,7 @@ const categories = [
   },
 ];
 
-const featured = [
+const fallbackFeatured = [
   {
     category: 'Gírias da Internet',
     title: 'O que significa POV? Entenda por que esse termo ficou tão popular',
@@ -81,7 +82,7 @@ const featured = [
   },
 ];
 
-const posts = [
+const fallbackPosts = [
   {
     category: 'Gírias da Internet',
     badge: 'Leitura rápida',
@@ -103,7 +104,7 @@ const posts = [
   },
 ];
 
-const topSearches = [
+const fallbackTopSearches = [
   'o que significa cringe',
   'o que é ghosting',
   'emoji 🙏 significado',
@@ -163,6 +164,13 @@ const ctaStats = [
     description: 'Busca central, navegação intuitiva e foco no usuário',
   },
 ];
+
+const searchSuggestions = computed(() => homeData.value.searchSuggestions?.length ? homeData.value.searchSuggestions : fallbackSearchSuggestions);
+const searchPreviews = computed(() => homeData.value.searchPreviews?.length ? homeData.value.searchPreviews : fallbackSearchPreviews);
+const categories = computed(() => homeData.value.categories?.length ? homeData.value.categories : fallbackCategories);
+const featured = computed(() => homeData.value.featured?.length ? homeData.value.featured : fallbackFeatured);
+const posts = computed(() => homeData.value.posts?.length ? homeData.value.posts : fallbackPosts);
+const topSearches = computed(() => homeData.value.topSearches?.length ? homeData.value.topSearches : fallbackTopSearches);
 </script>
 
 <template>

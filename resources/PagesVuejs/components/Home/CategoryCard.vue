@@ -12,6 +12,6 @@ defineProps({
     <div class="category-icon">{{ item.icon }}</div>
     <h3>{{ item.title }}</h3>
     <p>{{ item.description }}</p>
-    <a href="#">Explorar categoria</a>
+    <a :href="item.href || '#'">Explorar categoria</a>
   </article>
 </template>

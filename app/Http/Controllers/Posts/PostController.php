@@ -606,6 +606,48 @@ class PostController extends Controller
         ]);
     }
 
+    public function categoriesIndex(Request $request, SeoBuilder $seoBuilder): Response
+    {
+        $page = max(1, (int) $request->integer('page', 1));
+        $categories = PostCategory::query()
+            ->withCount([
+                'posts as posts_count' => fn ($query) => $query->published(),
+            ])
+            ->orderByDesc('posts_count')
+            ->orderBy('name')
+            ->paginate(20)
+            ->through(fn (PostCategory $category) => [
+                'id' => $category->id,
+                'name' => $category->name,
+                'slug' => $category->slug,
+                'posts_count' => (int) $category->posts_count,
+                'url' => route('posts.category', $category),
+            ])
+            ->withQueryString();
+
+        $seo = $seoBuilder->buildCategory([
+            'title' => 'Categorias',
+            'description' => 'Explore os conteúdos organizados por categoria.',
+            'canonical' => route('posts.categories.index'),
+            'noindex' => $page > 1,
+            'breadcrumb' => [
+                ['name' => 'Início', 'url' => route('index.home')],
+                ['name' => 'Categorias', 'url' => route('posts.categories.index')],
+            ],
+        ]);
+
+        return Inertia::render('Pages/posts/taxonomy-index', [
+            'seo' => $seo,
+            'taxonomyIndex' => [
+                'type' => 'category',
+                'title' => 'Categorias',
+                'description' => 'Navegue pelas categorias para encontrar conteúdos relacionados ao que você procura.',
+            ],
+            'items' => $categories,
+            'pageType' => 'listing',
+        ]);
+    }
+
     public function tag(Request $request, PostTag $tag, SeoBuilder $seoBuilder): Response
     {
         $page = max(1, (int) $request->integer('page', 1));
@@ -628,6 +670,48 @@ class PostController extends Controller
             'seo' => $seo,
             'taxonomy' => ['type' => 'tag', 'name' => $tag->name],
             'posts' => $posts,
+            'pageType' => 'listing',
+        ]);
+    }
+
+    public function tagsIndex(Request $request, SeoBuilder $seoBuilder): Response
+    {
+        $page = max(1, (int) $request->integer('page', 1));
+        $tags = PostTag::query()
+            ->withCount([
+                'posts as posts_count' => fn ($query) => $query->published(),
+            ])
+            ->orderByDesc('posts_count')
+            ->orderBy('name')
+            ->paginate(20)
+            ->through(fn (PostTag $tag) => [
+                'id' => $tag->id,
+                'name' => $tag->name,
+                'slug' => $tag->slug,
+                'posts_count' => (int) $tag->posts_count,
+                'url' => route('posts.tag', $tag),
+            ])
+            ->withQueryString();
+
+        $seo = $seoBuilder->buildCategory([
+            'title' => 'Tags',
+            'description' => 'Lista de tags para facilitar a descoberta de termos e assuntos relacionados.',
+            'canonical' => route('posts.tags.index'),
+            'noindex' => $page > 1,
+            'breadcrumb' => [
+                ['name' => 'Início', 'url' => route('index.home')],
+                ['name' => 'Tags', 'url' => route('posts.tags.index')],
+            ],
+        ]);
+
+        return Inertia::render('Pages/posts/taxonomy-index', [
+            'seo' => $seo,
+            'taxonomyIndex' => [
+                'type' => 'tag',
+                'title' => 'Tags',
+                'description' => 'Descubra conteúdos por temas e termos específicos usando as tags do site.',
+            ],
+            'items' => $tags,
             'pageType' => 'listing',
         ]);
     }

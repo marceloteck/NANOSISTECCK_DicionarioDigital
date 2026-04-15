@@ -48,7 +48,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin/posts')->name('admin.posts.'
 });
 
 if ((bool) config('project.modules.taxonomy', true)) {
+    Route::get('/categoria', [PostController::class, 'categoriesIndex'])->name('posts.categories.index');
     Route::get('/categoria/{category:slug}', [PostController::class, 'category'])->name('posts.category');
+    Route::get('/tag', [PostController::class, 'tagsIndex'])->name('posts.tags.index');
     Route::get('/tag/{tag:slug}', [PostController::class, 'tag'])->name('posts.tag');
 }
 

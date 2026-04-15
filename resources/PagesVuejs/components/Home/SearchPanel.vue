@@ -1,4 +1,8 @@
 <script setup>
+import { ref } from 'vue';
+
+const searchTerm = ref('');
+
 defineProps({
   suggestions: {
     type: Array,
@@ -9,6 +13,10 @@ defineProps({
     required: true,
   },
 });
+
+const applySuggestion = (value) => {
+  searchTerm.value = value;
+};
 </script>
 
 <template>
@@ -32,13 +40,19 @@ defineProps({
       <div class="search-box" id="busca">
         <small class="search-label">Pesquise como quiser</small>
 
-        <form class="smart-search-form" role="search">
-          <input type="search" placeholder="Ex.: o que significa POV no TikTok?" aria-label="Campo de busca" />
+        <form class="smart-search-form" role="search" :action="route('search.index')" method="get">
+          <input
+            v-model="searchTerm"
+            name="q"
+            type="search"
+            placeholder="Ex.: o que significa POV no TikTok?"
+            aria-label="Campo de busca"
+          />
           <button type="submit" class="btn btn-primary">Pesquisar</button>
         </form>
 
         <div class="search-suggestions">
-          <button v-for="item in suggestions" :key="item" type="button">{{ item }}</button>
+          <button v-for="item in suggestions" :key="item" type="button" @click="applySuggestion(item)">{{ item }}</button>
         </div>
       </div>
 
