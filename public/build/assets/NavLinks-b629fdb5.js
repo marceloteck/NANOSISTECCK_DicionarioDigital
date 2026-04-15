@@ -1,0 +1,1 @@
+import{o as s,a,F as t,m as l,n,d as i,t as o}from"./app-4acd1776.js";const c=["href"],d={__name:"NavLinks",props:{links:{type:Array,required:!0},listClass:{type:String,default:"nav-links"}},setup(r){return(u,f)=>(s(),a("ul",{class:n(r.listClass)},[(s(!0),a(t,null,l(r.links,e=>(s(),a("li",{key:e.href},[i("a",{href:e.href},o(e.label),9,c)]))),128))],2))}};export{d as default};
