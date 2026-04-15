@@ -100,12 +100,13 @@ class PostController extends Controller
 
     public function edit(Post $post): Response
     {
-        $post->load('tags:id,name');
+        $post->load(['tags:id,name', 'category:id,name']);
 
         return Inertia::render('Pages/posts/admin/form', [
             'mode' => 'edit',
             'post' => [
                 ...$post->toArray(),
+                'category_name' => $post->category?->name,
                 'published_at' => optional($post->published_at)->format('Y-m-d\TH:i'),
                 'tags' => $post->tags->map(fn ($tag) => ['id' => $tag->id, 'name' => $tag->name])->all(),
             ],

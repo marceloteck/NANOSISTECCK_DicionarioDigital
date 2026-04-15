@@ -10,8 +10,10 @@ use Illuminate\Support\Str;
 
 class PostCreator
 {
-    public function __construct(protected PostContentFormatter $formatter)
-    {
+    public function __construct(
+        protected PostContentFormatter $formatter,
+        protected PostCategoryResolver $categoryResolver,
+    ) {
     }
 
     public function create(array $payload, ?int $userId = null): Post
@@ -33,17 +35,23 @@ class PostCreator
         $faq = $this->formatter->normalizeFaq(Arr::get($payload, 'faq_json', $post->faq_json ?? []));
         $baseTitle = (string) Arr::get($payload, 'title', $post->title ?? 'post');
         $requestedSlug = (string) Arr::get($payload, 'slug', $post->slug ?? '');
+        $categoryId = $this->categoryResolver->resolveId(
+            Arr::get($payload, 'category_name'),
+            Arr::get($payload, 'category_id')
+        );
+        $payloadWithoutCategoryName = Arr::except($payload, ['category_name']);
 
         $tagIds = $this->resolveTagIds(Arr::get($payload, 'tags', []));
 
-        return DB::transaction(function () use ($post, $payload, $userId, $isCreating, $formatted, $faq, $baseTitle, $requestedSlug, $tagIds): Post {
+        return DB::transaction(function () use ($post, $payloadWithoutCategoryName, $categoryId, $userId, $isCreating, $formatted, $faq, $baseTitle, $requestedSlug, $tagIds): Post {
             $post->fill([
-                ...$payload,
+                ...$payloadWithoutCategoryName,
                 'slug' => $this->makeUniqueSlug($requestedSlug !== '' ? $requestedSlug : Str::slug($baseTitle), $post->id),
+                'category_id' => $categoryId,
                 'content_html' => $formatted['content_html'],
                 'reading_time' => $formatted['reading_time'],
                 'faq_json' => $faq,
-                'status' => Arr::get($payload, 'status', Arr::get($payload, 'is_published', $post->is_published) ? 'published' : 'draft'),
+                'status' => Arr::get($payloadWithoutCategoryName, 'status', Arr::get($payloadWithoutCategoryName, 'is_published', $post->is_published) ? 'published' : 'draft'),
                 'updated_by' => $userId,
             ]);
 
@@ -53,7 +61,7 @@ class PostCreator
 
             $post->save();
 
-            if (isset($payload['tags']) && is_array($payload['tags'])) {
+            if (isset($payloadWithoutCategoryName['tags']) && is_array($payloadWithoutCategoryName['tags'])) {
                 $post->tags()->sync($tagIds);
             }
 
