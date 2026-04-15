@@ -26,26 +26,24 @@ if ((bool) config('project.modules.posts', true)) {
 
 
 
+Route::middleware(['auth', 'admin'])
+    ->group(function () {
+        Route::get('/admin', [AdminController::class, 'adminpainel'])->name('index.admin');
+
+        Route::prefix('admin/posts')
+            ->name('admin.posts.')
+            ->group(function () {
+                Route::get('/', [PostController::class, 'adminIndex'])->name('index');
+                Route::get('/create', [PostController::class, 'create'])->name('create');
+                Route::get('/{post}/edit', [PostController::class, 'edit'])->name('edit');
+                Route::get('/{post}/preview', [PostController::class, 'preview'])->name('preview');
+                Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
+                Route::post('/import-json', [PostController::class, 'importJson'])->name('import-json');
+            });
+    });
 
 
 
-
-
-
-
-
-
-
-
-
-Route::middleware(['auth', 'admin'])->prefix('admin/posts')->name('admin.posts.')->group(function () {
-    Route::get('/', [PostController::class, 'adminIndex'])->name('index');
-    Route::get('/create', [PostController::class, 'create'])->name('create');
-    Route::get('/{post}/edit', [PostController::class, 'edit'])->name('edit');
-    Route::get('/{post}/preview', [PostController::class, 'preview'])->name('preview');
-    Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
-    Route::post('/import-json', [PostController::class, 'importJson'])->name('import-json');
-});
 
 if ((bool) config('project.modules.taxonomy', true)) {
     Route::get('/categoria', [PostController::class, 'categoriesIndex'])->name('posts.categories.index');
