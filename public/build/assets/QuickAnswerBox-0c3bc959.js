@@ -1,1 +1,0 @@
-import{o as s,a,d as t,t as o}from"./app-66edbcb8.js";const n={class:"quick-answer"},r=t("strong",null,"Resposta rápida",-1),p={__name:"QuickAnswerBox",props:{text:{type:String,default:""}},setup(e){return(c,i)=>(s(),a("div",n,[r,t("p",null,o(e.text),1)]))}};export{p as default};
