@@ -1,0 +1,1 @@
+import{o as i,a as l,d as t,t as a}from"./app-51c3bc82.js";const n={class:"mini-info-card"},c={__name:"PostInfoCard",props:{item:{type:Object,required:!0}},setup(e){return(s,o)=>(i(),l("div",n,[t("small",null,a(e.item.label),1),t("strong",null,a(e.item.title),1),t("p",null,a(e.item.description),1)]))}};export{c as default};
