@@ -1,0 +1,1 @@
+import{o as r,a as s,d as t,t as a}from"./app-b3426c23.js";const c={class:"faq-card"},l={__name:"PostFaqCard",props:{item:{type:Object,required:!0}},setup(e){return(o,n)=>(r(),s("article",c,[t("h3",null,a(e.item.question),1),t("p",null,a(e.item.answer),1)]))}};export{l as default};
