@@ -133,7 +133,7 @@ const headingTitle = computed(() => post.value.hero_title || post.value.title ||
               </ul>
             </div>
 
-            <div class="sidebar-card">
+            <div class="sidebar-card sidebar-card-sticky-ad">
               <small>Conteúdo patrocinado</small>
               <div class="ad-placeholder">
                 Neste espaço você pode encontrar recomendações, sugestões úteis e conteúdos patrocinados
@@ -158,6 +158,9 @@ const headingTitle = computed(() => post.value.hero_title || post.value.title ||
 </template>
 
 <style scoped>
+
+
+
 :root {
   --bg: #f6f4f8;
   --bg-soft: #ece8f0;
@@ -427,7 +430,7 @@ iframe {
 }
 
 .post-content h2 {
-  font-size: clamp(1.55rem, 3vw, 2rem);
+  /*font-size: clamp(1rem, 2.3vw, 1rem);*/
 }
 
 .post-content h3 {

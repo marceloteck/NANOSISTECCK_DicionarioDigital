@@ -40,54 +40,42 @@ meta_keywords deve ser string separada por vírgulas.
 
 tags deve ser array de IDs e/ou strings curtas.
 
-MODELO OFICIAL (CONTRATO DO PAYLOAD)
+MODELO OFICIAL (CONTRATO DO PAYLOAD) exemplo:
 {
-"title": "O que é X e como usar",
-"slug": "o-que-e-x-e-como-usar",
-"excerpt": "Resumo curto do conteúdo para listagens e SEO.",
-"hero_title": "Título de destaque no topo",
-"hero_summary": "Resumo em destaque no hero.",
-"quick_answer": "Resposta rápida para a intenção principal do usuário.",
-"content_html": "<h2>Introdução</h2><p>Conteúdo completo em HTML...</p>",
-"featured_image": "",
-"featured_image_alt": "Descrição da imagem de capa",
-"seo_title": "Título SEO (até 180 chars)",
-"meta_description": "Descrição SEO (até 170 chars)",
-"meta_keywords": "palavra1, palavra2, palavra3",
-"canonical_url": "https://dicionario.nanosistecck.com/posts/o-que-e-x-e-como-usar",
-"schema_type": "Article",
-"search_intent": "informational",
-"content_type": "guide",
-"category_name": "SEO",
-"author_name": "Equipe NANOSISTECCK",
-"is_published": false,
-"is_indexable": true,
-"published_at": null,
-"status": "draft",
-"faq_json": [
-{
-"question": "O que é X?",
-"answer": "X é ..."
-},
-{
-"question": "Como usar X?",
-"answer": "Você pode usar X para ..."
-},
-{
-"question": "Quais erros evitar ao aplicar X?",
-"answer": "Evite práticas genéricas e falta de contexto."
-},
-{
-"question": "X funciona para iniciantes?",
-"answer": "Sim, com uma implementação simples e progressiva."
-}
-],
-"related_keywords": ["x significado", "como usar x", "x exemplos"],
-"tags": [1, "seo", "conteudo"],
-"cta_title": "Quer acelerar resultados?",
-"cta_text": "Conheça nossa solução para aplicar isso em produção.",
-"cta_button_text": "Saiba mais",
-"cta_button_url": "https://dicionario.nanosistecck.com/posts"
+  "title": "O que é SEO semântico e como aplicar no conteúdo",
+  "slug": "o-que-e-seo-semantico-e-como-aplicar-no-conteudo",
+  "excerpt": "Entenda SEO semântico na prática para criar conteúdo útil, escaneável e alinhado à intenção de busca.",
+  "hero_title": "SEO semântico na prática para conteúdo que rankeia",
+  "hero_summary": "Aprenda como organizar contexto, entidades e intenção de busca para melhorar relevância e experiência do usuário.",
+  "quick_answer": "SEO semântico é a otimização de conteúdo com foco em contexto e intenção, não apenas repetição de palavra-chave. Na prática, você estrutura o texto por tópicos, perguntas e relações entre termos.",
+  "content_html": "<h3>Introdução</h3><p>SEO semântico é a evolução do SEO tradicional. Em vez de repetir termos, você cobre o assunto com profundidade, clareza e contexto.</p><h3>Explicação principal</h3><p>Ao aplicar SEO semântico, você organiza o conteúdo por intenção de busca, utiliza linguagem natural e conecta tópicos relacionados. Isso ajuda o usuário e facilita a compreensão pelos mecanismos de busca.</p><h3>Pilares da aplicação</h3><ul><li><strong>Contexto:</strong> explique o tema central e seus desdobramentos.</li><li><strong>Entidades:</strong> cite pessoas, ferramentas, conceitos e processos ligados ao assunto.</li><li><strong>Estrutura:</strong> use títulos claros, listas e FAQs para escaneabilidade.</li></ul><h3>Exemplos práticos</h3><ul><li>Responder perguntas reais do público em blocos curtos.</li><li>Criar seção de diferenças entre conceitos parecidos.</li><li>Adicionar FAQ com dúvidas recorrentes sobre implementação.</li></ul><h3>Erros comuns e observações</h3><ul><li>Focar só em densidade de palavra-chave.</li><li>Ignorar intenção de busca da página.</li><li>Publicar conteúdo sem exemplos práticos.</li></ul><h3>Conclusão</h3><p>Quando o conteúdo é útil, bem estruturado e orientado à intenção, ele tende a performar melhor em tráfego orgânico e retenção.</p>",
+  "featured_image": "",
+  "featured_image_alt": "Ilustração sobre SEO semântico e estrutura de conteúdo",
+  "seo_title": "SEO semântico: o que é e como aplicar no conteúdo",
+  "meta_description": "Guia objetivo para entender SEO semântico e aplicar em conteúdos mais relevantes, escaneáveis e orientados à intenção de busca.",
+  "meta_keywords": "seo semantico, intencao de busca, conteudo otimizado, estrutura de artigo",
+  "canonical_url": "https://dicionario.nanosistecck.com/posts/o-que-e-seo-semantico-e-como-aplicar-no-conteudo",
+  "schema_type": "Article",
+  "search_intent": "informational",
+  "content_type": "guide",
+  "category_name": "SEO",
+  "author_name": "Equipe NANOSISTECCK",
+  "is_published": false,
+  "is_indexable": true,
+  "published_at": null,
+  "status": "draft",
+  "faq_json": [
+    { "question": "SEO semântico substitui SEO tradicional?", "answer": "Não substitui. Ele amplia a abordagem tradicional ao considerar contexto e intenção de busca." },
+    { "question": "Preciso repetir palavra-chave muitas vezes?", "answer": "Não. O ideal é cobrir o tema com naturalidade e termos relacionados, sem exagero." },
+    { "question": "Qual a diferença entre palavra-chave e intenção?", "answer": "Palavra-chave é o termo usado na busca; intenção é o objetivo real por trás dessa busca." },
+    { "question": "FAQ ajuda no SEO?", "answer": "Sim. FAQ melhora escaneabilidade, responde dúvidas diretas e pode enriquecer sinais de relevância da página." }
+  ],
+  "related_keywords": ["seo semantico", "intencao de busca", "como otimizar conteudo", "faq para seo"],
+  "tags": ["seo", "conteudo"],
+  "cta_title": "Quer acelerar resultados com SEO?",
+  "cta_text": "Veja como estruturar conteúdo com padrão editorial pronto para produção no Dicionário Digital.",
+  "cta_button_text": "Saiba mais",
+  "cta_button_url": "https://dicionario.nanosistecck.com/posts"
 }
 
 REGRAS DE PREENCHIMENTO POR CAMPO
@@ -175,7 +163,7 @@ BRIEFING (PREENCHER ANTES DE GERAR)
 TEMA / BRIEFING:
 [descreva o tema]
 
-QUANTIDADE DE POSTS: 10
+QUANTIDADE DE POSTS: 1
 
 CATEGORIA PRINCIPAL (NOME):
 [ex: SEO]
@@ -184,6 +172,7 @@ PALAVRAS-CHAVE PRINCIPAIS:
 [lista]
 
 OBJETIVO DO CONTEÚDO: para testes
+[descreva]
 
 PÚBLICO-ALVO:
 [descreva]
