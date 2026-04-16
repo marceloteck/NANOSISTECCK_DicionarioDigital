@@ -175,8 +175,7 @@ BRIEFING (PREENCHER ANTES DE GERAR)
 TEMA / BRIEFING:
 [descreva o tema]
 
-QUANTIDADE DE POSTS:
-[ex: 1, 5, 10]
+QUANTIDADE DE POSTS: 10
 
 CATEGORIA PRINCIPAL (NOME):
 [ex: SEO]
@@ -184,14 +183,13 @@ CATEGORIA PRINCIPAL (NOME):
 PALAVRAS-CHAVE PRINCIPAIS:
 [lista]
 
-OBJETIVO DO CONTEÚDO:
-[descreva]
+OBJETIVO DO CONTEÚDO: para testes
 
 PÚBLICO-ALVO:
 [descreva]
 
 OBSERVAÇÕES IMPORTANTES:
-[restrições, tom, etc.]
+[importante]
 
 INSTRUÇÃO FINAL
 Agora gere o JSON completo, válido e pronto para importação, seguindo exatamente esse padrão e todas as regras acima.

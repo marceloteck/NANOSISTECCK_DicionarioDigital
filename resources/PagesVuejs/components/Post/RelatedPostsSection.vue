@@ -18,10 +18,11 @@ defineProps({
     <div class="container posts-layout">
       <div class="posts-main">
         <div class="section-head">
-          <span class="eyebrow">Continue navegando</span>
-          <h2>Quem pesquisou POV costuma querer entender estes termos também</h2>
+          <span class="eyebrow">Continue explorando</span>
+          <h2>Veja também outros conteúdos que podem interessar</h2>
           <p>
-            Esta área ajuda a aumentar retenção, profundidade de navegação e relevância temática da página.
+            Descubra mais explicações, significados, dúvidas frequentes e conteúdos relacionados
+            para ampliar seu entendimento sobre este assunto e encontrar novas respostas.
           </p>
         </div>
 
@@ -32,16 +33,17 @@ defineProps({
 
       <aside class="posts-sidebar">
         <div class="sidebar-card">
-          <small>Mais buscados agora</small>
+          <small>Pesquisas populares</small>
           <ul>
             <li v-for="item in topSearches" :key="item"><a href="#">{{ item }}</a></li>
           </ul>
         </div>
 
         <div class="sidebar-card">
-          <small>Área nobre para monetização</small>
+          <small>Conteúdo patrocinado</small>
           <div class="ad-placeholder">
-            Espaço ideal para AdSense responsivo, recomendação editorial ou bloco de links internos em destaque
+            Neste espaço você pode encontrar recomendações, sugestões úteis e conteúdos patrocinados
+            relacionados aos assuntos mais buscados do momento.
           </div>
         </div>
       </aside>

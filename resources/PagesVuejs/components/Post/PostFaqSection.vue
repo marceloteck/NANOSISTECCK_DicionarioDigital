@@ -14,9 +14,10 @@ defineProps({
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Perguntas frequentes</span>
-        <h2>Dúvidas comuns sobre POV</h2>
+        <h2>Tire suas principais dúvidas</h2>
         <p>
-          Esta seção ajuda o usuário a encontrar respostas rápidas e ainda reforça a cobertura semântica da página.
+          Confira respostas rápidas, claras e úteis para entender melhor o assunto, esclarecer dúvidas comuns
+          e encontrar as informações mais procuradas sobre este tema.
         </p>
       </div>
 

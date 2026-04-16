@@ -4,6 +4,7 @@
 use App\Http\Controllers\Institutional\InstitutionalPageController;
 use App\Http\Controllers\Pages\index\HomeContollerRoutes;
 use App\Http\Controllers\Posts\PostController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Search\SearchController;
 use App\Http\Controllers\Seo\SeoController;
