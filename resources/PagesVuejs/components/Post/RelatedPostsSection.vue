@@ -35,7 +35,9 @@ defineProps({
         <div class="sidebar-card">
           <small>Pesquisas populares</small>
           <ul>
-            <li v-for="item in topSearches" :key="item"><a href="#">{{ item }}</a></li>
+            <li v-for="item in topSearches" :key="item">
+              <a :href="'/buscar?q=' + encodeURIComponent(item)">{{ item }}</a>
+            </li>
           </ul>
         </div>
 
@@ -47,6 +49,7 @@ defineProps({
           </div>
         </div>
       </aside>
+
     </div>
   </section>
 </template>

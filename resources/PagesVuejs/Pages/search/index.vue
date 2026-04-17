@@ -5,12 +5,40 @@ import { Link, usePage } from '@inertiajs/vue3';
 const page = usePage();
 
 const seo = computed(() => page.props.seo ?? {});
-const results = computed(() => page.props.results ?? { data: [], links: [] });
+
+const results = computed(() => {
+  const value = page.props.results ?? {};
+
+  return {
+    data: Array.isArray(value.data) ? value.data : [],
+    links: Array.isArray(value.links) ? value.links : [],
+    total: typeof value.total === 'number' ? value.total : 0,
+    from: value.from ?? null,
+    to: value.to ?? null,
+    current_page: value.current_page ?? 1,
+    last_page: value.last_page ?? 1,
+    prev_page_url: value.prev_page_url ?? null,
+    next_page_url: value.next_page_url ?? null,
+  };
+});
+
 const query = computed(() => page.props.query ?? '');
-const tools = computed(() => page.props.tools ?? []);
-const featuredCategories = computed(() => page.props.featuredCategories ?? []);
-const trendingPosts = computed(() => page.props.trendingPosts ?? []);
-const totalResults = computed(() => page.props.totalResults ?? results.value?.data?.length ?? 0);
+const normalizedQuery = computed(() => page.props.normalizedQuery ?? '');
+const searchTerms = computed(() => page.props.searchTerms ?? []);
+const tools = computed(() => Array.isArray(page.props.tools) ? page.props.tools : []);
+const featuredCategories = computed(() => Array.isArray(page.props.featuredCategories) ? page.props.featuredCategories : []);
+const trendingPosts = computed(() => Array.isArray(page.props.trendingPosts) ? page.props.trendingPosts : []);
+
+const totalResults = computed(() => {
+  if (typeof results.value.total === 'number' && results.value.total > 0) {
+    return results.value.total;
+  }
+
+  return results.value.data.length;
+});
+
+const hasResults = computed(() => results.value.data.length > 0);
+const hasPagination = computed(() => results.value.last_page > 1 || results.value.links.length > 3);
 
 const recentPosts = ref([]);
 
@@ -21,10 +49,19 @@ const normalizeRecentPosts = (items) => {
 
   return items
     .filter((item) => item && item.title && item.url)
+    .map((item) => ({
+      id: item.id ?? item.url,
+      title: item.title,
+      url: item.url,
+      excerpt: item.excerpt ?? '',
+      category: item.category ?? null,
+    }))
     .slice(0, 8);
 };
 
 const loadRecentPosts = () => {
+  if (typeof window === 'undefined') return;
+
   try {
     const stored = localStorage.getItem(RECENT_POSTS_KEY);
     recentPosts.value = stored ? normalizeRecentPosts(JSON.parse(stored)) : [];
@@ -35,14 +72,14 @@ const loadRecentPosts = () => {
 
 const saveResultPostsAsRecent = () => {
   if (typeof window === 'undefined') return;
-  if (!results.value?.data?.length) return;
+  if (!results.value.data.length) return;
 
   try {
     const current = recentPosts.value ?? [];
 
     const merged = [
       ...results.value.data.map((item) => ({
-        id: item.id,
+        id: item.id ?? item.url,
         title: item.title,
         url: item.url,
         excerpt: item.excerpt ?? '',
@@ -56,10 +93,10 @@ const saveResultPostsAsRecent = () => {
 
     for (const item of merged) {
       const key = item.url;
-      if (!seen.has(key)) {
-        seen.add(key);
-        unique.push(item);
-      }
+      if (!key || seen.has(key)) continue;
+
+      seen.add(key);
+      unique.push(item);
     }
 
     recentPosts.value = unique.slice(0, 8);
@@ -73,13 +110,23 @@ const shouldRenderInlineAd = (index) => {
   return index === 2 || index === 7;
 };
 
+const readableRangeText = computed(() => {
+  if (!hasResults.value) return '';
+
+  if (results.value.from && results.value.to && totalResults.value) {
+    return `Mostrando ${results.value.from} a ${results.value.to} de ${totalResults.value} resultado(s)`;
+  }
+
+  return `${totalResults.value} resultado(s) encontrado(s)`;
+});
+
 onMounted(() => {
   loadRecentPosts();
   saveResultPostsAsRecent();
 });
 
 watch(
-  () => results.value?.data,
+  () => results.value.data,
   () => {
     saveResultPostsAsRecent();
   },
@@ -128,19 +175,39 @@ watch(
               </button>
             </div>
 
-            <p class="search-form-card__meta">
-              <strong>{{ totalResults }}</strong> resultado(s) encontrado(s) para:
-              <strong>{{ query || 'todos os conteúdos' }}</strong>
-            </p>
+            <div class="search-form-card__meta-wrap">
+              <p class="search-form-card__meta">
+                <strong>{{ totalResults }}</strong> resultado(s) encontrado(s) para:
+                <strong>{{ query || 'todos os conteúdos' }}</strong>
+              </p>
+
+              <p
+                v-if="searchTerms.length > 0 && query"
+                class="search-form-card__helper"
+              >
+                Termos principais identificados:
+                <strong>{{ searchTerms.join(', ') }}</strong>
+              </p>
+
+              <p
+                v-if="readableRangeText"
+                class="search-form-card__helper search-form-card__helper--soft"
+              >
+                {{ readableRangeText }}
+              </p>
+            </div>
           </form>
         </div>
 
         <div class="search-layout">
           <main class="search-main">
-            <div v-if="results.data.length > 0" class="search-results">
+            <div
+              v-if="hasResults"
+              class="search-results"
+            >
               <template
                 v-for="(item, index) in results.data"
-                :key="`result-wrapper-${item.id}`"
+                :key="`result-wrapper-${item.id ?? item.url ?? index}`"
               >
                 <article class="search-result-card">
                   <div class="search-result-card__top">
@@ -148,7 +215,10 @@ watch(
                       {{ item.title }}
                     </Link>
 
-                    <div class="search-result-card__badges">
+                    <div
+                      v-if="item.category_url || (item.tags && item.tags.length)"
+                      class="search-result-card__badges"
+                    >
                       <Link
                         v-if="item.category_url"
                         :href="item.category_url"
@@ -159,7 +229,7 @@ watch(
 
                       <Link
                         v-for="tag in item.tags || []"
-                        :key="tag.name"
+                        :key="`${item.id ?? item.url}-${tag.name}`"
                         :href="tag.url"
                         class="badge text-bg-light text-decoration-none"
                       >
@@ -168,7 +238,10 @@ watch(
                     </div>
                   </div>
 
-                  <p class="search-result-card__excerpt">
+                  <p
+                    v-if="item.excerpt"
+                    class="search-result-card__excerpt"
+                  >
                     {{ item.excerpt }}
                   </p>
 
@@ -187,8 +260,6 @@ watch(
                   <div class="search-ad-inline__label">Publicidade</div>
 
                   <div class="search-ad-inline__box">
-                    <!-- BLOCO ADSENSE RESPONSIVO -->
-                    <!-- Substitua pelo seu código real do AdSense -->
                     <div class="search-ad-inline__placeholder">
                       Conteúdo patrocinado
                     </div>
@@ -204,6 +275,13 @@ watch(
                 para encontrar resultados mais próximos do que você deseja.
               </p>
 
+              <p
+                v-if="normalizedQuery"
+                class="search-empty-state__text search-empty-state__text--soft"
+              >
+                Busca processada: <strong>{{ normalizedQuery }}</strong>
+              </p>
+
               <div
                 v-if="featuredCategories.length > 0"
                 class="search-empty-state__categories"
@@ -213,7 +291,7 @@ watch(
                 <div class="search-side-tags">
                   <Link
                     v-for="category in featuredCategories"
-                    :key="category.name"
+                    :key="category.url ?? category.name"
                     :href="category.url"
                     class="search-side-tag"
                   >
@@ -223,7 +301,12 @@ watch(
               </div>
             </div>
 
-            <PostPagination :links="results.links || []" class="mt-4" />
+            <div
+              v-if="hasPagination"
+              class="search-pagination-wrap"
+            >
+              <PostPagination :links="results.links || []" class="mt-4" />
+            </div>
 
             <section
               v-if="trendingPosts.length > 0"
@@ -237,7 +320,7 @@ watch(
               <div class="search-discovery-grid">
                 <Link
                   v-for="post in trendingPosts"
-                  :key="post.url"
+                  :key="post.url ?? post.title"
                   :href="post.url"
                   class="search-discovery-card"
                 >
@@ -295,7 +378,7 @@ watch(
               <div class="search-side-tags">
                 <Link
                   v-for="category in featuredCategories"
-                  :key="category.name"
+                  :key="category.url ?? category.name"
                   :href="category.url"
                   class="search-side-tag"
                 >
@@ -314,13 +397,13 @@ watch(
               <div class="search-side-list">
                 <Link
                   v-for="tool in tools"
-                  :key="tool.url"
+                  :key="tool.url ?? tool.title"
                   :href="tool.url"
                   class="search-side-list__item"
                 >
-                  <span class="search-side-list__title">{{ tool.name }}</span>
+                  <span class="search-side-list__title">{{ tool.title }}</span>
                   <span class="search-side-list__meta">
-                    {{ tool.description || 'Acesse e descubra como essa ferramenta pode ser útil para você.' }}
+                    {{ tool.excerpt || 'Acesse e descubra como essa ferramenta pode ser útil para você.' }}
                   </span>
                 </Link>
               </div>
@@ -423,9 +506,24 @@ watch(
   font-weight: 700;
 }
 
+.search-form-card__meta-wrap {
+  margin-top: 0.9rem;
+}
+
 .search-form-card__meta {
-  margin: 0.9rem 0 0;
+  margin: 0;
   color: #667085;
+}
+
+.search-form-card__helper {
+  margin: 0.45rem 0 0;
+  color: #5d6877;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.search-form-card__helper--soft {
+  color: #7b8794;
 }
 
 .search-layout {
@@ -525,6 +623,10 @@ watch(
   font-weight: 700;
   text-align: center;
   padding: 1rem;
+}
+
+.search-pagination-wrap {
+  margin-top: 1.5rem;
 }
 
 .search-sidebar {
@@ -661,6 +763,10 @@ watch(
   margin: 0.8rem 0 0;
   color: #616c7c;
   line-height: 1.75;
+}
+
+.search-empty-state__text--soft {
+  color: #7b8794;
 }
 
 .search-empty-state__categories {

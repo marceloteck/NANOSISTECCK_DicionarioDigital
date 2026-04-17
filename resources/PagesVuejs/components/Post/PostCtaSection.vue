@@ -28,15 +28,25 @@ defineProps({
     <div class="container">
       <div class="cta-panel">
         <div class="cta-content">
-          <small>Continue explorando o dicionário</small>
-          <h2>{{ title || 'Entender uma palavra leva a outras curiosidades.' }}</h2>
+          <small>Continue navegando</small>
+
+          <h2>{{ title || 'Descobrir um significado pode levar você a aprender muito mais.' }}</h2>
+
           <p>
-            {{ text || 'Esse é o tipo de página ideal para responder rápido, aprofundar com clareza e ainda conduzir o visitante para novos conteúdos, fortalecendo SEO, retenção e monetização de forma natural.' }}
+            {{
+              text ||
+              'Se este conteúdo ajudou, aproveite para explorar outros termos, expressões e curiosidades que também fazem parte do dia a dia na internet, nas redes sociais e nas conversas mais usadas do momento.'
+            }}
           </p>
 
           <div class="cta-actions">
-            <a :href="buttonUrl || '/#posts'" class="btn btn-primary">{{ buttonText || 'Ver mais posts' }}</a>
-            <a href="/#categorias" class="btn btn-outline">Explorar categorias</a>
+            <a :href="buttonUrl || '/posts'" class="btn btn-primary">
+              {{ buttonText || 'Ver mais conteúdos' }}
+            </a>
+
+            <a href="/#categorias" class="btn btn-outline">
+              Explorar categorias
+            </a>
           </div>
         </div>
 

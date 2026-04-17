@@ -166,7 +166,7 @@ button { border: none; background: none; }
 
 .post-preview { border-radius: 28px; padding: 30px; transition: var(--transition); }
 .breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; color: var(--muted); font-size: .92rem; font-weight: 600; }
-.post-preview h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 14px; }
+/*.post-preview h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 14px; }*/
 .quick-answer { margin: 22px 0; padding: 18px 20px; border-radius: 20px; background: linear-gradient(180deg, var(--accent-soft), #fff); border: 1px solid rgba(109, 40, 217, 0.12); }
 .quick-answer strong { display: block; margin-bottom: 8px; color: var(--primary-strong); }
 .post-sections { display: grid; gap: 18px; }

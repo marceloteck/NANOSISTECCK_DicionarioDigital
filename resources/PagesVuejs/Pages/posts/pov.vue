@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import AppHead from '../../components/Applications/AppHead.vue';
 import Footer from '../../components/Home/Footer.vue';
@@ -39,6 +39,104 @@ const mappedRelatedPosts = computed(() =>
 );
 
 const headingTitle = computed(() => post.value.hero_title || post.value.title || 'Post');
+
+const postPreviewRef = ref(null);
+const sideColumnRef = ref(null);
+const stickyAdRef = ref(null);
+const stickyAdState = ref('');
+const stickyAdAnchorRef = ref(null);
+
+let onScrollHandler = null;
+let onResizeHandler = null;
+
+const updateStickyAd = () => {
+  if (
+    !postPreviewRef.value ||
+    !sideColumnRef.value ||
+    !stickyAdRef.value ||
+    !stickyAdAnchorRef.value
+  ) return;
+
+  const adEl = stickyAdRef.value;
+  const anchorEl = stickyAdAnchorRef.value;
+
+  if (window.innerWidth <= 1180) {
+    stickyAdState.value = '';
+    adEl.style.left = '';
+    adEl.style.width = '';
+    adEl.style.top = '';
+    adEl.style.visibility = '';
+    adEl.style.opacity = '';
+    anchorEl.style.height = '';
+    return;
+  }
+
+  const articleRect = postPreviewRef.value.getBoundingClientRect();
+  const sideRect = sideColumnRef.value.getBoundingClientRect();
+  const anchorRect = anchorEl.getBoundingClientRect();
+
+  const scrollY = window.scrollY;
+  const articleBottom = articleRect.bottom + scrollY;
+  const anchorTop = anchorRect.top + scrollY;
+
+  const fixedTop = 110;
+  const adHeight = adEl.offsetHeight;
+  const sideWidth = sideRect.width;
+
+  const startStick = anchorTop - fixedTop;
+  const stopStick = articleBottom - adHeight - 24;
+
+  anchorEl.style.height = `${adHeight}px`;
+
+  if (scrollY < startStick) {
+    stickyAdState.value = '';
+    adEl.style.left = '';
+    adEl.style.width = '';
+    adEl.style.top = '';
+    adEl.style.visibility = '';
+    adEl.style.opacity = '';
+    return;
+  }
+
+  if (scrollY >= stopStick) {
+    stickyAdState.value = 'is-hidden';
+    adEl.style.left = '';
+    adEl.style.width = '';
+    adEl.style.top = '';
+    adEl.style.visibility = 'hidden';
+    adEl.style.opacity = '0';
+    return;
+  }
+
+  stickyAdState.value = 'is-fixed';
+  adEl.style.left = `${sideRect.left}px`;
+  adEl.style.width = `${sideWidth}px`;
+  adEl.style.top = `${fixedTop}px`;
+  adEl.style.visibility = 'visible';
+  adEl.style.opacity = '1';
+};
+
+
+onMounted(() => {
+  onScrollHandler = () => updateStickyAd();
+  onResizeHandler = () => updateStickyAd();
+
+  window.addEventListener('scroll', onScrollHandler, { passive: true });
+  window.addEventListener('resize', onResizeHandler);
+
+  updateStickyAd();
+});
+
+onBeforeUnmount(() => {
+  if (onScrollHandler) {
+    window.removeEventListener('scroll', onScrollHandler);
+  }
+
+  if (onResizeHandler) {
+    window.removeEventListener('resize', onResizeHandler);
+  }
+});
+
 </script>
 
 <template>
@@ -78,7 +176,7 @@ const headingTitle = computed(() => post.value.hero_title || post.value.title ||
 
     <section class="section" id="conteudo">
       <div class="container system-grid">
-        <article class="post-preview">
+        <article ref="postPreviewRef" class="post-preview">
           <PostBreadcrumb :items="breadcrumbs" />
 
           <small class="preview-label">Significado completo</small>
@@ -111,39 +209,50 @@ const headingTitle = computed(() => post.value.hero_title || post.value.title ||
           </div>
         </article>
 
-        <div>
-          <PostSidebar :cards="sidebar.cards || []" />
+        
+        
+<div class="post-side-column" ref="sideColumnRef">
+  <PostSidebar :cards="sidebar.cards || []" />
 
-          <aside class="posts-sidebar mt-4">
-            <div class="sidebar-card" v-if="sidebar.categories?.length">
-              <small>Categorias</small>
-              <ul>
-                <li v-for="category in sidebar.categories" :key="category.slug">
-                  <Link :href="route('posts.category', category.slug)">{{ category.name }}</Link>
-                </li>
-              </ul>
-            </div>
+  <aside class="posts-sidebar mt-4">
+    <div class="sidebar-card" v-if="sidebar.categories?.length">
+      <small>Categorias</small>
+      <ul>
+        <li v-for="category in sidebar.categories" :key="category.slug">
+          <Link :href="route('posts.category', category.slug)">{{ category.name }}</Link>
+        </li>
+      </ul>
+    </div>
 
-            <div class="sidebar-card" v-if="sidebar.internalLinks?.length">
-              <small>Links internos</small>
-              <ul>
-                <li v-for="link in sidebar.internalLinks" :key="link.href">
-                  <a :href="link.href">{{ link.label }}</a>
-                </li>
-              </ul>
-            </div>
+    <div class="sidebar-card" v-if="sidebar.internalLinks?.length">
+      <small>Links internos</small>
+      <ul>
+        <li v-for="link in sidebar.internalLinks" :key="link.href">
+          <a :href="link.href">{{ link.label }}</a>
+        </li>
+      </ul>
+    </div>
 
-            <div class="sidebar-card sidebar-card-sticky-ad">
-              <small>Conteúdo patrocinado</small>
-              <div class="ad-placeholder">
-                Neste espaço você pode encontrar recomendações, sugestões úteis e conteúdos patrocinados
-                relacionados aos assuntos mais buscados do momento.
-              </div>
-            </div>
+    <div ref="stickyAdAnchorRef" class="sticky-ad-anchor">
+    <div
+      ref="stickyAdRef"
+      class="sidebar-card sidebar-card-sticky-ad"
+      :class="stickyAdState"
+    >
+      <small>Conteúdo patrocinado</small>
+      <div class="ad-placeholder">
+        Neste espaço você pode encontrar recomendações, sugestões úteis e conteúdos patrocinados
+        relacionados aos assuntos mais buscados do momento.
+      </div>
+    </div>
+  </div>
+  </aside>
+</div>
 
-            
-          </aside>
-        </div>
+
+
+
+
       </div>
     </section>
 
@@ -158,6 +267,188 @@ const headingTitle = computed(() => post.value.hero_title || post.value.title ||
 </template>
 
 <style scoped>
+
+
+.post-side-column {
+  position: relative;
+  align-self: start;
+}
+
+.sidebar-card-sticky-ad {
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition),
+    opacity 220ms ease;
+}
+.sidebar-card-sticky-ad::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(109, 40, 217, 0.10), transparent 24%),
+    radial-gradient(circle at 86% 14%, rgba(192, 138, 43, 0.09), transparent 22%);
+  opacity: 0.95;
+}
+
+.sidebar-card-sticky-ad > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-card-sticky-ad.is-fixed {
+  position: fixed;
+  z-index: 30;
+}
+
+.sidebar-card-sticky-ad.is-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.sidebar-card-sticky-ad:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 60px rgba(31, 23, 40, 0.12);
+  border-color: rgba(109, 40, 217, 0.16);
+}
+
+.sidebar-card-sticky-ad .ad-placeholder {
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1180px) {
+  .sidebar-card-sticky-ad,
+  .sidebar-card-sticky-ad.is-fixed,
+  .sidebar-card-sticky-ad.is-bottom {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: auto !important;
+  }
+}
+
+.sticky-ad-anchor {
+  position: relative;
+}
+
+.sidebar-card-sticky-ad {
+  will-change: transform, opacity;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition),
+    opacity 220ms ease;
+}
+
+.sidebar-card-sticky-ad.is-fixed {
+  position: fixed;
+  z-index: 30;
+}
+
+.sidebar-card-sticky-ad.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1180px) {
+  .sticky-ad-anchor {
+    height: auto !important;
+  }
+
+  .sidebar-card-sticky-ad,
+  .sidebar-card-sticky-ad.is-fixed,
+  .sidebar-card-sticky-ad.is-hidden {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+.sidebar-card-sticky-ad {
+  will-change: transform, opacity;
+}
+
+.sidebar-card-sticky-ad.is-fixed {
+  position: fixed;
+  z-index: 30;
+}
+
+.sidebar-card-sticky-ad.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+
+.post-side-column {
+  position: relative;
+  align-self: start;
+}
+
+.sidebar-card-sticky-ad {
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.sidebar-card-sticky-ad.is-fixed {
+  position: fixed;
+  z-index: 30;
+}
+
+.sidebar-card-sticky-ad.is-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.sidebar-card-sticky-ad:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 60px rgba(31, 23, 40, 0.12);
+  border-color: rgba(109, 40, 217, 0.16);
+}
+
+@media (max-width: 1180px) {
+  .sidebar-card-sticky-ad,
+  .sidebar-card-sticky-ad.is-fixed,
+  .sidebar-card-sticky-ad.is-bottom {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: auto !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -374,10 +665,11 @@ iframe {
 }
 
 .post-preview h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   margin-bottom: 14px;
   letter-spacing: -0.03em;
   overflow-wrap: anywhere;
+  font-weight:bold;
 }
 
 .preview-intro {
@@ -430,7 +722,9 @@ iframe {
 }
 
 .post-content h2 {
-  /*font-size: clamp(1rem, 2.3vw, 1rem);*/
+  /*font-size: clamp(0.8rem, 2vw, 0.8rem);*/
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
 }
 
 .post-content h3 {
@@ -858,6 +1152,31 @@ iframe {
   letter-spacing: -0.02em;
 }
 
+.card-body .h6 {
+  display: inline-block;
+  position: relative;
+
+  padding: 8px 14px;
+  border-radius: 10px;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  color: var(--primary-strong);
+
+  background: linear-gradient(
+    135deg,
+    rgba(109, 40, 217, 0.10),
+    rgba(192, 138, 43, 0.10)
+  );
+
+  border: 1px solid rgba(109, 40, 217, 0.18);
+
+  box-shadow: 0 6px 18px rgba(109, 40, 217, 0.08);
+}
+
 .card-body ul {
   list-style: none;
   padding: 0;
@@ -1023,7 +1342,7 @@ iframe {
   }
 
   .post-preview h2 {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
     line-height: 1.08;
   }
 
