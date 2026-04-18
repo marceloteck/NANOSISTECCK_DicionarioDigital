@@ -9,7 +9,7 @@ const links = [
   { label: 'Início', href: '#inicio' },
   { label: 'Categorias', href: '#categorias' },
   { label: 'Destaques', href: '#destaques' },
-  { label: 'Posts', href: '#posts' },
+  { label: 'Posts', href: '/posts' },
   { label: 'FAQ', href: '#faq' },
 ];
 

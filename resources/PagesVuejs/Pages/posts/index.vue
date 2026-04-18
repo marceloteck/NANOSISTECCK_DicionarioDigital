@@ -186,6 +186,16 @@ const shouldRenderInlineAd = (index) => {
               </div>
             </section>
 
+            
+            <section class="posts-side-card">
+              <span class="posts-side-card__label">Descubra mais</span>
+              <h3 class="posts-side-card__title">Encontre novos conteúdos do seu interesse</h3>
+              <p class="posts-side-card__text">
+                Aproveite esta página para descobrir temas relacionados, aprender algo novo, esclarecer dúvidas
+                e acessar conteúdos organizados para tornar sua navegação mais prática, útil e agradável.
+              </p>
+            </section>
+
             <section class="posts-side-card posts-side-card--ad">
               <span class="posts-side-card__label">Publicidade</span>
               <h3 class="posts-side-card__title">Outra recomendação patrocinada</h3>
@@ -199,14 +209,6 @@ const shouldRenderInlineAd = (index) => {
               </div>
             </section>
 
-            <section class="posts-side-card">
-              <span class="posts-side-card__label">Descubra mais</span>
-              <h3 class="posts-side-card__title">Encontre novos conteúdos do seu interesse</h3>
-              <p class="posts-side-card__text">
-                Aproveite esta página para descobrir temas relacionados, aprender algo novo, esclarecer dúvidas
-                e acessar conteúdos organizados para tornar sua navegação mais prática, útil e agradável.
-              </p>
-            </section>
           </aside>
         </div>
       </div>

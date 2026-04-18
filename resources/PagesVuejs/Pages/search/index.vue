@@ -409,6 +409,19 @@ watch(
               </div>
             </section>
 
+            <section class="search-side-card search-side-card--ad">
+              <span class="search-side-card__label">Publicidade</span>
+              <h3 class="search-side-card__title">Sugestão patrocinada</h3>
+              <p class="search-side-card__text">
+                Neste espaço você pode encontrar recomendações e ofertas relacionadas ao que está pesquisando.
+              </p>
+
+              <div class="search-ad-placeholder">
+                Conteúdo patrocinado
+              </div>
+            </section>
+
+
             <section class="search-side-card">
               <span class="search-side-card__label">Dica de busca</span>
               <h3 class="search-side-card__title">Encontre resultados com mais facilidade</h3>

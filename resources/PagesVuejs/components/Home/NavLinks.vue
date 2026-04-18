@@ -14,7 +14,7 @@ defineProps({
 <template>
   <ul :class="listClass">
     <li v-for="link in links" :key="link.href">
-      <a :href="link.href">{{ link.label }}</a>
+      <Link :href="link.href">{{ link.label }}</Link>
     </li>
   </ul>
 </template>

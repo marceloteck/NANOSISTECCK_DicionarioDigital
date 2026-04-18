@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import BrandLogo from '../Home/BrandLogo.vue';
+import PostHeader_pages from '../../components/Post/PostHeader_pages.vue';
 
 const props = defineProps({
   title: { type: String, default: '' },
@@ -23,7 +24,7 @@ const institutionalPages = computed(() => Object.values(project.value.institutio
 
 <template>
   <div class="site-layout">
-    <header class="site-header border-bottom bg-white">
+ <!--  <header class="site-header border-bottom bg-white">
         <div class="container site-header__inner py-3">
         <Link :href="route('index.home')" class="text-decoration-none">
           <BrandLogo :use-icon="true" subtitle="Entenda a linguagem da internet" />
@@ -40,7 +41,9 @@ const institutionalPages = computed(() => Object.values(project.value.institutio
         </nav>
       </div>
     </header>
+-->
 
+  <PostHeader_pages />
     <main>
       <slot />
     </main>

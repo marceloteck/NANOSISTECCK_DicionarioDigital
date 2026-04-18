@@ -453,17 +453,25 @@ class PostController extends Controller
         ];
 
         $cta = [
-            'title' => $post->cta_title,
-            'text' => $post->cta_text,
-            'button_text' => $post->cta_button_text,
-            'button_url' => $post->cta_button_url,
+            'title' => $post->cta_title ?: 'Gostou do conteúdo? Continue descobrindo mais',
+            'text' => $post->cta_text ?: 'Aqui você pode encontrar outros significados, gírias, expressões e termos populares explicados de forma simples e rápida. Continue navegando para aprender mais sem complicação.',
+            'button_text' => $post->cta_button_text ?: 'Explorar mais conteúdos',
+            'button_url' => $post->cta_button_url ?: route('posts.index'),
             'stats' => [
-                ['title' => 'Resposta imediata', 'description' => 'Significado, contexto e aplicação entregues de forma direta.'],
-                ['title' => 'Navegação interna', 'description' => 'Relacionados, categoria e tag para ampliar retenção.'],
-                ['title' => 'Escalável', 'description' => 'Contrato padronizado para publicar novos posts sem retrabalho.'],
+                [
+                    'title' => 'Explicação rápida',
+                    'description' => 'Entenda termos e expressões sem enrolação.',
+                ],
+                [
+                    'title' => 'Mais assuntos',
+                    'description' => 'Veja outros conteúdos parecidos e amplie seu conhecimento.',
+                ],
+                [
+                    'title' => 'Navegação fácil',
+                    'description' => 'Acesse categorias, tags e buscas de forma prática.',
+                ],
             ],
         ];
-
         $seo = $seoBuilder->buildPost([
             ...$postArray,
             'content_html' => $formatted['content_html'],
@@ -536,14 +544,23 @@ class PostController extends Controller
         ];
 
         $cta = [
-            'title' => $post->cta_title,
-            'text' => $post->cta_text,
-            'button_text' => $post->cta_button_text,
-            'button_url' => $post->cta_button_url,
+            'title' => $post->cta_title ?: 'Gostou do conteúdo? Continue descobrindo mais',
+            'text' => $post->cta_text ?: 'Aqui você pode encontrar outros significados, gírias, expressões e termos populares explicados de forma simples e rápida. Continue navegando para aprender mais sem complicação.',
+            'button_text' => $post->cta_button_text ?: 'Explorar mais conteúdos',
+            'button_url' => $post->cta_button_url ?: route('posts.index'),
             'stats' => [
-                ['title' => 'Resposta imediata', 'description' => 'Significado, contexto e aplicação entregues de forma direta.'],
-                ['title' => 'Navegação interna', 'description' => 'Relacionados, categoria e tag para ampliar retenção.'],
-                ['title' => 'Escalável', 'description' => 'Contrato padronizado para publicar novos posts sem retrabalho.'],
+                [
+                    'title' => 'Explicação rápida',
+                    'description' => 'Entenda termos e expressões sem enrolação.',
+                ],
+                [
+                    'title' => 'Mais assuntos',
+                    'description' => 'Veja outros conteúdos parecidos e amplie seu conhecimento.',
+                ],
+                [
+                    'title' => 'Navegação fácil',
+                    'description' => 'Acesse categorias, tags e buscas de forma prática.',
+                ],
             ],
         ];
 

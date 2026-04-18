@@ -197,7 +197,7 @@ const topSearches = computed(() => homeData.value.topSearches?.length ? homeData
     <CategoriesSection :items="categories" />
     <FeaturedSection :items="featured" />
     <PostsSection :posts="posts" :top-searches="topSearches" />
-    <PostPreviewSection :infos="infoCards" />
+    <!--<PostPreviewSection :infos="infoCards" />-->
     <FaqSection :items="faqItems" />
     <CtaSection :stats="ctaStats" />
   </main>

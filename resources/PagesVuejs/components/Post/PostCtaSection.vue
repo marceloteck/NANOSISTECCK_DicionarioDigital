@@ -40,13 +40,21 @@ defineProps({
           </p>
 
           <div class="cta-actions">
-            <a :href="buttonUrl || '/posts'" class="btn btn-primary">
+            <Link :href="buttonUrl || '/posts'" class="btn btn-primary">
               {{ buttonText || 'Ver mais conteúdos' }}
-            </a>
+            </Link>
 
-            <a href="/#categorias" class="btn btn-outline">
+            <Link href="/categoria" class="btn btn-outline">
               Explorar categorias
-            </a>
+            </Link>
+
+            <Link href="/tag" class="btn btn-outline">
+              Explorar tags
+            </Link>
+
+            <Link href="/buscar" class="btn btn-outline">
+              Fazer uma pesquisa
+            </Link>
           </div>
         </div>
 

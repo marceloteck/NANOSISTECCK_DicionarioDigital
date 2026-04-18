@@ -7,10 +7,9 @@ const isMenuOpen = ref(false);
 
 const links = [
   { label: 'Início', href: '/' },
+  { label: 'Posts', href: '/posts' },
   { label: 'Categorias', href: '/categoria' },
-  { label: 'Conteúdo', href: '#conteudo' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Relacionados', href: '#relacionados' },
+  { label: 'Tags', href: '/tag' },
 ];
 
 const closeMenu = () => {
@@ -50,7 +49,7 @@ const closeMenu = () => {
 
       <div class="nav-actions">
         <Link href="/buscar" class="btn btn-outline" @click="closeMenu">Buscar</Link>
-        <a href="#relacionados" class="btn btn-primary" @click="closeMenu">Continuar lendo</a>
+        <a href="/posts" class="btn btn-primary" @click="closeMenu">Continuar lendo</a>
       </div>
     </div>
   </header>

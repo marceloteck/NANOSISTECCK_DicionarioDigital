@@ -32,7 +32,7 @@ defineProps({
 
         <div class="hero-actions">
           <a href="#busca" class="btn btn-primary">Usar busca inteligente</a>
-          <a href="#sistema-post" class="btn btn-outline">Ver exemplo de post</a>
+          <Link href="/posts" class="btn btn-outline">Ver todos os posts</Link>
         </div>
 
         <div class="hero-trust">
