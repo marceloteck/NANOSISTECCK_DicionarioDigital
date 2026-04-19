@@ -114,54 +114,54 @@ const fallbackTopSearches = [
 
 const infoCards = [
   {
-    title: 'Estrutura ideal do post',
-    description: 'Título claro, resposta rápida, explicação simples, exemplos, perguntas frequentes e links para outros termos.',
+    title: 'Conteúdo direto ao ponto',
+    description: 'Você encontra uma explicação clara, exemplos práticos e links para termos relacionados em poucos segundos.',
   },
   {
-    title: 'Boa para SEO',
-    description: 'Essa estrutura ajuda o Google a entender melhor o conteúdo e ajuda o usuário a encontrar a resposta sem esforço.',
+    title: 'Fácil de encontrar no Google',
+    description: 'A estrutura facilita a busca e ajuda você a chegar mais rápido na resposta certa.',
   },
   {
-    title: 'Boa para retenção',
-    description: 'O visitante lê, entende e já encontra caminhos para navegar por outros assuntos relacionados.',
+    title: 'Leitura sem complicação',
+    description: 'A navegação foi pensada para você ler, entender e continuar explorando novos termos com facilidade.',
   },
   {
-    title: 'Pronta para o futuro',
-    description: 'Depois essa base pode receber PHP, banco de dados, painel administrativo e busca mais inteligente.',
+    title: 'Sempre atualizada',
+    description: 'Novos significados e tendências podem ser adicionados com frequência para manter você sempre por dentro.',
   },
 ];
 
 const faqItems = [
   {
-    question: 'Esse modelo já serve como base real do projeto?',
-    answer: 'Sim. Ele já mostra a identidade visual, a experiência da home, a busca e o padrão de exibição dos posts.',
+    question: 'O conteúdo é confiável para consulta rápida?',
+    answer: 'Sim. As explicações seguem linguagem simples, contexto de uso e exemplos para você entender sem dificuldade.',
   },
   {
-    question: 'Por que o visual claro foi escolhido?',
-    answer: 'Porque ele favorece leitura longa, conforto visual, percepção de confiança e melhor adaptação para sites de conteúdo.',
+    question: 'Por que o visual é mais limpo e claro?',
+    answer: 'Porque isso melhora o conforto na leitura, facilita a navegação e deixa sua experiência mais agradável no celular e no desktop.',
   },
   {
-    question: 'Esse modelo é bom para SEO?',
-    answer: 'Sim. A estrutura foi organizada para facilitar escaneabilidade, semântica, navegação interna e expansão futura de conteúdo.',
+    question: 'É fácil encontrar os termos mais buscados?',
+    answer: 'Sim. Você pode usar a busca, navegar por categorias e descobrir conteúdos relacionados na própria página.',
   },
   {
-    question: 'Essa base é boa para monetização?',
-    answer: 'Sim. O layout foi pensado para leitura confortável, boa retenção e espaços adequados para monetização sem poluição visual.',
+    question: 'A experiência fica boa mesmo com conteúdo patrocinado?',
+    answer: 'Sim. Os espaços patrocinados são posicionados para não atrapalhar a leitura e manter o site organizado.',
   },
 ];
 
 const ctaStats = [
   {
-    title: 'Visual premium',
-    description: 'Elegante, claro e confortável aos olhos',
+    title: 'Leitura confortável',
+    description: 'Design elegante para você focar no que importa',
   },
   {
-    title: 'Estrutura escalável',
-    description: 'Pronta para crescer em posts, categorias e sistema',
+    title: 'Mais termos todo dia',
+    description: 'Conteúdo em expansão para acompanhar as tendências',
   },
   {
-    title: 'Experiência forte',
-    description: 'Busca central, navegação intuitiva e foco no usuário',
+    title: 'Navegação inteligente',
+    description: 'Busca central e atalhos rápidos para cada assunto',
   },
 ];
 
