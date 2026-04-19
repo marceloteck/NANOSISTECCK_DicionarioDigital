@@ -36,8 +36,8 @@
         >
             <div class="cookie-consent-content">
                 <p>
-                    Usamos cookies e tecnologias semelhantes para melhorar sua experiência, personalizar conteúdo e exibir anúncios (como Google AdSense).
-                    Ao continuar navegando, você concorda com esse uso.
+                Utilizamos cookies e tecnologias semelhantes para melhorar sua experiência, personalizar conteúdos e apresentar anúncios relevantes. 
+                Ao continuar navegando, você concorda com o uso dessas tecnologias conforme nossa política de privacidade.
                 </p>
                 <div class="cookie-consent-actions">
                     <button type="button" id="cookie-consent-accept" class="cookie-btn cookie-btn-primary">OK, entendi</button>
@@ -50,7 +50,7 @@
         </main>
         @include('AssetsGlobal/globalJs')
 
-        <style>
+       <style>
             .skip-link {
                 position: absolute;
                 left: -9999px;
@@ -74,6 +74,10 @@
                 z-index: 9999;
                 display: flex;
                 justify-content: center;
+            }
+
+            .cookie-consent-banner[hidden] {
+                display: none !important;
             }
 
             .cookie-consent-content {
@@ -131,27 +135,42 @@
                 }
             }
         </style>
+
         <script>
             (() => {
                 const storageKey = 'cookie_consent_accepted_v1';
-                const banner = document.getElementById('cookie-consent-banner');
-                const acceptBtn = document.getElementById('cookie-consent-accept');
-                const closeBtn = document.getElementById('cookie-consent-close');
 
-                if (!banner || !acceptBtn || !closeBtn) return;
+                const initCookieConsent = () => {
+                    const banner = document.getElementById('cookie-consent-banner');
+                    const acceptBtn = document.getElementById('cookie-consent-accept');
+                    const closeBtn = document.getElementById('cookie-consent-close');
 
-                const hasConsent = localStorage.getItem(storageKey) === 'yes';
-                if (!hasConsent) {
-                    banner.hidden = false;
-                }
+                    if (!banner || !acceptBtn || !closeBtn) return;
 
-                const handleClose = () => {
-                    localStorage.setItem(storageKey, 'yes');
                     banner.hidden = true;
+
+                    const hasConsent = localStorage.getItem(storageKey) === 'yes';
+
+                    if (!hasConsent) {
+                        requestAnimationFrame(() => {
+                            banner.hidden = false;
+                        });
+                    }
+
+                    const handleClose = () => {
+                        localStorage.setItem(storageKey, 'yes');
+                        banner.hidden = true;
+                    };
+
+                    acceptBtn.addEventListener('click', handleClose);
+                    closeBtn.addEventListener('click', handleClose);
                 };
 
-                acceptBtn.addEventListener('click', handleClose);
-                closeBtn.addEventListener('click', handleClose);
+                if (document.readyState === 'complete') {
+                    initCookieConsent();
+                } else {
+                    window.addEventListener('load', initCookieConsent, { once: true });
+                }
             })();
         </script>
     </body>

@@ -17,7 +17,9 @@ const links = [
         <BrandLogo subtitle="Projeto NANOSISTECCK" :use-icon="true" />
 
         <p>
-          Um modelo premium criado para transformar curiosidades da internet em uma experiência clara, <br> elegante e pronta para crescer.
+          Plataforma criada para ajudar você a entender termos, descobrir curiosidades 
+          e encontrar respostas de forma rápida, clara e confiável. Continue explorando 
+          e aproveite todo o conteúdo disponível.
         </p>
       </div>
 

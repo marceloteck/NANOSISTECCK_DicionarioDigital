@@ -14,9 +14,11 @@ defineProps({
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Em destaque</span>
-        <h2>Conteúdos que mais despertam curiosidade</h2>
+        <h2>Descubra conteúdos que estão chamando atenção agora</h2>
         <p>
-          Estes blocos mostram como os assuntos aparecem para o usuário: títulos claros, explicações rápidas e incentivo para continuar navegando.
+          Explore temas populares com explicações claras, diretas e fáceis de entender. 
+          Navegue pelos conteúdos mais acessados e encontre rapidamente respostas, 
+          curiosidades e informações úteis que fazem parte do dia a dia digital.
         </p>
       </div>
 

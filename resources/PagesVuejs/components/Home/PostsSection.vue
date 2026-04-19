@@ -20,9 +20,11 @@ defineProps({
       <div class="posts-main">
         <div class="section-head">
           <span class="eyebrow">Posts recentes</span>
-          <h2>Uma estrutura pronta para centenas de conteúdos</h2>
+          <h2>Conteúdos novos para você continuar explorando</h2>
           <p>
-            A home foi planejada para mostrar novos posts, posts em alta e caminhos de navegação que fazem o usuário continuar explorando.
+            Descubra os conteúdos mais recentes publicados no site, com explicações claras, 
+            diretas e pensadas para resolver dúvidas do dia a dia. Aqui você encontra 
+            respostas rápidas, aprende algo novo e continua navegando por temas que realmente importam.
           </p>
         </div>
 
@@ -34,8 +36,8 @@ defineProps({
       <aside class="posts-sidebar">
         <SidebarCard title="Mais buscados" :links="topSearches" />
         <SidebarCard
-          title="Área nobre para monetização"
-          ad-text="Espaço ideal para AdSense responsivo ou bloco editorial em destaque"
+          title="Recomendado para você"
+          ad-text="Conteúdos e oportunidades selecionadas para ajudar você a descobrir novas soluções, produtos e informações úteis"
         />
       </aside>
     </div>
