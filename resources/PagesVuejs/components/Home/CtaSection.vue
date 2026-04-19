@@ -14,16 +14,16 @@ defineProps({
     <div class="container">
       <div class="cta-panel">
         <div class="cta-content">
-          <small>Base premium para um projeto real</small>
-          <h2>Seu Dicionário Digital já pode nascer com aparência de produto grande.</h2>
+          <small>Seu guia rápido da internet</small>
+          <h2>Descubra significados, gírias e tendências em um só lugar.</h2>
           <p>
-            Este modelo foi pensado para parecer profissional, confiável e preparado para escalar com conteúdo, SEO e monetização.
-            É uma base forte para transformar em um sistema completo no futuro.
+            Aqui você encontra explicações claras, exemplos reais e conteúdos atualizados para entender o que está bombando nas redes.
+            Tudo com leitura leve e navegação simples no celular ou desktop.
           </p>
 
           <div class="cta-actions">
-            <a href="#" class="btn btn-primary">Começar desenvolvimento</a>
-            <a href="#" class="btn btn-outline">Planejar páginas internas</a>
+            <a href="#" class="btn btn-primary">Pesquisar agora</a>
+            <a href="#" class="btn btn-outline">Explorar conteúdos</a>
           </div>
         </div>
 

@@ -14,8 +14,8 @@ defineProps({
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Perguntas frequentes</span>
-        <h2>Uma base feita para crescer com clareza e elegância</h2>
-        <p>O projeto já nasce com uma estrutura visual e editorial pensada para facilitar o desenvolvimento futuro.</p>
+        <h2>Tudo o que você precisa para entender os termos da internet</h2>
+        <p>Respostas rápidas, exemplos claros e navegação simples para você encontrar o significado certo sem perder tempo.</p>
       </div>
 
       <div class="faq-grid">
