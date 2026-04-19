@@ -1,0 +1,1 @@
+import{o as s,a as r,d as e,t as a}from"./app-39cfeb0d.js";const c={class:"cta-stat"},l={__name:"CtaStat",props:{item:{type:Object,required:!0}},setup(t){return(n,o)=>(s(),r("div",c,[e("strong",null,a(t.item.title),1),e("span",null,a(t.item.description),1)]))}};export{l as default};
